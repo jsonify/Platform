@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7m63d0kgelyv"
-path="res://.godot/imported/hero-run-jump-fall-idle.png-f55371c7355ffdfb8395d92fef4e8dfb.ctex"
+uid="uid://cq7s2yic3ww73"
+path="res://.godot/imported/hero_NO-WEAPON_24x36.png-165004f9830a8576513adb55687eea89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/hero-run-jump-fall-idle.png"
-dest_files=["res://.godot/imported/hero-run-jump-fall-idle.png-f55371c7355ffdfb8395d92fef4e8dfb.ctex"]
+source_file="res://Player/hero_NO-WEAPON_24x36.png"
+dest_files=["res://.godot/imported/hero_NO-WEAPON_24x36.png-165004f9830a8576513adb55687eea89.ctex"]
 
 [params]
 
