@@ -23,13 +23,17 @@ enum states {
 	THRUST
 }
 
+var debug_enabled_status := false
+
 var state = states.FALL
-var direction = "right"
+var direction := "right"
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _ready():
+	debug_enabled(debug_enabled_status)
+
 func _physics_process(delta):
-	state_label.text = states.keys()[state]
 	var input = Vector2.ZERO
 	input.x = Input.get_axis("left", "right")
 	input.y = Input.get_axis("thrust", "ui_down")
@@ -130,6 +134,10 @@ func update_direction(input) -> void:
 	elif input.x < 0:
 		set_direction_left()
 
+func debug_enabled(status):
+	debug_enabled_status = status
+	if debug_enabled_status == true:
+		state_label.text = states.keys()[state]
 
 func set_direction_right() -> void:
 	direction = "right"
