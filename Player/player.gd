@@ -27,6 +27,7 @@ var debug_enabled_status := false
 
 var state = states.FALL
 var direction := "right"
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -97,6 +98,7 @@ func jump_state(input):
 #			velocity.y = JUMP_RELEASE_FORCE
 	
 func fall_state(input):
+	print("falling now")
 	apply_gravity()
 	update_direction(input)
 	animation_player.play("Fall")
