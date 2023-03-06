@@ -11,52 +11,45 @@ extends CharacterBody2D
 @export var THRUST := -1
 @export var MAX_THRUST := 50
 
-@onready var animated_sprite := $AnimatedSprite2D
 @onready var animation_player := $AnimationPlayer
+@onready var state_label := $StateLabel
+@onready var sprite := $Sprite2D
 
-enum state {
+enum states {
 	RUN,
 	JUMP,
 	FALL,
-	IDLE
+	IDLE,
+	THRUST
 }
 
+var state = states.FALL
+var direction = "right"
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
-	apply_gravity()
+	state_label.text = states.keys()[state]
 	var input = Vector2.ZERO
-	input.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	if Input.is_action_pressed("ui_up"):
-		
-		apply_thrust()
-		
-	if input.x == 0:
-		animated_sprite.play("Idle")
-		apply_friction()
-	else:
-		animated_sprite.play("Run")
-		
-		apply_acceleration(input.x)
-		
+	input.x = Input.get_axis("left", "right")
+	input.y = Input.get_axis("thrust", "ui_down")
 	
-	if is_on_floor():
-		if Input.is_action_just_pressed("ui_accept"):
-			velocity.y = JUMP_VELOCITY
-	else:
-		if Input.is_action_just_released("ui_accept") and velocity.y < JUMP_RELEASE_FORCE:
-			velocity.y = JUMP_RELEASE_FORCE
+	match state:
+		states.RUN: run_state(input)
+		states.JUMP: jump_state(input)
+		states.FALL: fall_state(input)
+		states.IDLE: idle_state(input)
+		states.THRUST: thrust_state(input)
+
 	fast_fall()
 	move_and_slide()
 
 func apply_thrust():
-#	animated_sprite.play("Fly")
+	animation_player.play("Thrust")
 	velocity.y = lerp(0, MAX_THRUST, THRUST)
 
 func fast_fall():
 	if velocity.y > 0:
-#		animated_sprite.play("Fall")
 		velocity.y += ADDITIONAL_FALL_GRAVITY
 
 func apply_gravity():
@@ -68,14 +61,83 @@ func apply_acceleration(amount):
 func apply_friction():
 	velocity.x = move_toward(velocity.x, 0, FRICTION)
 	
-func run_state():
-	pass
+func run_state(input):
+	update_direction(input)
+	apply_gravity()
+		
+	if input.x == 0:
+		state = states.IDLE
+	else:
+		animation_player.play("Run")
+		apply_acceleration(input.x)
+	if not is_on_floor() and velocity.y > 0:
+		state = states.FALL
+	if Input.is_action_pressed("thrust"):
+		state = states.THRUST
+	elif Input.is_action_pressed("jump"):
+		state = states.JUMP
 	
-func jump_state():
-	pass
+func jump_state(input):
+	if is_on_floor():
+		if Input.is_action_pressed("jump"):
+			animation_player.play("Jump")
+			velocity.y = JUMP_VELOCITY
+
+	update_direction(input)
+	apply_gravity()
+	if velocity.y < 0:
+		state = states.FALL
+		#research this again on heartbeast
+#		if Input.is_action_just_released("jump") and velocity.y < JUMP_RELEASE_FORCE:
+#			animation_player.play("Jump")
+#			velocity.y = JUMP_RELEASE_FORCE
 	
-func fall_state():
-	pass
+func fall_state(input):
+	apply_gravity()
+	update_direction(input)
+	animation_player.play("Fall")
+	print(velocity.y)
+	if is_on_floor():
+		state = states.IDLE
+	elif Input.is_action_pressed("thrust"):
+		state = states.THRUST
 	
-func idle_state():
-	pass
+func idle_state(input):
+	apply_friction()
+	animation_player.play("Idle")
+	if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
+		state = states.RUN
+	elif Input.is_action_pressed("jump"):
+		state = states.JUMP
+	elif Input.is_action_pressed("thrust"):
+		state = states.THRUST
+		
+	if velocity.y > 0:
+		state = states.FALL
+
+func thrust_state(input):
+	animation_player.play("Thrust")
+	apply_thrust()
+	update_direction(input)
+	if Input.is_action_just_released("thrust"):
+		state = states.FALL
+	elif input.x != 0:
+		apply_acceleration(input.x)
+
+func update_direction(input) -> void:
+	if input.x > 0:
+		set_direction_right()
+	elif input.x < 0:
+		set_direction_left()
+
+
+func set_direction_right() -> void:
+	direction = "right"
+	sprite.flip_h = false
+#	$HitboxPosition.rotation_degrees = 0
+
+
+func set_direction_left() -> void:
+	direction = "left"
+	sprite.flip_h = true
+#	$HitboxPosition.rotation_degrees = 180
