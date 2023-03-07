@@ -46,11 +46,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c6g0w"]
-radius = 4.0
-height = 14.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_51tp6"]
+size = Vector2(8, 7)
 
 [node name="FlowerEnemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_dta50")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -61,10 +62,10 @@ frame = 4
 frame_progress = 0.558717
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(-0.5, -4)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_c6g0w")
+shape = SubResource("RectangleShape2D_51tp6")
 
 [node name="LedgeCheck" type="RayCast2D" parent="."]
-position = Vector2(-4, -2)
+position = Vector2(4, -2)
 target_position = Vector2(0, 3)
