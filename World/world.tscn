@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dld5nh6weku2o"]
+[gd_scene load_steps=5 format=3 uid="uid://dld5nh6weku2o"]
 
 [ext_resource type="PackedScene" uid="uid://bqln0kc40m670" path="res://tile_map.tscn" id="2_bugb8"]
 [ext_resource type="PackedScene" uid="uid://ddi8mvrcfnwit" path="res://Player/player.tscn" id="2_wg2sf"]
 [ext_resource type="PackedScene" uid="uid://cy6cclpkny7cf" path="res://Enemies/FlowerEnemy/flower_enemy.tscn" id="3_ws2ws"]
+[ext_resource type="PackedScene" uid="uid://bu3c30lcqt5fn" path="res://World/Spikes/spikes.tscn" id="4_v1jwi"]
 
 [node name="World" type="Node2D"]
 
@@ -19,4 +20,13 @@ position = Vector2(227, -32)
 position = Vector2(432, -160)
 
 [node name="FlowerEnemy3" parent="." instance=ExtResource("3_ws2ws")]
-position = Vector2(145, 144)
+position = Vector2(205, 144)
+
+[node name="Spikes" parent="." instance=ExtResource("4_v1jwi")]
+position = Vector2(176, 144)
+
+[node name="Spikes2" parent="." instance=ExtResource("4_v1jwi")]
+position = Vector2(184, 144)
+
+[node name="Spikes3" parent="." instance=ExtResource("4_v1jwi")]
+position = Vector2(192, 144)

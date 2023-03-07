@@ -98,11 +98,9 @@ func jump_state(input):
 #			velocity.y = JUMP_RELEASE_FORCE
 	
 func fall_state(input):
-	print("falling now")
 	apply_gravity()
 	update_direction(input)
 	animation_player.play("Fall")
-	print(velocity.y)
 	if is_on_floor():
 		state = states.IDLE
 	elif Input.is_action_pressed("thrust"):

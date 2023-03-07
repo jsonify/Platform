@@ -51,7 +51,6 @@ size = Vector2(8, 7)
 
 [node name="FlowerEnemy" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 0
 script = ExtResource("1_dta50")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
