@@ -8,9 +8,15 @@
 
 [node name="Player" parent="." instance=ExtResource("2_wg2sf")]
 z_index = 10
-position = Vector2(202, -93)
+position = Vector2(91, 99)
 
 [node name="TileMap" parent="." instance=ExtResource("2_bugb8")]
 
 [node name="FlowerEnemy" parent="." instance=ExtResource("3_ws2ws")]
 position = Vector2(227, -32)
+
+[node name="FlowerEnemy2" parent="." instance=ExtResource("3_ws2ws")]
+position = Vector2(432, -160)
+
+[node name="FlowerEnemy3" parent="." instance=ExtResource("3_ws2ws")]
+position = Vector2(145, 144)
