@@ -17,6 +17,8 @@ class_name Player
 @onready var sprite := $Sprite2D
 @onready var remoteTransform2D := $RemoteTransform2D
 
+var jetpack_enabled = false
+
 enum states {
 	RUN,
 	JUMP,
@@ -129,13 +131,14 @@ func idle_state(input):
 		state = states.FALL
 
 func thrust_state(input):
-	animation_player.play("Thrust")
-	apply_thrust()
-	update_direction(input)
-	if Input.is_action_just_released("thrust"):
-		state = states.FALL
-	elif input.x != 0:
-		apply_acceleration(input.x)
+	if jetpack_enabled:
+		animation_player.play("Thrust")
+		apply_thrust()
+		update_direction(input)
+		if Input.is_action_just_released("thrust"):
+			state = states.FALL
+		elif input.x != 0:
+			apply_acceleration(input.x)
 
 func player_die():
 	queue_free()
