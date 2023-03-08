@@ -9,7 +9,7 @@ var player_spawn_location = Vector2.ZERO
 @onready var timer := $Timer
 
 func _ready():
-	RenderingServer.set_default_clear_color(Color.BLACK)
+	RenderingServer.set_default_clear_color(Color.LIGHT_STEEL_BLUE)
 	player.connect_camera(camera)
 	player_spawn_location = player.global_position
 	Events.player_died.connect(_on_player_died)

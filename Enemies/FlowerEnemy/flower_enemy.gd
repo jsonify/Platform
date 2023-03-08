@@ -30,6 +30,6 @@ func handle_wall():
 		direction *= -1
 		animated_sprite.flip_h = not animated_sprite.flip_h
 	velocity.x = direction * 10
-	
-	
-	
+
+func _on_hurtbox_area_entered(area):
+	queue_free()
