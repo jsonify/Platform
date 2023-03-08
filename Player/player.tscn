@@ -117,7 +117,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 13
+collision_mask = 5
 script = ExtResource("1_rwnf5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -141,4 +141,4 @@ offset_top = -37.0
 offset_right = 20.0
 offset_bottom = -11.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
