@@ -1,19 +1,35 @@
 extends CharacterBody2D
 
-@onready var ledge_check = $LedgeCheck
+@onready var ledge_check_right = $LedgeCheckRight
+@onready var ledge_check_left = $LedgeCheckLeft
 
+@onready var animated_sprite = $AnimatedSprite2D
 
-var direction := Vector2.RIGHT
+#var direction := Vector2.RIGHT
+var direction = 1
+
+func _ready():
+	if direction == 1:
+		animated_sprite.flip_h = false
 
 func _physics_process(delta):
-	velocity = direction * 10
-	handle_wall_or_ledge()
+	animated_sprite.play("move")
+	handle_wall()
+	handle_ledge()
 	move_and_slide()
 
-func handle_wall_or_ledge():
-	var found_wall = is_on_wall()
-	var found_ledge = not ledge_check.is_colliding() 
-	if found_wall or found_ledge:
+func handle_ledge():
+	var found_ledge = not ledge_check_right.is_colliding() or not ledge_check_left.is_colliding() 
+	if found_ledge:
 		direction *= -1
-		scale.x = -1
+		animated_sprite.flip_h = not animated_sprite.flip_h
+	velocity.x = direction * 10
+
+func handle_wall():
+	if is_on_wall():
+		direction *= -1
+		animated_sprite.flip_h = not animated_sprite.flip_h
+	velocity.x = direction * 10
+	
+	
 	

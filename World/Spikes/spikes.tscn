@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu3c30lcqt5fn"]
+
+[ext_resource type="Texture2D" uid="uid://dhk61or3tniyt" path="res://Assets/DARK Edition Tileset No background-sheet.png" id="1_0oa27"]
+[ext_resource type="PackedScene" uid="uid://bsa4nso0v1lq0" path="res://Overlaps/hitbox.tscn" id="3_1erfa"]
+
+[node name="Spikes" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -8)
+texture = ExtResource("1_0oa27")
+region_enabled = true
+region_rect = Rect2(64, 16, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(2, -8)
+texture = ExtResource("1_0oa27")
+region_enabled = true
+region_rect = Rect2(64, 16, 16, 16)
+
+[node name="Hitbox" parent="." instance=ExtResource("3_1erfa")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2(-2, 0)
+polygon = PackedVector2Array(-2, 0, 0, -3, 2, 0, 4, -3, 6, 0)

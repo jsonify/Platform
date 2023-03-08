@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var SPEED := 100.0
 @export var JUMP_VELOCITY := -160.0
@@ -14,6 +15,7 @@ extends CharacterBody2D
 @onready var animation_player := $AnimationPlayer
 @onready var state_label := $StateLabel
 @onready var sprite := $Sprite2D
+@onready var remoteTransform2D := $RemoteTransform2D
 
 enum states {
 	RUN,
@@ -90,6 +92,8 @@ func jump_state(input):
 
 	update_direction(input)
 	apply_gravity()
+	if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
+		apply_acceleration(input.x)
 	if velocity.y < 0:
 		state = states.FALL
 		#research this again on heartbeast
@@ -98,15 +102,16 @@ func jump_state(input):
 #			velocity.y = JUMP_RELEASE_FORCE
 	
 func fall_state(input):
-	print("falling now")
 	apply_gravity()
 	update_direction(input)
 	animation_player.play("Fall")
-	print(velocity.y)
 	if is_on_floor():
 		state = states.IDLE
 	elif Input.is_action_pressed("thrust"):
 		state = states.THRUST
+	
+	if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
+		apply_acceleration(input.x)
 	
 func idle_state(input):
 	apply_friction()
@@ -130,6 +135,14 @@ func thrust_state(input):
 	elif input.x != 0:
 		apply_acceleration(input.x)
 
+func player_die():
+	queue_free()
+	Events.emit_signal("player_died")
+
+func connect_camera(camera):
+	var camera_path = camera.get_path()
+	remoteTransform2D.remote_path = camera_path
+
 func update_direction(input) -> void:
 	if input.x > 0:
 		set_direction_right()
@@ -145,7 +158,6 @@ func set_direction_right() -> void:
 	direction = "right"
 	sprite.flip_h = false
 #	$HitboxPosition.rotation_degrees = 0
-
 
 func set_direction_left() -> void:
 	direction = "left"

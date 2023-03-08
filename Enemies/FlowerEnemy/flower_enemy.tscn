@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cy6cclpkny7cf"]
+[gd_scene load_steps=11 format=3 uid="uid://cy6cclpkny7cf"]
 
 [ext_resource type="Script" path="res://Enemies/FlowerEnemy/flower_enemy.gd" id="1_dta50"]
 [ext_resource type="Texture2D" uid="uid://mngi54g2ifha" path="res://Enemies/FlowerEnemy/move 32x32.png" id="1_f1t3i"]
+[ext_resource type="PackedScene" uid="uid://bsa4nso0v1lq0" path="res://Overlaps/hitbox.tscn" id="3_suuxa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ux8v3"]
 atlas = ExtResource("1_f1t3i")
@@ -47,11 +48,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51tp6"]
-size = Vector2(8, 7)
+size = Vector2(4, 7)
 
 [node name="FlowerEnemy" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 0
 script = ExtResource("1_dta50")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -62,10 +62,19 @@ frame = 4
 frame_progress = 0.558717
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -4)
+position = Vector2(-0.500007, -2)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_51tp6")
 
-[node name="LedgeCheck" type="RayCast2D" parent="."]
+[node name="LedgeCheckRight" type="RayCast2D" parent="."]
 position = Vector2(4, -2)
 target_position = Vector2(0, 3)
+
+[node name="LedgeCheckLeft" type="RayCast2D" parent="."]
+position = Vector2(-5, -2)
+target_position = Vector2(0, 3)
+
+[node name="Hitbox" parent="." instance=ExtResource("3_suuxa")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+polygon = PackedVector2Array(-5, 0, -4, -6, 0, -10, 3, -6, 4, 0)
