@@ -81,7 +81,7 @@ target_position = Vector2(0, 3)
 [node name="Hitbox" parent="." instance=ExtResource("3_suuxa")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
-polygon = PackedVector2Array(-5, 0, -4, -6, 0, -10, 3, -6, 4, 0)
+polygon = PackedVector2Array(-3, 0, -3, -5, 0, -10, 2, -5, 2, 0)
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_stfex")]
 scale = Vector2(1.32, 1)
