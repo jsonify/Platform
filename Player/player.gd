@@ -19,13 +19,7 @@ class_name Player
 
 var jetpack_enabled = false
 
-enum states {
-	RUN,
-	JUMP,
-	FALL,
-	IDLE,
-	THRUST
-}
+enum states { RUN, JUMP, FALL, IDLE, THRUST }
 
 var debug_enabled_status := false
 
@@ -35,47 +29,58 @@ var direction := "right"
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+
 func _ready():
 	debug_enabled(debug_enabled_status)
-
 
 
 func _physics_process(delta):
 	var input = Vector2.ZERO
 	input.x = Input.get_axis("left", "right")
 	input.y = Input.get_axis("thrust", "ui_down")
-	
+
 	match state:
-		states.RUN: run_state(input)
-		states.JUMP: jump_state(input)
-		states.FALL: fall_state(input)
-		states.IDLE: idle_state(input)
-		states.THRUST: thrust_state(input)
+		states.RUN:
+			run_state(input)
+		states.JUMP:
+			jump_state(input)
+		states.FALL:
+			fall_state(input)
+		states.IDLE:
+			idle_state(input)
+		states.THRUST:
+			thrust_state(input)
 
 	fast_fall()
 	move_and_slide()
+
 
 func apply_thrust():
 	animation_player.play("Thrust")
 	velocity.y = lerp(0, MAX_THRUST, THRUST)
 
+
 func fast_fall():
 	if velocity.y > 0:
 		velocity.y += ADDITIONAL_FALL_GRAVITY
 
+
 func apply_gravity():
 	velocity.y += GRAVITY
+
 
 func apply_acceleration(amount):
 	velocity.x = move_toward(velocity.x, MAX_SPEED * amount, ACCELERATION)
 
+
 func apply_friction():
 	velocity.x = move_toward(velocity.x, 0, FRICTION)
-	
+
+
 func run_state(input):
 	update_direction(input)
 	apply_gravity()
-		
+
 	if input.x == 0:
 		state = states.IDLE
 	else:
@@ -87,7 +92,8 @@ func run_state(input):
 		state = states.THRUST
 	elif Input.is_action_pressed("jump"):
 		state = states.JUMP
-	
+
+
 func jump_state(input):
 	if is_on_floor():
 		if Input.is_action_pressed("jump"):
@@ -101,10 +107,13 @@ func jump_state(input):
 	if velocity.y < 0:
 		state = states.FALL
 		#research this again on heartbeast
+
+
 #		if Input.is_action_just_released("jump") and velocity.y < JUMP_RELEASE_FORCE:
 #			animation_player.play("Jump")
 #			velocity.y = JUMP_RELEASE_FORCE
-	
+
+
 func fall_state(input):
 	apply_gravity()
 	update_direction(input)
@@ -113,10 +122,11 @@ func fall_state(input):
 		state = states.IDLE
 	elif Input.is_action_pressed("thrust") and jetpack_enabled:
 		state = states.THRUST
-	
+
 	if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
 		apply_acceleration(input.x)
-	
+
+
 func idle_state(input):
 	apply_friction()
 	animation_player.play("Idle")
@@ -126,9 +136,10 @@ func idle_state(input):
 		state = states.JUMP
 	elif Input.is_action_pressed("thrust") and jetpack_enabled:
 		state = states.THRUST
-		
+
 	if velocity.y > 0:
 		state = states.FALL
+
 
 func thrust_state(input):
 	if jetpack_enabled:
@@ -140,13 +151,16 @@ func thrust_state(input):
 		elif input.x != 0:
 			apply_acceleration(input.x)
 
+
 func player_die():
 	queue_free()
 	Events.emit_signal("player_died")
 
+
 func connect_camera(camera):
 	var camera_path = camera.get_path()
 	remoteTransform2D.remote_path = camera_path
+
 
 func update_direction(input) -> void:
 	if input.x > 0:
@@ -154,15 +168,20 @@ func update_direction(input) -> void:
 	elif input.x < 0:
 		set_direction_left()
 
+
 func debug_enabled(status):
 	debug_enabled_status = status
 	if debug_enabled_status == true:
 		state_label.text = states.keys()[state]
 
+
 func set_direction_right() -> void:
 	direction = "right"
 	sprite.flip_h = false
+
+
 #	$HitboxPosition.rotation_degrees = 0
+
 
 func set_direction_left() -> void:
 	direction = "left"

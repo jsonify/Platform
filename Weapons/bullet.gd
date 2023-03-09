@@ -3,8 +3,10 @@ extends Area2D
 var direction := Vector2.RIGHT
 var speed := 200
 
+
 func _process(delta):
 	translate(direction.normalized() * speed * delta)
+
 
 func _on_body_entered(body):
 	queue_free()
