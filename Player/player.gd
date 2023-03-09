@@ -38,6 +38,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	debug_enabled(debug_enabled_status)
 
+
+
 func _physics_process(delta):
 	var input = Vector2.ZERO
 	input.x = Input.get_axis("left", "right")
@@ -129,13 +131,14 @@ func idle_state(input):
 		state = states.FALL
 
 func thrust_state(input):
-	animation_player.play("Thrust")
-	apply_thrust()
-	update_direction(input)
-	if Input.is_action_just_released("thrust"):
-		state = states.FALL
-	elif input.x != 0:
-		apply_acceleration(input.x)
+	if jetpack_enabled:
+		animation_player.play("Thrust")
+		apply_thrust()
+		update_direction(input)
+		if Input.is_action_just_released("thrust"):
+			state = states.FALL
+		elif input.x != 0:
+			apply_acceleration(input.x)
 
 func player_die():
 	queue_free()
