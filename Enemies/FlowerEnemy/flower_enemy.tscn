@@ -1,4 +1,5 @@
 [gd_scene load_steps=13 format=3 uid="uid://cy6cclpkny7cf"]
+[gd_scene load_steps=13 format=3 uid="uid://cy6cclpkny7cf"]
 
 [ext_resource type="Script" path="res://Enemies/FlowerEnemy/flower_enemy.gd" id="1_dta50"]
 [ext_resource type="Texture2D" uid="uid://mngi54g2ifha" path="res://Enemies/FlowerEnemy/move 32x32.png" id="1_f1t3i"]
@@ -81,7 +82,7 @@ target_position = Vector2(0, 3)
 [node name="Hitbox" parent="." instance=ExtResource("3_suuxa")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
-polygon = PackedVector2Array(-5, 0, -4, -6, 0, -10, 3, -6, 4, 0)
+polygon = PackedVector2Array(-3, 0, -3, -5, 0, -10, 2, -5, 2, 0)
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_stfex")]
 scale = Vector2(1.32, 1)
