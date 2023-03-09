@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dld5nh6weku2o"]
+[gd_scene load_steps=7 format=3 uid="uid://g3itkm8jgr5w"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_h4g4u"]
 [ext_resource type="PackedScene" uid="uid://bqln0kc40m670" path="res://tile_map.tscn" id="2_bugb8"]
 [ext_resource type="PackedScene" uid="uid://ddi8mvrcfnwit" path="res://Player/player.tscn" id="2_wg2sf"]
-[ext_resource type="PackedScene" uid="uid://cy6cclpkny7cf" path="res://Enemies/FlowerEnemy/flower_enemy.tscn" id="3_ws2ws"]
 [ext_resource type="PackedScene" uid="uid://bu3c30lcqt5fn" path="res://World/Spikes/spikes.tscn" id="4_v1jwi"]
 [ext_resource type="PackedScene" uid="uid://xnlljchfsd2u" path="res://World/Checkpoints/checkpoint.tscn" id="6_2mvn2"]
+[ext_resource type="PackedScene" uid="uid://cy6cclpkny7cf" path="res://Enemies/FlowerEnemy/flower_enemy.tscn" id="6_8322c"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_h4g4u")
@@ -15,15 +15,6 @@ z_index = 10
 position = Vector2(91, 99)
 
 [node name="TileMap" parent="." instance=ExtResource("2_bugb8")]
-
-[node name="FlowerEnemy" parent="." instance=ExtResource("3_ws2ws")]
-position = Vector2(227, -32)
-
-[node name="FlowerEnemy2" parent="." instance=ExtResource("3_ws2ws")]
-position = Vector2(432, -160)
-
-[node name="FlowerEnemy3" parent="." instance=ExtResource("3_ws2ws")]
-position = Vector2(205, 144)
 
 [node name="Spikes" parent="." instance=ExtResource("4_v1jwi")]
 position = Vector2(176, 144)
@@ -43,3 +34,6 @@ position = Vector2(296, 71)
 
 [node name="Checkpoint2" parent="." instance=ExtResource("6_2mvn2")]
 position = Vector2(41, 56)
+
+[node name="FlowerEnemy" parent="." instance=ExtResource("6_8322c")]
+position = Vector2(153, 144)
