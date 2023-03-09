@@ -7,8 +7,6 @@ func _process(delta):
 	translate(direction.normalized() * speed * delta)
 
 func _on_body_entered(body):
-	# do damage
-	print("Hit")
 	queue_free()
 
 
