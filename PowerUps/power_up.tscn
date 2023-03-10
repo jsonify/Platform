@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bccktvw50vx3h"]
+[gd_scene load_steps=9 format=3 uid="uid://b1ogjxlwufttw"]
 
 [ext_resource type="Script" path="res://PowerUps/power_up.gd" id="1_dn6pp"]
-[ext_resource type="Texture2D" uid="uid://b6cfla000e4vc" path="res://Assets/power_up_base-13x22-45s.png" id="2_mxwcv"]
+[ext_resource type="Texture2D" uid="uid://b6cfla000e4vc" path="res://Assets/World/power_up_base-13x22-45s.png" id="2_50xsq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ye2xe"]
 size = Vector2(6, 11)
@@ -101,7 +101,7 @@ script = ExtResource("1_dn6pp")
 
 [node name="ComputerSprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -11)
-texture = ExtResource("2_mxwcv")
+texture = ExtResource("2_50xsq")
 hframes = 45
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlypcq4p4bn4s"
-path="res://.godot/imported/jetpack-13x22.png-c51f369ff89ff3c360f2c94b0fab0f69.ctex"
+uid="uid://bcfw6nnshpnkv"
+path="res://.godot/imported/gun1.png-ad78aad0f5ef48ec15f06b95f57e0fc6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/jetpack-13x22.png"
-dest_files=["res://.godot/imported/jetpack-13x22.png-c51f369ff89ff3c360f2c94b0fab0f69.ctex"]
+source_file="res://Assets/Weapons/gun1.png"
+dest_files=["res://.godot/imported/gun1.png-ad78aad0f5ef48ec15f06b95f57e0fc6.ctex"]
 
 [params]
 

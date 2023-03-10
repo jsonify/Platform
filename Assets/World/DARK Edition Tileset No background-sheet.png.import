@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcfw6nnshpnkv"
-path="res://.godot/imported/gun1.png-7278ad4c66ab1ea07fcbc320c1e828eb.ctex"
+uid="uid://dhk61or3tniyt"
+path="res://.godot/imported/DARK Edition Tileset No background-sheet.png-2352845affa2a5fec573e003e0230ae2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/gun1.png"
-dest_files=["res://.godot/imported/gun1.png-7278ad4c66ab1ea07fcbc320c1e828eb.ctex"]
+source_file="res://Assets/World/DARK Edition Tileset No background-sheet.png"
+dest_files=["res://.godot/imported/DARK Edition Tileset No background-sheet.png-2352845affa2a5fec573e003e0230ae2.ctex"]
 
 [params]
 

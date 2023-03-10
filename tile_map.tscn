@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqln0kc40m670"]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Texture2D" uid="uid://crkvxodehruv7" path="res://World/TileSet_Cave.png" id="1_2nb2f"]
-[ext_resource type="Texture2D" uid="uid://dhk61or3tniyt" path="res://Assets/DARK Edition Tileset No background-sheet.png" id="2_2huar"]
+[ext_resource type="Texture2D" uid="uid://dhk61or3tniyt" path="res://Assets/World/DARK Edition Tileset No background-sheet.png" id="2_2huar"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fxcm7"]
 texture = ExtResource("1_2nb2f")

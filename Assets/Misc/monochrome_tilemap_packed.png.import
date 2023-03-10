@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7m4at8v8njym"
-path="res://.godot/imported/hero_base_NO-WEAPON_24x36.png-c9bbf64372767d6b48e43fa8df757e13.ctex"
+uid="uid://eiy4twygrafc"
+path="res://.godot/imported/monochrome_tilemap_packed.png-874466d2c6a706a1726e30365ea79557.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/hero_base_NO-WEAPON_24x36.png"
-dest_files=["res://.godot/imported/hero_base_NO-WEAPON_24x36.png-c9bbf64372767d6b48e43fa8df757e13.ctex"]
+source_file="res://Assets/Misc/monochrome_tilemap_packed.png"
+dest_files=["res://.godot/imported/monochrome_tilemap_packed.png-874466d2c6a706a1726e30365ea79557.ctex"]
 
 [params]
 
