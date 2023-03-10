@@ -9,5 +9,4 @@ func activate_warp():
 
 
 func _on_power_up_platform_activated():
-	print("signal received")
 	activate_warp()

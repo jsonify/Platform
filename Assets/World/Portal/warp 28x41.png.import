@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcok7kf21yy1g"
-path="res://.godot/imported/warp 28x41.png-5fb2257beb5dcce581574250fb66f169.ctex"
+path="res://.godot/imported/warp 28x41.png-a1c736320aeb8e89b60d96c74bf3df47.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Portal/warp 28x41.png"
-dest_files=["res://.godot/imported/warp 28x41.png-5fb2257beb5dcce581574250fb66f169.ctex"]
+source_file="res://Assets/World/Portal/warp 28x41.png"
+dest_files=["res://.godot/imported/warp 28x41.png-a1c736320aeb8e89b60d96c74bf3df47.ctex"]
 
 [params]
 
