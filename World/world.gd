@@ -10,7 +10,7 @@ var player_spawn_location = Vector2.ZERO
 
 
 func _ready():
-	RenderingServer.set_default_clear_color(Color.LIGHT_STEEL_BLUE)
+	RenderingServer.set_default_clear_color(Color.DARK_SLATE_GRAY)
 	player.connect_camera(camera)
 	player_spawn_location = player.global_position
 	Events.player_died.connect(_on_player_died)

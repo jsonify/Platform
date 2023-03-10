@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bccktvw50vx3h"]
+[gd_scene load_steps=9 format=3 uid="uid://bccktvw50vx3h"]
 
-[ext_resource type="Texture2D" uid="uid://b6cfla000e4vc" path="res://Assets/power_up_base-13x22-45s.png" id="1_a742s"]
+[ext_resource type="Script" path="res://PowerUps/power_up.gd" id="1_dn6pp"]
+[ext_resource type="Texture2D" uid="uid://b6cfla000e4vc" path="res://Assets/power_up_base-13x22-45s.png" id="2_mxwcv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ye2xe"]
 size = Vector2(6, 11)
@@ -13,7 +14,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("ComputerSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,7 +29,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("ComputerSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -44,7 +45,7 @@ length = 3.30001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("ComputerSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -68,18 +69,39 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_h53sf"]
+resource_name = "detected"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ComputerSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [17]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_16vbb"]
 _data = {
 "Idle": SubResource("Animation_yik5a"),
 "RESET": SubResource("Animation_qpskj"),
-"destroy": SubResource("Animation_8rjqs")
+"destroy": SubResource("Animation_8rjqs"),
+"detected": SubResource("Animation_h53sf")
 }
 
 [node name="PowerUp" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_dn6pp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="ComputerSprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -11)
-texture = ExtResource("1_a742s")
+texture = ExtResource("2_mxwcv")
 hframes = 45
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -87,8 +109,15 @@ visible = false
 position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_ye2xe")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="ComputerAnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 libraries = {
 "": SubResource("AnimationLibrary_16vbb")
 }
+
+[node name="DetectionTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DetectionTimer" to="." method="_on_timer_timeout"]
