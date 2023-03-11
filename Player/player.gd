@@ -17,7 +17,7 @@ class_name Player
 @onready var sprite := $Sprite2D
 @onready var remoteTransform2D := $RemoteTransform2D
 
-var jetpack_enabled = false
+@export var jetpack_enabled = false
 
 enum states { RUN, JUMP, FALL, IDLE, THRUST }
 
@@ -32,6 +32,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	debug_enabled(debug_enabled_status)
 	
+	
 
 func _physics_process(delta):
 	var input = Vector2.ZERO
@@ -39,7 +40,7 @@ func _physics_process(delta):
 	input.y = Input.get_axis("thrust", "ui_down")
 	
 	if jetpack_enabled:
-		print("jetpack enabled")
+		sprite.texture = load("res://Assets/Player/hero_JETPACK_24x36.png")
 
 	match state:
 		states.RUN:
@@ -156,6 +157,7 @@ func thrust_state(input):
 
 func player_die():
 	queue_free()
+	print("from player node, player_die()")
 	Events.emit_signal("player_died")
 
 
@@ -180,9 +182,6 @@ func debug_enabled(status):
 func set_direction_right() -> void:
 	direction = "right"
 	sprite.flip_h = false
-
-
-#	$HitboxPosition.rotation_degrees = 0
 
 
 func set_direction_left() -> void:

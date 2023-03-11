@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://g3itkm8jgr5w"]
+[gd_scene load_steps=10 format=3 uid="uid://g3itkm8jgr5w"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_h4g4u"]
 [ext_resource type="PackedScene" path="res://tile_map.tscn" id="2_bugb8"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cy6cclpkny7cf" path="res://Enemies/FlowerEnemy/flower_enemy.tscn" id="6_8322c"]
 [ext_resource type="PackedScene" uid="uid://b1ogjxlwufttw" path="res://PowerUps/power_up.tscn" id="7_b41e7"]
 [ext_resource type="PackedScene" uid="uid://bv3jkbkss4tat" path="res://PowerUps/power_up_platform.tscn" id="8_gh0kn"]
+[ext_resource type="Script" path="res://World/save_and _load.gd" id="9_wg3rv"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_h4g4u")
@@ -46,3 +47,6 @@ position = Vector2(68, -16)
 
 [node name="PowerUpPlatform" parent="." instance=ExtResource("8_gh0kn")]
 position = Vector2(106, -16)
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("9_wg3rv")

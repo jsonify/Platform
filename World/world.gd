@@ -17,6 +17,7 @@ func _ready():
 	player_spawn_location = player.global_position
 	Events.player_died.connect(_on_player_died)
 	Events.hit_checkpoint.connect(_on_hit_checkpoint)
+	Events.platform_activated.connect(_on_power_up_platform_activated)
 
 
 func _on_player_died():
