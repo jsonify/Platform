@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://b66s7rl1qv047"]
 
 [ext_resource type="Script" path="res://Weapons/bullet.gd" id="1_kdpk3"]
 [ext_resource type="Texture2D" uid="uid://d4dxxaj083v3d" path="res://Assets/Weapons/bullets.png" id="2_n402s"]
@@ -12,7 +12,7 @@ script = ExtResource("1_kdpk3")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_n402s")
 region_enabled = true
-region_rect = Rect2(12, 6, 1, 1)
+region_rect = Rect2(7, 6, 2, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

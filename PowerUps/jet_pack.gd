@@ -11,4 +11,5 @@ func _on_body_entered(body):
 		jetpack_enabled = true
 		body.jetpack_enabled = true
 		SaveLoad.player_data.jetpack_enabled = true
+		SaveLoad.save_data()
 		animation_player.play("Destroy")
