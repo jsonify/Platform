@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cy6cclpkny7cf" path="res://Enemies/FlowerEnemy/flower_enemy.tscn" id="6_8322c"]
 [ext_resource type="PackedScene" uid="uid://b1ogjxlwufttw" path="res://PowerUps/power_up.tscn" id="7_b41e7"]
 [ext_resource type="PackedScene" uid="uid://bv3jkbkss4tat" path="res://PowerUps/power_up_platform.tscn" id="8_gh0kn"]
-[ext_resource type="Script" path="res://World/save_and _load.gd" id="9_wg3rv"]
+[ext_resource type="PackedScene" uid="uid://dpl1qldotqs2u" path="res://Interface/ui_save_panel.tscn" id="9_t2ymd"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_h4g4u")
@@ -16,7 +16,7 @@ jetpack_offset = 13
 
 [node name="Player" parent="." instance=ExtResource("2_wg2sf")]
 z_index = 10
-position = Vector2(27, -26)
+position = Vector2(10, -38)
 
 [node name="TileMap" parent="." instance=ExtResource("2_bugb8")]
 
@@ -48,5 +48,7 @@ position = Vector2(68, -16)
 [node name="PowerUpPlatform" parent="." instance=ExtResource("8_gh0kn")]
 position = Vector2(106, -16)
 
-[node name="Node" type="Node" parent="."]
-script = ExtResource("9_wg3rv")
+[node name="UI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="UISavePanel" parent="UI" instance=ExtResource("9_t2ymd")]

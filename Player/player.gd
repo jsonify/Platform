@@ -26,19 +26,20 @@ var debug_enabled_status := false
 var state = states.FALL
 var direction := "right"
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
 
 func _ready():
 	debug_enabled(debug_enabled_status)
-	
+	SaveLoad.load_data()
+	jetpack_enabled = SaveLoad.player_data.jetpack_enabled
 	
 
 func _physics_process(delta):
 	var input = Vector2.ZERO
 	input.x = Input.get_axis("left", "right")
 	input.y = Input.get_axis("thrust", "ui_down")
-	
+
 	if jetpack_enabled:
 		sprite.texture = load("res://Assets/Player/hero_JETPACK_24x36.png")
 
