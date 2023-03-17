@@ -3,14 +3,26 @@ extends Node
 const SAVE_PATH = "user://save.json" #use user://savefilename.dat instead here
 
 var player_data := {
-	"name"="Jsonify",
-	"score"=10,
-	"jetpack_enabled" = false,
-	"guns"={
-		"small": 10,
-		"large": 14
-	}
+	"player": {
+		"name": "Jsonify",
+		"score": 10,
+		"jetpack_enabled": false,
+		"level": 1,
+		"guns": {
+			"small": 10,
+			"large": 14
+		}
+	},
+	"powerups": {
+		"jetpack_powerup_acquired": false
+	},
+	"levels_completed": [1, 2, 3]
 }
+
+func _ready():
+	print(player_data["player"]["jetpack_enabled"])
+
+var data = { }
 	
 func save_data():
 	var save_game := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -25,4 +37,7 @@ func load_data():
 	var load_game = FileAccess.open(SAVE_PATH, FileAccess.READ)
 	var json_string = load_game.get_line()
 	player_data = JSON.parse_string(json_string)
+	
+func reset_data():
+	data = player_data.duplicate(true)
 

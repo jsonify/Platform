@@ -10,6 +10,6 @@ func _on_body_entered(body):
 	if body is Player:
 		jetpack_enabled = true
 		body.jetpack_enabled = true
-		SaveLoad.player_data.jetpack_enabled = true
+		SaveLoad.player_data["player"]["jetpack_enabled"] = true
 		SaveLoad.save_data()
 		animation_player.play("Destroy")
