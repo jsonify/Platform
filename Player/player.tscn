@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://7m4at8v8njym" path="res://Assets/Player/hero_base_NO-WEAPON_24x36.png" id="2_lm5k7"]
 [ext_resource type="Script" path="res://Player/Gun.gd" id="3_k8qln"]
 [ext_resource type="Texture2D" uid="uid://bcfw6nnshpnkv" path="res://Assets/Weapons/gun1.png" id="4_2dt4m"]
-[ext_resource type="PackedScene" path="res://Weapons/bullet.tscn" id="5_26806"]
+[ext_resource type="PackedScene" uid="uid://b66s7rl1qv047" path="res://Weapons/bullet.tscn" id="5_26806"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c6wdv"]
 size = Vector2(5, 9)
