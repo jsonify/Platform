@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4dxxaj083v3d"
-path="res://.godot/imported/bullets.png-5bd1cb36f74ce078fa6f97e5ee0c58e7.ctex"
+uid="uid://b6cfla000e4vc"
+path="res://.godot/imported/power_up_base-13x22-45s.png-848db8451db891bdbf93089e4a8c3555.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/bullets.png"
-dest_files=["res://.godot/imported/bullets.png-5bd1cb36f74ce078fa6f97e5ee0c58e7.ctex"]
+source_file="res://Assets/World/power_up_base-13x22-45s.png"
+dest_files=["res://.godot/imported/power_up_base-13x22-45s.png-848db8451db891bdbf93089e4a8c3555.ctex"]
 
 [params]
 
