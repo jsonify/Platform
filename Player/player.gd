@@ -22,7 +22,6 @@ class_name Player
 enum states { RUN, JUMP, FALL, IDLE, THRUST }
 
 var debug_enabled_status := false
-
 var state = states.FALL
 var direction := "right"
 

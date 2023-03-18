@@ -1,6 +1,6 @@
 extends Node
 
-const SAVE_PATH = "user://save.json"  #use user://savefilename.dat instead here
+const SAVE_PATH = "user://save.json"
 
 var default_data := {
 	"player":

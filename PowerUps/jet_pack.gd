@@ -1,7 +1,5 @@
 extends Area2D
 
-#signal jetpack_collected
-
 @onready var animation_player := $AnimationPlayer
 
 var jetpack_enabled = false
