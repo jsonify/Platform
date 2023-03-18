@@ -32,8 +32,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	debug_enabled(debug_enabled_status)
 	SaveLoad.load_data()
-	jetpack_enabled = SaveLoad.player_data["player"]["jetpack_enabled"]
-	
+	jetpack_enabled = SaveLoad.data["player"]["jetpack_enabled"]
+
 
 func _physics_process(delta):
 	var input = Vector2.ZERO
