@@ -32,7 +32,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	debug_enabled(debug_enabled_status)
 	SaveLoad.load_data()
-	jetpack_enabled = SaveLoad.player_data.jetpack_enabled
+	jetpack_enabled = SaveLoad.data["player"]["jetpack_enabled"]
 	
 
 func _physics_process(delta):
@@ -158,7 +158,6 @@ func thrust_state(input):
 
 func player_die():
 	queue_free()
-	print("from player node, player_die()")
 	Events.emit_signal("player_died")
 
 
