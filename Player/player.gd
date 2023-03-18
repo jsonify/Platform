@@ -32,7 +32,7 @@ func _ready():
 	debug_enabled(debug_enabled_status)
 	SaveLoad.load_data()
 	jetpack_enabled = SaveLoad.data["player"]["jetpack_enabled"]
-
+  
 
 func _physics_process(delta):
 	var input = Vector2.ZERO
