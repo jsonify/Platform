@@ -1,25 +1,21 @@
 extends Node
 
-const SAVE_PATH = "user://save.json" #use user://savefilename.dat instead here
+const SAVE_PATH = "user://save.json"
 
 var default_data := {
-	"player": {
+	"player":
+	{
 		"name": "Jsonify",
 		"score": 10,
 		"jetpack_enabled": false,
 		"level": 1,
-		"guns": {
-			"small": 10,
-			"large": 14
-		}
+		"guns": {"small": 10, "large": 14}
 	},
-	"powerups": {
-		"jetpack_powerup_acquired": false
-	},
+	"powerups": {"jetpack_powerup_acquired": false},
 	"levels_completed": [1, 2, 3]
 }
 
-var data = { }
+var data = {}
 
 
 func _ready():
@@ -27,12 +23,13 @@ func _ready():
 	load_data()
 	update_text()
 
-	
+
 func save_data():
 	var save_game := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	var json_string := JSON.stringify(data)
 	#TODO: implement encryption password
 	save_game.store_line(json_string)
+
 
 func load_data():
 	if not FileAccess.file_exists(SAVE_PATH):
@@ -41,9 +38,11 @@ func load_data():
 	var load_game = FileAccess.open(SAVE_PATH, FileAccess.READ)
 	var json_string = load_game.get_line()
 	data = JSON.parse_string(json_string)
-	
+
+
 func reset_data():
 	data = default_data.duplicate(true)
+
 
 func update_text():
 	pass

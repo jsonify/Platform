@@ -22,7 +22,6 @@ class_name Player
 enum states { RUN, JUMP, FALL, IDLE, THRUST }
 
 var debug_enabled_status := false
-
 var state = states.FALL
 var direction := "right"
 
@@ -33,7 +32,7 @@ func _ready():
 	debug_enabled(debug_enabled_status)
 	SaveLoad.load_data()
 	jetpack_enabled = SaveLoad.data["player"]["jetpack_enabled"]
-	
+  
 
 func _physics_process(delta):
 	var input = Vector2.ZERO
