@@ -19,6 +19,8 @@ class_name Player
 
 @export var jetpack_enabled = false
 
+signal health_changed(amount)
+
 enum states { RUN, JUMP, FALL, IDLE, THRUST }
 
 var debug_enabled_status := true
@@ -40,6 +42,7 @@ func _physics_process(delta):
 	var input = Vector2.ZERO
 	input.x = Input.get_axis("left", "right")
 	input.y = Input.get_axis("thrust", "ui_down")
+#	if 
 	
 	if jetpack_enabled:
 		sprite.texture = load("res://Assets/Player/hero_JETPACK_24x36.png")
