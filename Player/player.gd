@@ -21,24 +21,26 @@ class_name Player
 
 enum states { RUN, JUMP, FALL, IDLE, THRUST }
 
-var debug_enabled_status := false
-var state = states.FALL
+var debug_enabled_status := true
+var state = states.IDLE
 var direction := "right"
+var health
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready():
-	debug_enabled(debug_enabled_status)
 	SaveLoad.load_data()
 	jetpack_enabled = SaveLoad.data["player"]["jetpack_enabled"]
+	health = SaveLoad.data["player"]["max_health"]
   
 
 func _physics_process(delta):
+	debug_enabled(debug_enabled_status)
 	var input = Vector2.ZERO
 	input.x = Input.get_axis("left", "right")
 	input.y = Input.get_axis("thrust", "ui_down")
-
+	
 	if jetpack_enabled:
 		sprite.texture = load("res://Assets/Player/hero_JETPACK_24x36.png")
 
@@ -154,6 +156,15 @@ func thrust_state(input):
 		elif input.x != 0:
 			apply_acceleration(input.x)
 
+func apply_small_gravity():
+	velocity.y -= 50
+
+func knockback(enemy_pos_x):
+	$Timer.start()
+	set_modulate(Color(1,0.3,0.3,0.3))
+	state = states.FALL
+	if position.x > enemy_pos_x:
+		velocity.x = -300
 
 func player_die():
 	queue_free()
@@ -175,7 +186,7 @@ func update_direction(input) -> void:
 func debug_enabled(status):
 	debug_enabled_status = status
 	if debug_enabled_status == true:
-		state_label.text = states.keys()[state]
+		state_label.text = states.keys()[state] + "\n\n " + str(health)
 
 
 func set_direction_right() -> void:
@@ -187,3 +198,8 @@ func set_direction_left() -> void:
 	direction = "left"
 	sprite.flip_h = true
 #	$HitboxPosition.rotation_degrees = 180
+
+
+
+func _on_timer_timeout():
+	set_modulate(Color(1,1,1,1))
