@@ -2,6 +2,8 @@ extends Area2D
 
 class_name Bullet
 
+
+
 var direction := Vector2.RIGHT
 var speed := 200
 

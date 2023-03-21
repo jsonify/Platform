@@ -4,10 +4,12 @@ extends CharacterBody2D
 @onready var ledge_check_left = $LedgeCheckLeft
 @onready var timer := $Timer
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var stats := $Stats
 
 var speed := 10
 var direction = 1
 
+var knockback := Vector2.ZERO
 
 func _ready():
 	if direction == 1:
@@ -16,6 +18,7 @@ func _ready():
 
 func _physics_process(delta):
 	animated_sprite.play("move")
+	knockback = knockback.move_toward(Vector2.ZERO, 200 * delta)
 	handle_wall()
 	handle_ledge()
 	move_and_slide()
@@ -37,10 +40,15 @@ func handle_wall():
 
 
 func _on_hurtbox_area_entered(area):
-	if area is Bullet:
-		speed = 0
-		timer.start()
+	stats.health -= area.damage
+# Finish this someday
+#		knockback = area.knockback_vector * 120
 
 
 func _on_timer_timeout():
 	queue_free()
+
+
+func _on_stats_no_health():
+		timer.start()
+		speed = 0

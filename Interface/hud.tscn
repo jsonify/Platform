@@ -6,10 +6,11 @@
 script = ExtResource("1_yg7bb")
 
 [node name="Panel" type="Panel" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 80.0
+offset_bottom = 29.0
 
 [node name="HealthLabel" type="Label" parent="Panel"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 2.0
 offset_right = 57.0

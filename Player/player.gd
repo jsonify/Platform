@@ -23,8 +23,10 @@ signal health_changed(amount)
 
 enum states { RUN, JUMP, FALL, IDLE, THRUST }
 
+var player_knockback = Vector2.ZERO
+
 var debug_enabled_status := true
-var state = states.IDLE
+var state = states.FALL
 var direction := "right"
 var health
 
@@ -35,14 +37,17 @@ func _ready():
 	SaveLoad.load_data()
 	jetpack_enabled = SaveLoad.data["player"]["jetpack_enabled"]
 	health = SaveLoad.data["player"]["max_health"]
-  
+	
+
+func _process(delta):
+	pass
 
 func _physics_process(delta):
 	debug_enabled(debug_enabled_status)
 	var input = Vector2.ZERO
 	input.x = Input.get_axis("left", "right")
 	input.y = Input.get_axis("thrust", "ui_down")
-#	if 
+	
 	
 	if jetpack_enabled:
 		sprite.texture = load("res://Assets/Player/hero_JETPACK_24x36.png")
@@ -165,9 +170,14 @@ func apply_small_gravity():
 func knockback(enemy_pos_x):
 	$Timer.start()
 	set_modulate(Color(1,0.3,0.3,0.3))
-	state = states.FALL
-	if position.x > enemy_pos_x:
-		velocity.x = -300
+#	state = states.FALL
+	if position.x >= enemy_pos_x:
+		velocity.x = -200
+		print(enemy_pos_x)
+#	Why doesn't this doesn't work??
+	elif position.x <= enemy_pos_x:
+		velocity.x = 200
+		print(enemy_pos_x)
 
 func player_die():
 	queue_free()

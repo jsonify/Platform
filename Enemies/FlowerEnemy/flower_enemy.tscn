@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cy6cclpkny7cf"]
+[gd_scene load_steps=14 format=3 uid="uid://cy6cclpkny7cf"]
 
 [ext_resource type="Script" path="res://Enemies/FlowerEnemy/flower_enemy.gd" id="1_dta50"]
 [ext_resource type="Texture2D" uid="uid://mngi54g2ifha" path="res://Enemies/FlowerEnemy/move 32x32.png" id="1_f1t3i"]
 [ext_resource type="PackedScene" uid="uid://bsa4nso0v1lq0" path="res://Overlaps/hitbox.tscn" id="3_suuxa"]
 [ext_resource type="PackedScene" uid="uid://c686xsjomcik4" path="res://Overlaps/hurtbox.tscn" id="4_stfex"]
+[ext_resource type="PackedScene" uid="uid://bs2fbdyet02kr" path="res://Utility/stats.tscn" id="5_0nrnf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ux8v3"]
 atlas = ExtResource("1_f1t3i")
@@ -96,7 +97,11 @@ shape = SubResource("RectangleShape2D_mlbbl")
 wait_time = 0.5
 one_shot = true
 
+[node name="Stats" parent="." instance=ExtResource("5_0nrnf")]
+max_health = 2
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 
 [editable path="Hurtbox"]
