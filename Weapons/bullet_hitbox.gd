@@ -1,5 +1,7 @@
 extends "res://Overlaps/hitbox.gd"
 
+class_name BulletHitbox
+
 var knockback_vector := Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.

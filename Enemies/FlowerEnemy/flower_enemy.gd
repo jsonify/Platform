@@ -40,7 +40,8 @@ func handle_wall():
 
 
 func _on_hurtbox_area_entered(area):
-	stats.health -= area.damage
+	if area.is_instance_of(BulletHitbox):
+		stats.health -= area.damage
 # Finish this someday
 #		knockback = area.knockback_vector * 120
 
