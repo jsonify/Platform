@@ -2,7 +2,7 @@ extends Area2D
 
 class_name Bullet
 
-
+@export var damage = 1
 
 var direction := Vector2.RIGHT
 var speed := 200

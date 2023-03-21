@@ -98,7 +98,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Stats" parent="." instance=ExtResource("5_0nrnf")]
-max_health = 2
+max_health = 4
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
