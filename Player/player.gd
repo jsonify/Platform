@@ -25,19 +25,24 @@ enum states { RUN, JUMP, FALL, IDLE, THRUST }
 
 var player_knockback = Vector2.ZERO
 
-var debug_enabled_status := true
+var debug_enabled_status := false
 var state = states.FALL
 var direction := "right"
 var health
+var stats := PlayerStats
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready():
 	SaveLoad.load_data()
+	stats.no_health.connect(player_die_2)
 	jetpack_enabled = SaveLoad.data["player"]["jetpack_enabled"]
 	health = SaveLoad.data["player"]["max_health"]
 	
+
+func player_die_2():
+	queue_free()
 
 func _process(delta):
 	pass
@@ -212,7 +217,13 @@ func set_direction_left() -> void:
 	sprite.flip_h = true
 #	$HitboxPosition.rotation_degrees = 180
 
-
+func take_damage(amount:int):
+	stats.health -= amount
 
 func _on_timer_timeout():
 	set_modulate(Color(1,1,1,1))
+
+
+func _on_hurtbox_area_entered(area):
+	stats.health -= 1
+	print("from player's hurtbox")

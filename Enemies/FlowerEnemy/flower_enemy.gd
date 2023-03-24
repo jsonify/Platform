@@ -38,12 +38,9 @@ func handle_wall():
 		animated_sprite.flip_h = not animated_sprite.flip_h
 	velocity.x = direction * speed
 
-
-func _on_hurtbox_area_entered(area):
-		stats.health -= area.damage
-# Finish this someday
-#		knockback = area.knockback_vector * 120
-
+func take_damage(amount:int):
+	stats.health -= amount
+	
 
 func _on_timer_timeout():
 	queue_free()
@@ -52,3 +49,4 @@ func _on_timer_timeout():
 func _on_stats_no_health():
 		timer.start()
 		speed = 0
+
