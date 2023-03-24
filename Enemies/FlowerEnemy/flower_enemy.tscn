@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cy6cclpkny7cf"]
+[gd_scene load_steps=15 format=3 uid="uid://cy6cclpkny7cf"]
 
 [ext_resource type="Script" path="res://Enemies/FlowerEnemy/flower_enemy.gd" id="1_dta50"]
 [ext_resource type="Texture2D" uid="uid://mngi54g2ifha" path="res://Enemies/FlowerEnemy/move 32x32.png" id="1_f1t3i"]
 [ext_resource type="PackedScene" uid="uid://bsa4nso0v1lq0" path="res://Overlaps/hitbox.tscn" id="3_suuxa"]
 [ext_resource type="PackedScene" uid="uid://c686xsjomcik4" path="res://Overlaps/hurtbox.tscn" id="4_stfex"]
+[ext_resource type="PackedScene" uid="uid://bs2fbdyet02kr" path="res://Utility/stats.tscn" id="5_0nrnf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ux8v3"]
 atlas = ExtResource("1_f1t3i")
@@ -51,11 +52,15 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51tp6"]
 size = Vector2(4, 7)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtdyt"]
+size = Vector2(14, 8)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlbbl"]
-size = Vector2(5.30303, 6)
+size = Vector2(5.30303, 9)
 
 [node name="FlowerEnemy" type="CharacterBody2D"]
 collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_dta50")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -79,17 +84,31 @@ position = Vector2(-5, -2)
 target_position = Vector2(0, 3)
 
 [node name="Hitbox" parent="." instance=ExtResource("3_suuxa")]
+collision_layer = 2
+collision_mask = 64
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
-polygon = PackedVector2Array(-3, 0, -3, -5, 0, -10, 2, -5, 2, 0)
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_vtdyt")
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_stfex")]
 scale = Vector2(1.32, 1)
+collision_layer = 128
+collision_mask = 0
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(-0.378788, -3)
+position = Vector2(-0.378788, -4.5)
 shape = SubResource("RectangleShape2D_mlbbl")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Stats" parent="." instance=ExtResource("5_0nrnf")]
+max_health = 2
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 
 [editable path="Hurtbox"]

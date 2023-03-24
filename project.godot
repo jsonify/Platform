@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Events="*res://World/events.gd"
 SaveLoad="*res://Singleton/save_load.gd"
+PlayerStats="*res://Player/player_stats.tscn"
 
 [display]
 
@@ -66,6 +67,9 @@ Fire={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Other"
 2d_physics/layer_5="Power Up"
+2d_physics/layer_6="Bullet"
+2d_physics/layer_7="Player Hurtbox"
+2d_physics/layer_8="Enemy Hurtbox"
 
 [rendering]
 
