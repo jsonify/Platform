@@ -29,17 +29,14 @@ var player_knockback = Vector2.ZERO
 var state = states.FALL
 var direction := "right"
 var health
-var stats := PlayerStats
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready():
 	SaveLoad.load_data()
-	stats.no_health.connect(player_die_2)
 	jetpack_enabled = SaveLoad.data["player"]["jetpack_enabled"]
-#	health = SaveLoad.data["player"]["max_health"]
-	print(stats.player_health)
+	health = SaveLoad.data["player"]["max_health"]
 	
 
 func player_die_2():
@@ -205,7 +202,7 @@ func update_direction(input) -> void:
 func debug_enabled(status):
 	debug_enabled_status = status
 	if debug_enabled_status == true:
-		state_label.text = states.keys()[state] + "\n\n " + str(stats.health)
+		state_label.text = states.keys()[state] + "\n\n " + str(health)
 
 
 func set_direction_right() -> void:
@@ -219,12 +216,13 @@ func set_direction_left() -> void:
 #	$HitboxPosition.rotation_degrees = 180
 
 func take_damage(amount:int):
-	stats.health -= amount
+	health -= amount
+	pass
 
 func _on_timer_timeout():
 	set_modulate(Color(1,1,1,1))
 
 
-func _on_hurtbox_area_entered(area):
-	stats.health -= 1
-	print("from player's hurtbox")
+#func _on_hurtbox_area_entered(area):
+#	health -= 1
+#	print("from player's hurtbox")
