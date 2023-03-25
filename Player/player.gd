@@ -25,7 +25,7 @@ enum states { RUN, JUMP, FALL, IDLE, THRUST }
 
 var player_knockback = Vector2.ZERO
 
-var debug_enabled_status := false
+@export var debug_enabled_status := false
 var state = states.FALL
 var direction := "right"
 var health
@@ -38,17 +38,18 @@ func _ready():
 	SaveLoad.load_data()
 	stats.no_health.connect(player_die_2)
 	jetpack_enabled = SaveLoad.data["player"]["jetpack_enabled"]
-	health = SaveLoad.data["player"]["max_health"]
+#	health = SaveLoad.data["player"]["max_health"]
+	print(stats.player_health)
 	
 
 func player_die_2():
 	queue_free()
 
 func _process(delta):
-	pass
+	debug_enabled(debug_enabled_status)
+
 
 func _physics_process(delta):
-	debug_enabled(debug_enabled_status)
 	var input = Vector2.ZERO
 	input.x = Input.get_axis("left", "right")
 	input.y = Input.get_axis("thrust", "ui_down")
@@ -204,7 +205,7 @@ func update_direction(input) -> void:
 func debug_enabled(status):
 	debug_enabled_status = status
 	if debug_enabled_status == true:
-		state_label.text = states.keys()[state] + "\n\n " + str(health)
+		state_label.text = states.keys()[state] + "\n\n " + str(stats.health)
 
 
 func set_direction_right() -> void:

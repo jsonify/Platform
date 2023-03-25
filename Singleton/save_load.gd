@@ -70,6 +70,8 @@ func load_data():
 	var json_string = load_game.get_line()
 	data = JSON.parse_string(json_string)
 
+func load_player_health():
+	return data["player"]["health"]
 
 func reset_data():
 	data = default_data.duplicate(true)

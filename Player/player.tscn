@@ -129,6 +129,7 @@ collision_layer = 2
 collision_mask = 129
 script = ExtResource("1_rwnf5")
 jetpack_enabled = true
+debug_enabled_status = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4.5)
