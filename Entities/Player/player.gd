@@ -1,5 +1,5 @@
 extends "res://Entities/entity_base.gd"
-class_name Player_new
+class_name Player
 
 
 @export var JUMP_VELOCITY := -160.0
@@ -7,12 +7,10 @@ class_name Player_new
 @export var MAX_SPEED := 75
 @export var ACCELERATION := 10
 @export var FRICTION := 10
-@export var GRAVITY := 5
 @export var ADDITIONAL_FALL_GRAVITY := 2
 @export var THRUST := -1
 @export var MAX_THRUST := 50
 
-@onready var animation_player := $AnimationPlayer
 @onready var state_label := $StateLabel
 @onready var remoteTransform2D := $RemoteTransform2D
 
@@ -29,12 +27,9 @@ var state = states.FALL
 var direction := "right"
 var health
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 
 func _ready():
 	SPEED = 100.0
-	
 	SaveLoad.load_data()
 	jetpack_enabled = SaveLoad.data["player"]["jetpack_enabled"]
 	health = SaveLoad.data["player"]["max_health"]
@@ -58,11 +53,11 @@ func _physics_process(delta):
 
 	match state:
 		states.RUN:
-			run_state(input)
+			run_state(input, delta)
 		states.JUMP:
-			jump_state(input)
+			jump_state(input, delta)
 		states.FALL:
-			fall_state(input)
+			fall_state(input, delta)
 		states.IDLE:
 			idle_state(input)
 		states.THRUST:
@@ -82,7 +77,7 @@ func fast_fall():
 		velocity.y += ADDITIONAL_FALL_GRAVITY
 
 
-func apply_gravity():
+func apply_gravity(delta):
 	velocity.y += GRAVITY
 
 
@@ -94,9 +89,9 @@ func apply_friction():
 	velocity.x = move_toward(velocity.x, 0, FRICTION)
 
 
-func run_state(input):
+func run_state(input, delta):
 	update_direction(input)
-	apply_gravity()
+	apply_gravity(delta)
 
 	if input.x == 0:
 		state = states.IDLE
@@ -111,28 +106,22 @@ func run_state(input):
 		state = states.JUMP
 
 
-func jump_state(input):
+func jump_state(input, delta):
 	if is_on_floor():
 		if Input.is_action_pressed("jump"):
 			animation_player.play("Jump")
 			velocity.y = JUMP_VELOCITY
 
 	update_direction(input)
-	apply_gravity()
+	apply_gravity(delta)
 	if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
 		apply_acceleration(input.x)
 	if velocity.y < 0:
 		state = states.FALL
-		#research this again on heartbeast
 
 
-#		if Input.is_action_just_released("jump") and velocity.y < JUMP_RELEASE_FORCE:
-#			animation_player.play("Jump")
-#			velocity.y = JUMP_RELEASE_FORCE
-
-
-func fall_state(input):
-	apply_gravity()
+func fall_state(input, delta):
+	apply_gravity(delta)
 	update_direction(input)
 	animation_player.play("Fall")
 	if is_on_floor():
