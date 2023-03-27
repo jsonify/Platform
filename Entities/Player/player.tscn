@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dic33u658cswn"]
+
+[ext_resource type="PackedScene" uid="uid://f484cooextsq" path="res://Entities/entity_base.tscn" id="1_2vfgw"]
+[ext_resource type="Script" path="res://Entities/Player/player.gd" id="2_tfc26"]
+
+[node name="Player" instance=ExtResource("1_2vfgw")]
+script = ExtResource("2_tfc26")
+JUMP_VELOCITY = -160.0
+JUMP_RELEASE_FORCE = -40
+MAX_SPEED = 75
+ACCELERATION = 10
+FRICTION = 10
+ADDITIONAL_FALL_GRAVITY = 2
+THRUST = -1
+MAX_THRUST = 50
+jetpack_enabled = false
+debug_enabled_status = false

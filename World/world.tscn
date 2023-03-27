@@ -16,7 +16,8 @@ jetpack_offset = 13
 
 [node name="Player" parent="." instance=ExtResource("2_wg2sf")]
 z_index = 10
-position = Vector2(180, 131)
+position = Vector2(14, -24)
+hp_max = 5
 
 [node name="TileMap" parent="." instance=ExtResource("2_bugb8")]
 

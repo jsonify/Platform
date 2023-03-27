@@ -75,6 +75,10 @@ save={
 2d_physics/layer_7="Player Hurtbox"
 2d_physics/layer_8="Enemy Hurtbox"
 
+[physics]
+
+2d/default_gravity=5.0
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
