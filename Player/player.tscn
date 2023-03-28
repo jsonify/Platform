@@ -129,7 +129,6 @@ collision_layer = 2
 collision_mask = 129
 script = ExtResource("1_0jbel")
 jetpack_enabled = true
-debug_enabled_status = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4.5)
@@ -174,7 +173,6 @@ one_shot = true
 
 [node name="Hurtbox" parent="." instance=ExtResource("6_2gbnw")]
 collision_layer = 64
-collision_mask = 0
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(0, -6)

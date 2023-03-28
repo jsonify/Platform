@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://c074qf4jvod8i"]
+
+[ext_resource type="PackedScene" uid="uid://dpcooer8r1lvo" path="res://Entities/Enemy/enemy_base.tscn" id="1_4h483"]
+[ext_resource type="Script" path="res://Entities/Enemy/flower_enemy.gd" id="2_lpwoa"]
+[ext_resource type="Texture2D" uid="uid://mngi54g2ifha" path="res://Assets/Enemies/FlowerEnemy/move 32x32.png" id="3_l76ip"]
+
+[sub_resource type="Animation" id="Animation_ks63o"]
+resource_name = "move"
+length = 0.50001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_11rq2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qvn2s"]
+_data = {
+"RESET": SubResource("Animation_11rq2"),
+"move": SubResource("Animation_ks63o")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dpr6n"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m3x1a"]
+radius = 5.0
+
+[node name="FlowerEnemy" instance=ExtResource("1_4h483")]
+position = Vector2(0, -16)
+script = ExtResource("2_lpwoa")
+defense = 0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_l76ip")
+vframes = 5
+
+[node name="LedgeCheckRight" type="RayCast2D" parent="." index="1"]
+position = Vector2(4, 14)
+target_position = Vector2(0, 3)
+
+[node name="LedgeCheckLeft" type="RayCast2D" parent="." index="2"]
+position = Vector2(-5, 14)
+target_position = Vector2(0, 3)
+
+[node name="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_qvn2s")
+}
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_dpr6n")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_m3x1a")
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

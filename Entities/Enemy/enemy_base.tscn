@@ -1,5 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpcooer8r1lvo"]
+[gd_scene load_steps=3 format=3 uid="uid://dpcooer8r1lvo"]
 
 [ext_resource type="PackedScene" uid="uid://f484cooextsq" path="res://Entities/entity_base.tscn" id="1_yxopf"]
+[ext_resource type="PackedScene" uid="uid://bsa4nso0v1lq0" path="res://Overlaps/hitbox.tscn" id="2_c7d00"]
 
 [node name="EnemyBase" instance=ExtResource("1_yxopf")]
+collision_layer = 4
+collision_mask = 7
+defense = 5
+
+[node name="Hurtbox" parent="." index="3"]
+collision_layer = 4
+collision_mask = 8
+
+[node name="Hitbox" parent="." index="4" instance=ExtResource("2_c7d00")]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

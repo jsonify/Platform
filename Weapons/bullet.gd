@@ -29,9 +29,11 @@ func _on_timer_timeout():
 
 
 func _on_area_entered(area):
-	var enemy = area.get_parent()
-	print(enemy.name)
-	if "FlowerEnemy" in enemy.name:
-		print(enemy.name)
-	enemy.take_damage(damage)
+#	pass
+	print("Hit something")
+#	var enemy = area.get_parent()
+#	print(enemy.name)
+#	if "FlowerEnemy" in enemy.name:
+#		print(enemy.name)
+#	enemy.take_damage(damage)
 #	enemy.queue_free()

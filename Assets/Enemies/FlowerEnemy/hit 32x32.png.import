@@ -2,23 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtnqbw41xcpwp"
-path="res://.godot/imported/death 32x32.png-b5e4de2d261764f63aebf8bfd49beb88.ctex"
+uid="uid://bygpaio1wuiat"
+path="res://.godot/imported/hit 32x32.png-2ad3a6749389a9d6516f43719a2ed553.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/FlowerEnemy/death 32x32.png"
-dest_files=["res://.godot/imported/death 32x32.png-b5e4de2d261764f63aebf8bfd49beb88.ctex"]
+source_file="res://Assets/Enemies/FlowerEnemy/hit 32x32.png"
+dest_files=["res://.godot/imported/hit 32x32.png-2ad3a6749389a9d6516f43719a2ed553.ctex"]
 
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

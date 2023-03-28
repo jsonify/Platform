@@ -20,6 +20,7 @@ signal health_changed(amount)
 
 enum states { RUN, JUMP, FALL, IDLE, THRUST }
 
+var GRAVITY = ProjectSettings.get_setting("physics/2d/default_gravity")
 var player_knockback = Vector2.ZERO
 
 @export var debug_enabled_status := false
