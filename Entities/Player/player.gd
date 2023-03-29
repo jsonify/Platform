@@ -20,6 +20,7 @@ signal health_changed(amount)
 
 enum states { RUN, JUMP, FALL, IDLE, THRUST }
 
+var GRAVITY = ProjectSettings.get_setting("physics/2d/default_gravity")
 var player_knockback = Vector2.ZERO
 
 @export var debug_enabled_status := false
@@ -29,7 +30,7 @@ var health
 
 
 func _ready():
-	SPEED = 100.0
+	SPEED = 100
 	SaveLoad.load_data()
 	jetpack_enabled = SaveLoad.data["player"]["jetpack_enabled"]
 	health = SaveLoad.data["player"]["max_health"]
@@ -38,7 +39,7 @@ func _ready():
 func player_die_2():
 	queue_free()
 
-func _process(delta):
+func _process(_delta):
 	debug_enabled(debug_enabled_status)
 
 
@@ -77,7 +78,7 @@ func fast_fall():
 		velocity.y += ADDITIONAL_FALL_GRAVITY
 
 
-func apply_gravity(delta):
+func apply_gravity():
 	velocity.y += GRAVITY
 
 
@@ -89,9 +90,9 @@ func apply_friction():
 	velocity.x = move_toward(velocity.x, 0, FRICTION)
 
 
-func run_state(input, delta):
+func run_state(input, _delta):
 	update_direction(input)
-	apply_gravity(delta)
+	apply_gravity()
 
 	if input.x == 0:
 		state = states.IDLE
@@ -106,22 +107,22 @@ func run_state(input, delta):
 		state = states.JUMP
 
 
-func jump_state(input, delta):
+func jump_state(input, _delta):
 	if is_on_floor():
 		if Input.is_action_pressed("jump"):
 			animation_player.play("Jump")
 			velocity.y = JUMP_VELOCITY
 
 	update_direction(input)
-	apply_gravity(delta)
+	apply_gravity()
 	if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
 		apply_acceleration(input.x)
 	if velocity.y < 0:
 		state = states.FALL
 
 
-func fall_state(input, delta):
-	apply_gravity(delta)
+func fall_state(input, _delta):
+	apply_gravity()
 	update_direction(input)
 	animation_player.play("Fall")
 	if is_on_floor():
@@ -133,7 +134,7 @@ func fall_state(input, delta):
 		apply_acceleration(input.x)
 
 
-func idle_state(input):
+func idle_state(_input):
 	apply_friction()
 	animation_player.play("Idle")
 	if Input.is_action_pressed("right") or Input.is_action_pressed("left"):

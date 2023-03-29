@@ -76,7 +76,7 @@ func load_player_health():
 func reset_data():
 	data = default_data.duplicate(true)
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("save"):
 		save_data()
 	

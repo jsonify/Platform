@@ -15,3 +15,5 @@ THRUST = -1
 MAX_THRUST = 50
 jetpack_enabled = false
 debug_enabled_status = false
+
+[editable path="Hurtbox"]
