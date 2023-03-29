@@ -3,7 +3,7 @@ extends Node2D
 var bullet_scene = preload("res://Weapons/bullet.tscn")
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	look_at(get_global_mouse_position())
 
 	if Input.is_action_just_pressed("Fire"):

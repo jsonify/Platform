@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://xnlljchfsd2u" path="res://World/Checkpoints/checkpoint.tscn" id="6_2mvn2"]
 [ext_resource type="PackedScene" uid="uid://b1ogjxlwufttw" path="res://PowerUps/power_up.tscn" id="7_b41e7"]
 [ext_resource type="PackedScene" uid="uid://bv3jkbkss4tat" path="res://PowerUps/power_up_platform.tscn" id="8_gh0kn"]
-[ext_resource type="PackedScene" uid="uid://b4h64v86ryqnj" path="res://Entities/Enemy/flower_enemy.tscn" id="9_6l4pq"]
+[ext_resource type="PackedScene" uid="uid://c074qf4jvod8i" path="res://Entities/Enemy/flower_enemy.tscn" id="9_6l4pq"]
 [ext_resource type="PackedScene" uid="uid://blekwglvhs2gv" path="res://Interface/hud.tscn" id="9_8sg1l"]
 
 [node name="World" type="Node2D"]
@@ -16,7 +16,8 @@ jetpack_offset = 13
 
 [node name="Player" parent="." instance=ExtResource("2_wg2sf")]
 z_index = 10
-position = Vector2(190, 133)
+position = Vector2(166, 142)
+debug_enabled_status = true
 hp_max = 5
 
 [node name="TileMap" parent="." instance=ExtResource("2_bugb8")]

@@ -16,7 +16,7 @@ func _ready():
 		sprite.flip_h = false
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	animation_player.play("move")
 #	knockback = knockback.move_toward(Vector2.ZERO, 200 * delta)
 	handle_wall()

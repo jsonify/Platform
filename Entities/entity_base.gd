@@ -16,22 +16,25 @@ signal died
 @onready var hurtbox := $Hurtbox
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move()
 	
 func move():
 	move_and_slide()
 
 func set_hp(value):
-	if value != hp:
-		hp = clamp(value, 0, hp_max)
+	if value >= 0:
+		print("value was: " + str(value))
+		hp = value
 		emit_signal("hp_changed", hp)
 		if hp == 0:
+			print("should die now")
 			emit_signal("died")
 		
 func set_hp_max(value):
-	if value != hp_max:
-		hp_max = max(0, value)
+#	if value != hp_max:
+#		hp_max = max(0, value)
+		hp_max = value
 		emit_signal("hp_max_changed", hp_max)
 		self.hp = hp
 
@@ -44,8 +47,11 @@ func receive_damage(base_damage):
 	self.hp -= actual_damage
 
 func _on_hurtbox_area_entered(hitbox):
+	print(hitbox.get_parent().name + " entered " + name + "'s hurtbox")
 	receive_damage(hitbox.damage)
+	print(name + " took " + str(hitbox.damage) + " damage and has " + str(hp) + " remaining")
 
 
 func _on_died():
+	print("here")
 	die()
