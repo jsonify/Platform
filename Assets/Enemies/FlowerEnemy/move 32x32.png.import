@@ -3,22 +3,22 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mngi54g2ifha"
-path="res://.godot/imported/move 32x32.png-1c62f08382e3fb5ee5ee31eada260b18.ctex"
+path="res://.godot/imported/move 32x32.png-53d986a4ab4df821026312d4c388913f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/FlowerEnemy/move 32x32.png"
-dest_files=["res://.godot/imported/move 32x32.png-1c62f08382e3fb5ee5ee31eada260b18.ctex"]
+source_file="res://Assets/Enemies/FlowerEnemy/move 32x32.png"
+dest_files=["res://.godot/imported/move 32x32.png-53d986a4ab4df821026312d4c388913f.ctex"]
 
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

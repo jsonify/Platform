@@ -1,20 +1,17 @@
-extends CharacterBody2D
+extends "res://Entities/entity_base.gd"
 class_name Player
 
-@export var SPEED := 100.0
+
 @export var JUMP_VELOCITY := -160.0
 @export var JUMP_RELEASE_FORCE := -40
 @export var MAX_SPEED := 75
 @export var ACCELERATION := 10
 @export var FRICTION := 10
-@export var GRAVITY := 5
 @export var ADDITIONAL_FALL_GRAVITY := 2
 @export var THRUST := -1
 @export var MAX_THRUST := 50
 
-@onready var animation_player := $AnimationPlayer
 @onready var state_label := $StateLabel
-@onready var sprite := $Sprite2D
 @onready var remoteTransform2D := $RemoteTransform2D
 
 @export var jetpack_enabled = false
@@ -23,32 +20,36 @@ signal health_changed(amount)
 
 enum states { RUN, JUMP, FALL, IDLE, THRUST }
 
-var player_knockback = Vector2.ZERO
+var GRAVITY = ProjectSettings.get_setting("physics/2d/default_gravity")
+#var player_knockback = Vector2.ZERO
 
-var debug_enabled_status := false
+@export var debug_enabled_status := false
 var state = states.FALL
 var direction := "right"
-var health
-var stats := PlayerStats
+@onready var health = hp_max: set = set_health
+#@onready var health = hp_changed.connect(new_hp)
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func set_health(value):
+	health = clamp(value, 0, hp_max)
 
 func _ready():
+	print("health = " + str(health))
+
+	SPEED = 100
 	SaveLoad.load_data()
-	stats.no_health.connect(player_die_2)
 	jetpack_enabled = SaveLoad.data["player"]["jetpack_enabled"]
-	health = SaveLoad.data["player"]["max_health"]
+#	health = SaveLoad.data["player"]["max_health"]
 	
+#remove
+#func player_die_2():
+#	queue_free()
 
-func player_die_2():
-	queue_free()
+func _process(_delta):
+	debug_enabled(debug_enabled_status)
 
-func _process(delta):
-	pass
 
 func _physics_process(delta):
-	debug_enabled(debug_enabled_status)
 	var input = Vector2.ZERO
 	input.x = Input.get_axis("left", "right")
 	input.y = Input.get_axis("thrust", "ui_down")
@@ -59,11 +60,11 @@ func _physics_process(delta):
 
 	match state:
 		states.RUN:
-			run_state(input)
+			run_state(input, delta)
 		states.JUMP:
-			jump_state(input)
+			jump_state(input, delta)
 		states.FALL:
-			fall_state(input)
+			fall_state(input, delta)
 		states.IDLE:
 			idle_state(input)
 		states.THRUST:
@@ -95,7 +96,7 @@ func apply_friction():
 	velocity.x = move_toward(velocity.x, 0, FRICTION)
 
 
-func run_state(input):
+func run_state(input, _delta):
 	update_direction(input)
 	apply_gravity()
 
@@ -112,7 +113,7 @@ func run_state(input):
 		state = states.JUMP
 
 
-func jump_state(input):
+func jump_state(input, _delta):
 	if is_on_floor():
 		if Input.is_action_pressed("jump"):
 			animation_player.play("Jump")
@@ -124,15 +125,9 @@ func jump_state(input):
 		apply_acceleration(input.x)
 	if velocity.y < 0:
 		state = states.FALL
-		#research this again on heartbeast
 
 
-#		if Input.is_action_just_released("jump") and velocity.y < JUMP_RELEASE_FORCE:
-#			animation_player.play("Jump")
-#			velocity.y = JUMP_RELEASE_FORCE
-
-
-func fall_state(input):
+func fall_state(input, _delta):
 	apply_gravity()
 	update_direction(input)
 	animation_player.play("Fall")
@@ -145,7 +140,7 @@ func fall_state(input):
 		apply_acceleration(input.x)
 
 
-func idle_state(input):
+func idle_state(_input):
 	apply_friction()
 	animation_player.play("Idle")
 	if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
@@ -172,21 +167,21 @@ func thrust_state(input):
 func apply_small_gravity():
 	velocity.y -= 50
 
-func knockback(enemy_pos_x):
-	$Timer.start()
-	set_modulate(Color(1,0.3,0.3,0.3))
-#	state = states.FALL
-	if position.x >= enemy_pos_x:
-		velocity.x = -200
-		print(enemy_pos_x)
-#	Why doesn't this doesn't work??
-	elif position.x <= enemy_pos_x:
-		velocity.x = 200
-		print(enemy_pos_x)
+#func knockback(enemy_pos_x):
+#	$Timer.start()
+#	set_modulate(Color(1,0.3,0.3,0.3))
+##	state = states.FALL
+#	if position.x >= enemy_pos_x:
+#		velocity.x = -200
+#		print(enemy_pos_x)
+##	Why doesn't this doesn't work??
+#	elif position.x <= enemy_pos_x:
+#		velocity.x = 200
+#		print(enemy_pos_x)
 
-func player_die():
-	queue_free()
-	Events.emit_signal("player_died")
+#func player_die():
+#	queue_free()
+#	Events.emit_signal("player_died")
 
 
 func connect_camera(camera):
@@ -204,7 +199,7 @@ func update_direction(input) -> void:
 func debug_enabled(status):
 	debug_enabled_status = status
 	if debug_enabled_status == true:
-		state_label.text = states.keys()[state] + "\n\n " + str(health)
+		state_label.text = states.keys()[state] + "\n\n "
 
 
 func set_direction_right() -> void:
@@ -217,13 +212,16 @@ func set_direction_left() -> void:
 	sprite.flip_h = true
 #	$HitboxPosition.rotation_degrees = 180
 
-func take_damage(amount:int):
-	stats.health -= amount
+#func take_damage(amount:int):
+#	health -= amount
 
 func _on_timer_timeout():
 	set_modulate(Color(1,1,1,1))
 
 
-func _on_hurtbox_area_entered(area):
-	stats.health -= 1
-	print("from player's hurtbox")
+func _on_died():
+	die()
+
+
+func _on_hp_changed(new_hp):
+	emit_signal("health_changed", new_hp)

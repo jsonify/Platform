@@ -2,23 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqlxrqlwf5x0o"
-path="res://.godot/imported/hero-fly-stop-start.png-90c735da1bc00f3e56a39860fd4b1231.ctex"
+uid="uid://cjjm3q62755en"
+path="res://.godot/imported/flower-enemy 23 32x32.png-fb4be65a7e25662d1ad62c161b5bc54f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/hero-fly-stop-start.png"
-dest_files=["res://.godot/imported/hero-fly-stop-start.png-90c735da1bc00f3e56a39860fd4b1231.ctex"]
+source_file="res://Assets/Enemies/FlowerEnemy/flower-enemy 23 32x32.png"
+dest_files=["res://.godot/imported/flower-enemy 23 32x32.png-fb4be65a7e25662d1ad62c161b5bc54f.ctex"]
 
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

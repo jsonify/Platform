@@ -23,7 +23,7 @@ func _ready():
 func _on_player_died():
 	timer.start(1.0)
 	await timer.timeout
-	var player = PlayerScene.instantiate()
+	player = PlayerScene.instantiate()
 	add_child(player)
 	player.position = player_spawn_location
 	player.connect_camera(camera)

@@ -13,7 +13,7 @@ func _ready():
 		computer_animation_player.play("detected")
 	body_entered.connect(_on_body_entered)
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	powerup_acquired(is_powerup_acquired)
 
 
@@ -21,16 +21,15 @@ func _on_timer_timeout():
 	Events.emit_signal("platform_activated")
 	
 	
-func apply_effect(body):
+func apply_effect(_body):
 	pass
 
 
-func powerup_acquired(bool):
+func powerup_acquired(_bool):
 	if not SaveLoad.data["powerups"]["jetpack_powerup_acquired"]:
 		computer_animation_player.play("detected")
 		collision_shape.set_deferred("disabled", true)
 		detection_timer.start()
 		is_powerup_acquired = true
 	else:
-		SaveLoad.data["powerups"]["jetpack_powerup_acquired"]
 		computer_animation_player.play("detected")
