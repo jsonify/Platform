@@ -21,23 +21,29 @@ signal health_changed(amount)
 enum states { RUN, JUMP, FALL, IDLE, THRUST }
 
 var GRAVITY = ProjectSettings.get_setting("physics/2d/default_gravity")
-var player_knockback = Vector2.ZERO
+#var player_knockback = Vector2.ZERO
 
 @export var debug_enabled_status := false
 var state = states.FALL
 var direction := "right"
-var health
+@onready var health = hp_max: set = set_health
+#@onready var health = hp_changed.connect(new_hp)
 
+
+func set_health(value):
+	health = clamp(value, 0, hp_max)
 
 func _ready():
+	print("health = " + str(health))
+
 	SPEED = 100
 	SaveLoad.load_data()
 	jetpack_enabled = SaveLoad.data["player"]["jetpack_enabled"]
-	health = SaveLoad.data["player"]["max_health"]
+#	health = SaveLoad.data["player"]["max_health"]
 	
-
-func player_die_2():
-	queue_free()
+#remove
+#func player_die_2():
+#	queue_free()
 
 func _process(_delta):
 	debug_enabled(debug_enabled_status)
@@ -161,21 +167,21 @@ func thrust_state(input):
 func apply_small_gravity():
 	velocity.y -= 50
 
-func knockback(enemy_pos_x):
-	$Timer.start()
-	set_modulate(Color(1,0.3,0.3,0.3))
-#	state = states.FALL
-	if position.x >= enemy_pos_x:
-		velocity.x = -200
-		print(enemy_pos_x)
-#	Why doesn't this doesn't work??
-	elif position.x <= enemy_pos_x:
-		velocity.x = 200
-		print(enemy_pos_x)
+#func knockback(enemy_pos_x):
+#	$Timer.start()
+#	set_modulate(Color(1,0.3,0.3,0.3))
+##	state = states.FALL
+#	if position.x >= enemy_pos_x:
+#		velocity.x = -200
+#		print(enemy_pos_x)
+##	Why doesn't this doesn't work??
+#	elif position.x <= enemy_pos_x:
+#		velocity.x = 200
+#		print(enemy_pos_x)
 
-func player_die():
-	queue_free()
-	Events.emit_signal("player_died")
+#func player_die():
+#	queue_free()
+#	Events.emit_signal("player_died")
 
 
 func connect_camera(camera):
@@ -193,7 +199,7 @@ func update_direction(input) -> void:
 func debug_enabled(status):
 	debug_enabled_status = status
 	if debug_enabled_status == true:
-		state_label.text = states.keys()[state] + "\n\n " + str(health)
+		state_label.text = states.keys()[state] + "\n\n "
 
 
 func set_direction_right() -> void:
@@ -206,9 +212,16 @@ func set_direction_left() -> void:
 	sprite.flip_h = true
 #	$HitboxPosition.rotation_degrees = 180
 
-func take_damage(amount:int):
-	health -= amount
-	pass
+#func take_damage(amount:int):
+#	health -= amount
 
 func _on_timer_timeout():
 	set_modulate(Color(1,1,1,1))
+
+
+func _on_died():
+	die()
+
+
+func _on_hp_changed(new_hp):
+	emit_signal("health_changed", new_hp)

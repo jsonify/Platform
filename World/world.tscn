@@ -18,7 +18,6 @@ jetpack_offset = 13
 z_index = 10
 position = Vector2(166, 142)
 debug_enabled_status = true
-hp_max = 5
 
 [node name="TileMap" parent="." instance=ExtResource("2_bugb8")]
 

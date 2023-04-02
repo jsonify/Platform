@@ -16,4 +16,6 @@ root_node = NodePath("../Sprite2D")
 
 [node name="Hurtbox" parent="." instance=ExtResource("2_40fcl")]
 
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+
 [editable path="Hurtbox"]

@@ -42,11 +42,11 @@ func handle_wall():
 #	stats.health -= amount
 	
 
+
+func _on_died():
+	timer.start()
+	speed = 0
+
+
 func _on_timer_timeout():
 	queue_free()
-
-
-func _on_stats_no_health():
-		timer.start()
-		speed = 0
-

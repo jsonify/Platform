@@ -124,7 +124,7 @@ _data = {
 radius = 4.0
 height = 12.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_0jbel")
@@ -182,6 +182,8 @@ collision_mask = 4
 position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_8d4hn")
 
+[connection signal="died" from="." to="." method="_on_died"]
+[connection signal="hp_changed" from="." to="." method="_on_hp_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 

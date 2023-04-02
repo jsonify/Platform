@@ -29,8 +29,10 @@ func _on_timer_timeout():
 
 
 func _on_area_entered(area):
-#	pass
-	print("Hit " + str(area.name))
+	pass
+#	var enemy = area.get_parent().name
+#	print("Hit " + str(enemy))
+#	enemy.animation_player.play("hit")
 #	var enemy = area.get_parent()
 #	print(enemy.name)
 #	if "FlowerEnemy" in enemy.name:
