@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://qdj6pwqsir24"]
+
+[ext_resource type="Script" path="res://collectibles/powerup/jetpack/jetpack.gd" id="1_cjcpc"]
+[ext_resource type="Texture2D" uid="uid://c1a0o33sys1gt" path="res://assets/collectibles/jetpack_1.png" id="2_wsbx0"]
+[ext_resource type="Texture2D" uid="uid://b8uv76qc7wsru" path="res://assets/collectibles/jetpack_2.png" id="3_32cde"]
+[ext_resource type="Texture2D" uid="uid://c55juqex5mjbq" path="res://assets/collectibles/jetpack_3.png" id="4_gftcn"]
+[ext_resource type="Texture2D" uid="uid://dahq24nn85vgw" path="res://assets/collectibles/jetpack_4.png" id="5_507lt"]
+[ext_resource type="Texture2D" uid="uid://ctkrwycgiayxh" path="res://assets/collectibles/jetpack_5.png" id="6_8xo0b"]
+[ext_resource type="Texture2D" uid="uid://1g8uv24n54g" path="res://assets/collectibles/jetpack_6.png" id="7_h27od"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sieut"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wsbx0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_32cde")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gftcn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_507lt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8xo0b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h27od")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a4d7s"]
+radius = 3.0
+
+[node name="Jetpack" type="Area2D"]
+script = ExtResource("1_cjcpc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_sieut")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_a4d7s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

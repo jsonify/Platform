@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cle50p75pbmjq"
-path="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+uid="uid://b1g3hq8gjfyoq"
+path="res://.godot/imported/jsonify_parallax_background_layers_style_or_and_the_blind_cave__7d41c7aa-3045-4026-bb34-14b447031fbd.png-76fa1f3dda7cc34762940881dd2e0394.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.svg"
-dest_files=["res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"]
+source_file="res://assets/world/jsonify_parallax_background_layers_style_or_and_the_blind_cave__7d41c7aa-3045-4026-bb34-14b447031fbd.png"
+dest_files=["res://.godot/imported/jsonify_parallax_background_layers_style_or_and_the_blind_cave__7d41c7aa-3045-4026-bb34-14b447031fbd.png-76fa1f3dda7cc34762940881dd2e0394.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

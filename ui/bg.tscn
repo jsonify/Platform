@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://73cmkp0r2p7g"]
+
+[ext_resource type="Script" path="res://ui/bg.gd" id="1_m4txd"]
+[ext_resource type="Texture2D" uid="uid://b1g3hq8gjfyoq" path="res://assets/world/jsonify_parallax_background_layers_style_or_and_the_blind_cave__7d41c7aa-3045-4026-bb34-14b447031fbd.png" id="2_uwvhj"]
+[ext_resource type="Texture2D" uid="uid://b6t4enbktxob4" path="res://assets/world/rock.png" id="3_a18vk"]
+
+[node name="BG" type="ParallaxBackground"]
+script = ExtResource("1_m4txd")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Cave-bg" type="Sprite2D" parent="ParallaxLayer"]
+modulate = Color(0.478431, 0.478431, 0.478431, 1)
+position = Vector2(577.333, 334.5)
+scale = Vector2(0.692708, 0.692708)
+texture = ExtResource("2_uwvhj")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(1244, 0)
+
+[node name="Middle" type="Sprite2D" parent="ParallaxLayer2"]
+modulate = Color(1, 0.619608, 0.815686, 1)
+position = Vector2(94.25, 455)
+scale = Vector2(0.692453, 2.22165)
+texture = ExtResource("3_a18vk")
+
+[node name="Middle2" type="Sprite2D" parent="ParallaxLayer2"]
+modulate = Color(1, 0.619608, 0.815686, 1)
+position = Vector2(279, 455)
+scale = Vector2(0.692453, 2.22165)
+texture = ExtResource("3_a18vk")
+
+[node name="Middle3" type="Sprite2D" parent="ParallaxLayer2"]
+modulate = Color(1, 0.619608, 0.815686, 1)
+position = Vector2(438, 445.5)
+scale = Vector2(0.692453, 2.22165)
+texture = ExtResource("3_a18vk")
+
+[node name="Middle4" type="Sprite2D" parent="ParallaxLayer2"]
+modulate = Color(1, 0.619608, 0.815686, 1)
+position = Vector2(585, 406)
+scale = Vector2(0.692453, 2.51546)
+texture = ExtResource("3_a18vk")
+
+[node name="Middle5" type="Sprite2D" parent="ParallaxLayer2"]
+modulate = Color(1, 0.619608, 0.815686, 1)
+position = Vector2(699, 460.5)
+scale = Vector2(0.692453, 2.22165)
+texture = ExtResource("3_a18vk")
+
+[node name="Middle6" type="Sprite2D" parent="ParallaxLayer2"]
+modulate = Color(1, 0.619608, 0.815686, 1)
+position = Vector2(871, 434.5)
+scale = Vector2(0.692453, 2.22165)
+texture = ExtResource("3_a18vk")
+
+[node name="Middle7" type="Sprite2D" parent="ParallaxLayer2"]
+modulate = Color(1, 0.619608, 0.815686, 1)
+position = Vector2(1004, 448.5)
+scale = Vector2(0.692453, 2.22165)
+texture = ExtResource("3_a18vk")
+
+[node name="Middle8" type="Sprite2D" parent="ParallaxLayer2"]
+modulate = Color(1, 0.619608, 0.815686, 1)
+position = Vector2(1152, 451.5)
+scale = Vector2(0.692453, 2.22165)
+texture = ExtResource("3_a18vk")
