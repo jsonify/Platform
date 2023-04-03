@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk2f0fcbvbr1i"]
+
+[ext_resource type="Texture2D" uid="uid://dvu5o503u0n05" path="res://assets/collectibles/fuel.png" id="1_4e5cy"]
+[ext_resource type="Script" path="res://collectibles/fuel/fuel.gd" id="1_gpuua"]
+
+[sub_resource type="Animation" id="Animation_1f1tl"]
+resource_name = "idle"
+length = 0.70001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_8w5yw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pp4pk"]
+_data = {
+"RESET": SubResource("Animation_8w5yw"),
+"idle": SubResource("Animation_1f1tl")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_es6e4"]
+size = Vector2(10, 12)
+
+[node name="Fuel" type="Area2D"]
+script = ExtResource("1_gpuua")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = ExtResource("1_4e5cy")
+hframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_pp4pk")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_es6e4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

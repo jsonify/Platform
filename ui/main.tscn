@@ -7,18 +7,18 @@
 script = ExtResource("1_m2qsn")
 
 [node name="Play" type="Button" parent="."]
-offset_left = 463.0
-offset_top = 167.0
-offset_right = 718.0
-offset_bottom = 276.0
+offset_left = 88.0
+offset_top = 17.0
+offset_right = 173.0
+offset_bottom = 62.0
 text = "Play
 "
 
 [node name="Quit" type="Button" parent="."]
-offset_left = 462.0
-offset_top = 330.0
-offset_right = 717.0
-offset_bottom = 439.0
+offset_left = 80.0
+offset_top = 95.0
+offset_right = 169.0
+offset_bottom = 150.0
 text = "Quit
 "
 

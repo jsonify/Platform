@@ -3,15 +3,30 @@ extends CharacterBody2D
 class_name Player
 
 @onready var animation_player := $AnimationPlayer
+@onready var animated_sprite := $AnimatedSprite2D
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -250.0
+var sprite_frames
+var is_jetpack_enabled
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var gravity = 500
 
+func _ready():
+#	Utils.saveGame()
+	Utils.loadGame()
+	animated_sprite.frames = load("res://entities/player/player_basic.tres")
+	is_jetpack_enabled = Game.jetpack
+
 func _physics_process(delta):
+	# Add the jetpack
+	is_jetpack_enabled = Game.jetpack
+	print(is_jetpack_enabled)
+	if is_jetpack_enabled:
+		use_jetpack_powerup()
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -50,3 +65,8 @@ func change_direction(direction):
 		$AnimatedSprite2D.flip_h = true
 	elif direction == 1:
 		$AnimatedSprite2D.flip_h = false
+
+func use_jetpack_powerup():
+	animated_sprite.frames = load("res://entities/player/player_jetpack.tres")
+	if Input.is_action_pressed("thrust"):
+		animation_player.play("thrust")

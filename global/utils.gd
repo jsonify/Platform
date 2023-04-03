@@ -7,7 +7,9 @@ func saveGame():
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	var data: Dictionary = {
 		"playerHP": Game.playerHP,
-		"gold": Game.gold
+		"gold": Game.gold,
+		"fuel": Game.fuel,
+		"jetpack": Game.jetpack,
 	}
 	
 	var json_string = JSON.stringify(data)
@@ -23,3 +25,5 @@ func loadGame():
 			if current_line:
 				Game.playerHP = current_line["playerHP"]
 				Game.gold = current_line["gold"]
+				Game.fuel = current_line["fuel"]
+				Game.jetpack = current_line["jetpack"]
