@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://bffqtugajlh5e"]
+
+[ext_resource type="Texture2D" uid="uid://d4irxco678q1j" path="res://assets/platforms/idle 28x41.png" id="1_xhjkn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gohh5"]
+atlas = ExtResource("1_xhjkn")
+region = Rect2(0, 0, 28, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcfqo"]
+atlas = ExtResource("1_xhjkn")
+region = Rect2(28, 0, 28, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqx7s"]
+atlas = ExtResource("1_xhjkn")
+region = Rect2(56, 0, 28, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ov3m"]
+atlas = ExtResource("1_xhjkn")
+region = Rect2(84, 0, 28, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd00u"]
+atlas = ExtResource("1_xhjkn")
+region = Rect2(112, 0, 28, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upy65"]
+atlas = ExtResource("1_xhjkn")
+region = Rect2(140, 0, 28, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdkjo"]
+atlas = ExtResource("1_xhjkn")
+region = Rect2(168, 0, 28, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_saxcn"]
+atlas = ExtResource("1_xhjkn")
+region = Rect2(196, 0, 28, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6p4g"]
+atlas = ExtResource("1_xhjkn")
+region = Rect2(224, 0, 28, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5py1b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gohh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcfqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqx7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ov3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd00u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upy65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdkjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_saxcn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6p4g")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="PowerupPlatform" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -21)
+sprite_frames = SubResource("SpriteFrames_5py1b")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.983145
