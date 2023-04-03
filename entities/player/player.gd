@@ -90,8 +90,10 @@ func fall_state(input, _delta):
 	animation_player.play("fall")
 	if is_on_floor():
 		state = states.IDLE
-	elif Input.is_action_pressed("thrust") and jetpack_enabled:
-		state = states.THRUST
+	elif Input.is_action_pressed("thrust"):
+		if jetpack_enabled:
+			if Game.fuel > 0:
+				state = states.THRUST
 
 	if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
 		apply_acceleration(input.x)
@@ -104,21 +106,26 @@ func idle_state(_input):
 		state = states.RUN
 	elif Input.is_action_pressed("jump"):
 		state = states.JUMP
-	elif Input.is_action_pressed("thrust") and jetpack_enabled:
-		state = states.THRUST
+	elif Input.is_action_pressed("thrust"):
+		if jetpack_enabled:
+			if Game.fuel > 0:
+				state = states.THRUST
 
 	if velocity.y > 0:
 		state = states.FALL
 	
 func thrust_state(input):
 	if jetpack_enabled:
-		animation_player.play("thrust")
-		apply_thrust()
-		update_direction(input)
-		if Input.is_action_just_released("thrust"):
-			state = states.FALL
-		elif input.x != 0:
-			apply_acceleration(input.x)
+		if Game.fuel > 0:
+			animation_player.play("thrust")
+			apply_thrust()
+			update_direction(input)
+			if Input.is_action_just_released("thrust"):
+				state = states.FALL
+			elif input.x != 0:
+				apply_acceleration(input.x)
+		else:
+			state = states.FALL	
 
 func change_direction(direction):
 	if direction == -1:
@@ -144,8 +151,10 @@ func run_state(input, _delta):
 		apply_acceleration(input.x)
 	if not is_on_floor() and velocity.y > 0:
 		state = states.FALL
-	if Input.is_action_pressed("thrust") and jetpack_enabled:
-		state = states.THRUST
+	if Input.is_action_pressed("thrust"):
+		if jetpack_enabled:
+			if Game.fuel > 0:
+				state = states.THRUST
 	elif Input.is_action_pressed("jump"):
 		state = states.JUMP
 		
