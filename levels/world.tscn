@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbjivcpy5e8ws"]
+[gd_scene load_steps=15 format=3 uid="uid://bbjivcpy5e8ws"]
 
 [ext_resource type="Texture2D" uid="uid://bsaq8biydkq7r" path="res://assets/world/tileset.png" id="1_4f1lg"]
 [ext_resource type="Script" path="res://ui/bg.gd" id="2_a3vaa"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://ui/fuel.gd" id="8_x75jf"]
 [ext_resource type="PackedScene" uid="uid://dk2f0fcbvbr1i" path="res://collectibles/fuel/fuel.tscn" id="10_1cyuk"]
 [ext_resource type="PackedScene" uid="uid://qdj6pwqsir24" path="res://collectibles/powerup/jetpack/jetpack.tscn" id="11_6ndtm"]
+[ext_resource type="PackedScene" uid="uid://dlg0jpb28w8tl" path="res://collectibles/powerup/powerup_station_jetpack.tscn" id="12_jfall"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_huo4o"]
 texture = ExtResource("1_4f1lg")
@@ -438,13 +439,13 @@ texture = ExtResource("3_vqcw0")
 [node name="Player" type="Node2D" parent="."]
 
 [node name="player" parent="Player" instance=ExtResource("4_jhjb1")]
-position = Vector2(287, 179)
+position = Vector2(282, 173)
 
 [node name="Mobs" type="Node2D" parent="."]
 position = Vector2(423, -21)
 
 [node name="FlowerEnemy" parent="Mobs" instance=ExtResource("5_0lmg6")]
-position = Vector2(-146, 341)
+position = Vector2(-67, 353)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -484,4 +485,7 @@ autostart = true
 position = Vector2(485, 233)
 
 [node name="Jetpack" parent="." instance=ExtResource("11_6ndtm")]
-position = Vector2(316, 229)
+position = Vector2(321, 261)
+
+[node name="PowerupStationJetpack" parent="." instance=ExtResource("12_jfall")]
+position = Vector2(311, 233)

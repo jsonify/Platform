@@ -10,6 +10,7 @@ var chase := false
 
 func _ready():
 	animated_sprite.play("idle")
+	gravity += 200
 
 func _physics_process(delta):
 	# Gravity for flower

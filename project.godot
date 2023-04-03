@@ -74,7 +74,7 @@ save={
 
 [physics]
 
-2d/default_gravity=500.0
+2d/default_gravity=5.0
 
 [rendering]
 
