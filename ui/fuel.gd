@@ -1,11 +1,8 @@
 extends Label
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	text = "Fuel: " + str(Game.fuel)
+	if Game.fuel_level > 0:
+		text = "Fuel Level: " + str(Game.fuel_level).pad_decimals(2)
+	else:
+		text = "Fuel Level: 0.00"

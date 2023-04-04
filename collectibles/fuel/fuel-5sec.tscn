@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://2faywbo12gn8"]
+[gd_scene load_steps=7 format=3 uid="uid://bh0u5i4ogipbf"]
 
-[ext_resource type="Script" path="res://collectibles/fuel/fuel-5.gd" id="1_22k74"]
-[ext_resource type="Texture2D" uid="uid://cv68anewmbr56" path="res://assets/collectibles/fuel-1sec.png" id="2_5jw5r"]
+[ext_resource type="Script" path="res://collectibles/fuel/fuel-5.gd" id="1_acc53"]
+[ext_resource type="Texture2D" uid="uid://b5l0nhtqguerk" path="res://assets/collectibles/fuel-5sec.png" id="2_erqco"]
 
 [sub_resource type="Animation" id="Animation_8w5yw"]
 length = 0.001
@@ -44,12 +44,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_es6e4"]
 size = Vector2(10, 12)
 
-[node name="Fuel-1sec" type="Area2D"]
-script = ExtResource("1_22k74")
+[node name="Fuel-5sec" type="Area2D"]
+script = ExtResource("1_acc53")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -9)
-texture = ExtResource("2_5jw5r")
+texture = ExtResource("2_erqco")
 hframes = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

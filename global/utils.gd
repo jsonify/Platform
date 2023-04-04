@@ -8,7 +8,7 @@ func saveGame():
 	var data: Dictionary = {
 		"playerHP": Game.playerHP,
 		"gold": Game.gold,
-		"fuel": Game.fuel,
+		"fuel_level": Game.fuel_level,
 		"jetpack": Game.jetpack,
 	}
 	
@@ -25,5 +25,5 @@ func loadGame():
 			if current_line:
 				Game.playerHP = current_line["playerHP"]
 				Game.gold = current_line["gold"]
-				Game.fuel = current_line["fuel"]
+				Game.fuel_level = current_line["fuel_level"]
 				Game.jetpack = current_line["jetpack"]

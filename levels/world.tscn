@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbjivcpy5e8ws"]
+[gd_scene load_steps=17 format=3 uid="uid://bbjivcpy5e8ws"]
 
 [ext_resource type="Texture2D" uid="uid://bsaq8biydkq7r" path="res://assets/world/tileset.png" id="1_4f1lg"]
 [ext_resource type="Script" path="res://levels/world.gd" id="1_gvcph"]
@@ -9,10 +9,10 @@
 [ext_resource type="Script" path="res://ui/hp.gd" id="6_jmbc3"]
 [ext_resource type="Script" path="res://ui/gold.gd" id="7_1y56a"]
 [ext_resource type="Script" path="res://collectibles/collectibles.gd" id="8_uqdnn"]
-[ext_resource type="Script" path="res://ui/fuel.gd" id="8_x75jf"]
 [ext_resource type="PackedScene" uid="uid://bffqtugajlh5e" path="res://platforms/powerup_platform.tscn" id="9_mj1w0"]
-[ext_resource type="PackedScene" uid="uid://dk2f0fcbvbr1i" path="res://collectibles/fuel/fuel.tscn" id="10_1cyuk"]
+[ext_resource type="PackedScene" uid="uid://beuhgtgv32n6b" path="res://collectibles/fuel/fuel-1sec.tscn" id="12_2ovy8"]
 [ext_resource type="PackedScene" uid="uid://dlg0jpb28w8tl" path="res://collectibles/powerup/powerup_station_jetpack.tscn" id="12_jfall"]
+[ext_resource type="PackedScene" uid="uid://bh0u5i4ogipbf" path="res://collectibles/fuel/fuel-5sec.tscn" id="13_arwrh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_huo4o"]
 texture = ExtResource("1_4f1lg")
@@ -417,6 +417,17 @@ texture = ExtResource("1_4f1lg")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_huo4o")
 
+[sub_resource type="GDScript" id="GDScript_g52lb"]
+script/source = "extends Label
+
+
+func _process(delta):
+	if Game.fuel_level > 0:
+		text = \"Fuel Level: \" + str(Game.fuel_level).pad_decimals(2)
+	else:
+		text = \"Fuel Level: 0.00\"
+"
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_gvcph")
 
@@ -462,7 +473,7 @@ script = ExtResource("7_1y56a")
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Fuel"
-script = ExtResource("8_x75jf")
+script = SubResource("GDScript_g52lb")
 
 [node name="Player" type="Node2D" parent="."]
 
@@ -481,13 +492,14 @@ script = ExtResource("8_uqdnn")
 [node name="Timer" type="Timer" parent="Collectibles"]
 autostart = true
 
-[node name="Fuel" parent="." instance=ExtResource("10_1cyuk")]
-position = Vector2(436, 391)
-
 [node name="PowerupStationJetpack" parent="." instance=ExtResource("12_jfall")]
 position = Vector2(246, 393)
 
 [node name="PowerupPlatform" parent="." instance=ExtResource("9_mj1w0")]
 position = Vector2(283, 394)
 
-[editable path="PowerupPlatform"]
+[node name="Fuel-1sec" parent="." instance=ExtResource("12_2ovy8")]
+position = Vector2(407, 393)
+
+[node name="Fuel-5sec" parent="." instance=ExtResource("13_arwrh")]
+position = Vector2(502, 393)
