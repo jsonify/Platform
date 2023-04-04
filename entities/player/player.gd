@@ -21,9 +21,10 @@ var sprite_frames
 var jetpack_enabled
 var GRAVITY = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction := "right"
+var fuel_level
 
 func _ready():
-#	Utils.saveGame()
+	Utils.saveGame()
 	Utils.loadGame()
 	animated_sprite.frames = load("res://entities/player/player_basic.tres")
 	jetpack_enabled = Game.jetpack
@@ -33,6 +34,7 @@ func _physics_process(delta):
 	var input = Vector2.ZERO
 	input.x = Input.get_axis("left", "right")
 	input.y = Input.get_axis("thrust", "ui_down")
+	fuel_level = Game.fuel_level
 
 	match state:
 		states.RUN:
@@ -44,7 +46,7 @@ func _physics_process(delta):
 		states.IDLE:
 			idle_state(input)
 		states.THRUST:
-			thrust_state(input)
+			thrust_state(input, delta)
 
 	if jetpack_enabled:
 		use_jetpack_powerup()
@@ -92,7 +94,7 @@ func fall_state(input, _delta):
 		state = states.IDLE
 	elif Input.is_action_pressed("thrust"):
 		if jetpack_enabled:
-			if Game.fuel > 0:
+			if fuel_level > 0.0:
 				state = states.THRUST
 
 	if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
@@ -108,16 +110,17 @@ func idle_state(_input):
 		state = states.JUMP
 	elif Input.is_action_pressed("thrust"):
 		if jetpack_enabled:
-			if Game.fuel > 0:
+			if fuel_level > 0.0:
 				state = states.THRUST
 
 	if velocity.y > 0:
 		state = states.FALL
 	
-func thrust_state(input):
+func thrust_state(input, delta):
 	if jetpack_enabled:
-		if Game.fuel > 0:
+		if fuel_level > 0.0:
 			animation_player.play("thrust")
+			Game.fuel_level -= delta
 			apply_thrust()
 			update_direction(input)
 			if Input.is_action_just_released("thrust"):
@@ -139,6 +142,8 @@ func use_jetpack_powerup():
 func apply_thrust():
 	animation_player.play("thrust")
 	velocity.y = lerp(0, MAX_THRUST, THRUST)
+	
+
 
 func run_state(input, _delta):
 	update_direction(input)
@@ -153,7 +158,7 @@ func run_state(input, _delta):
 		state = states.FALL
 	if Input.is_action_pressed("thrust"):
 		if jetpack_enabled:
-			if Game.fuel > 0:
+			if fuel_level > 0.0:
 				state = states.THRUST
 	elif Input.is_action_pressed("jump"):
 		state = states.JUMP
