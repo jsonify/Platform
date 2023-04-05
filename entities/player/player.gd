@@ -29,7 +29,6 @@ func _ready():
 	animated_sprite.frames = load("res://entities/player/player_basic.tres")
 	jetpack_enabled = Game.jetpack
 
-
 func _physics_process(delta):
 	var input = Vector2.ZERO
 	input.x = Input.get_axis("left", "right")
@@ -184,3 +183,14 @@ func die():
 	if Game.playerHP <= 0:
 		queue_free()
 		get_tree().change_scene_to_file("res://main.tscn")
+
+#func set_active(active):
+#	set_physics_process(active)
+#	set_process(active)
+#	set_process_input(active)
+
+
+func _on_dialogue_player_set_player_active(active):
+	set_physics_process(active)
+	set_process(active)
+	set_process_input(active)

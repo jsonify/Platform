@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7a5i8i70bxyj"]
+
+[ext_resource type="Script" path="res://dialogue/DialoguePlayer.gd" id="1_18jyx"]
+[ext_resource type="Texture2D" uid="uid://lvlnx046c863" path="res://assets/ui/dialogue-window-base.png" id="1_ukchk"]
+
+[node name="DialoguePlayer" type="CanvasLayer"]
+script = ExtResource("1_18jyx")
+d_file = "res://dialogue/json/powerup_stations.json"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+visible = false
+offset_left = 29.0
+offset_top = 110.0
+offset_right = 298.0
+offset_bottom = 171.0
+texture = ExtResource("1_ukchk")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Name" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 2.0
+offset_right = 135.0
+offset_bottom = 13.0
+theme_override_font_sizes/normal_font_size = 7
+text = "Name"
+
+[node name="Message" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 13.0
+offset_right = 259.0
+offset_bottom = 54.0
+theme_override_font_sizes/normal_font_size = 8
+text = "Message"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

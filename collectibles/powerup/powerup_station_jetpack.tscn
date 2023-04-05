@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlg0jpb28w8tl"]
+[gd_scene load_steps=9 format=3 uid="uid://dlg0jpb28w8tl"]
 
 [ext_resource type="Script" path="res://collectibles/powerup/powerup_station_jetpack.gd" id="1_7m8x7"]
-[ext_resource type="Texture2D" uid="uid://c2sqpa78a5ior" path="res://assets/collectibles/powerups/power_up_base-13x22-12s.png" id="1_ayqup"]
+[ext_resource type="Texture2D" uid="uid://qx3xmuyxmfmu" path="res://assets/collectibles/powerups/power_up_base.png" id="2_fl86o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_22wtm"]
 radius = 5.0
@@ -39,9 +39,57 @@ tracks/0/keys = {
 "values": [0, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
 
+[sub_resource type="Animation" id="Animation_ifcxx"]
+resource_name = "activating"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [11, 12, 13, 14, 15, 16]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"activated"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nga56"]
+resource_name = "activated"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [17]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yo83d"]
 _data = {
 "RESET": SubResource("Animation_0iiym"),
+"activated": SubResource("Animation_nga56"),
+"activating": SubResource("Animation_ifcxx"),
 "idle": SubResource("Animation_y72p0")
 }
 
@@ -54,8 +102,8 @@ shape = SubResource("CapsuleShape2D_22wtm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -11)
-texture = ExtResource("1_ayqup")
-hframes = 12
+texture = ExtResource("2_fl86o")
+hframes = 18
 frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -64,4 +112,16 @@ libraries = {
 "": SubResource("AnimationLibrary_yo83d")
 }
 
+[node name="Timer" type="Timer" parent="."]
+
+[node name="DialogueAttention" type="Label" parent="."]
+visible = false
+offset_left = -1.0
+offset_top = -31.0
+offset_right = 2.0
+offset_bottom = -14.0
+theme_override_font_sizes/font_size = 10
+text = "!"
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
