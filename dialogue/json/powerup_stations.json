@@ -1,0 +1,9 @@
+[
+    {"name": "Computer", "text": "Looking for something fun and transportive?"},
+    {"name": "Zara", "text": "That's exactly what I'm looking for."},
+    {"name": "Computer", "text": "Then maybe you'll want this jetpack."},
+    {"name": "Player", "text": "What is a jetpack?"},
+    {"name": "Computer", "text": "A jetpack is a rocket worn on the back that allows a person to fly using jets of air. It provides vertical takeoff and sustained flight capabilities."},
+    {"name": "Player", "text": "I'll take it!"},
+    {"name": "Computer", "text": "Well, then go get it. But don't forget to get some fuel along the way. No fuel? No fly."}
+  ]
