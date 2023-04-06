@@ -6,17 +6,22 @@ class_name Player
 @onready var animated_sprite := $AnimatedSprite2D
 
 @export var JUMP_VELOCITY := -160.0
-@export var JUMP_RELEASE_FORCE := -40
 @export var MAX_SPEED := 75
 @export var ACCELERATION := 10
 @export var FRICTION := 10
 @export var ADDITIONAL_FALL_GRAVITY := 2
 @export var THRUST := -1
 @export var MAX_THRUST := 50
+@export var jump_buffer_time := 15
+#@export var coyote_time := 15
 
 enum states { RUN, JUMP, FALL, IDLE, THRUST }
 var state = states.FALL
 
+var jump_buffer_counter := 0
+#var coyote_counter := 0
+
+var jump_counter := 0
 var sprite_frames
 var jetpack_enabled
 var GRAVITY = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -72,11 +77,19 @@ func fast_fall():
 
 
 func jump_state(input, _delta):
-	if is_on_floor():
-		if Input.is_action_pressed("jump"):
-			animation_player.play("jump")
-			velocity.y = JUMP_VELOCITY
+	jump_buffer_counter = jump_buffer_time
+	
+	if jump_buffer_counter > 0:
+		jump_buffer_counter -= 1
+		
+	if jump_buffer_counter > 0 and is_on_floor():
+		animation_player.play("jump")
+		velocity.y = JUMP_VELOCITY
+		jump_buffer_counter = 0
+#		coyote_counter = 0
 
+
+			
 	update_direction(input)
 	apply_gravity()
 	if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
@@ -85,10 +98,16 @@ func jump_state(input, _delta):
 		state = states.FALL
 
 
-func fall_state(input, _delta):
+func fall_state(input, delta):
 	apply_gravity()
 	update_direction(input)
 	animation_player.play("fall")
+	
+
+	
+	if Input.is_action_just_released("jump"):
+		if velocity.y < 0:
+			velocity.y += 50
 	if is_on_floor():
 		state = states.IDLE
 	elif Input.is_action_pressed("thrust"):
@@ -153,6 +172,7 @@ func run_state(input, _delta):
 	else:
 		animation_player.play("run")
 		apply_acceleration(input.x)
+	
 	if not is_on_floor() and velocity.y > 0:
 		state = states.FALL
 	if Input.is_action_pressed("thrust"):
@@ -183,11 +203,6 @@ func die():
 	if Game.playerHP <= 0:
 		queue_free()
 		get_tree().change_scene_to_file("res://main.tscn")
-
-#func set_active(active):
-#	set_physics_process(active)
-#	set_process(active)
-#	set_process_input(active)
 
 
 func _on_dialogue_player_set_player_active(active):
