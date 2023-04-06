@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://levels/world.gd" id="1_gvcph"]
 [ext_resource type="Script" path="res://ui/bg.gd" id="2_a3vaa"]
 [ext_resource type="Texture2D" uid="uid://b1g3hq8gjfyoq" path="res://assets/world/jsonify_parallax_background_layers_style_or_and_the_blind_cave__7d41c7aa-3045-4026-bb34-14b447031fbd.png" id="3_vqcw0"]
-[ext_resource type="PackedScene" uid="uid://cd17ai7s7md7x" path="res://entities/player/player.tscn" id="4_jhjb1"]
 [ext_resource type="PackedScene" uid="uid://dshgcbnruliwk" path="res://entities/enemies/flower_enemy.tscn" id="5_0lmg6"]
 [ext_resource type="PackedScene" uid="uid://cdtierpk5plno" path="res://ui/ui.tscn" id="5_ede1p"]
 [ext_resource type="Script" path="res://collectibles/collectibles.gd" id="8_uqdnn"]
@@ -12,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://beuhgtgv32n6b" path="res://collectibles/fuel/fuel-1sec.tscn" id="12_2ovy8"]
 [ext_resource type="PackedScene" uid="uid://dlg0jpb28w8tl" path="res://collectibles/powerup/powerup_station_jetpack.tscn" id="12_jfall"]
 [ext_resource type="PackedScene" uid="uid://bh0u5i4ogipbf" path="res://collectibles/fuel/fuel-5sec.tscn" id="13_arwrh"]
+[ext_resource type="PackedScene" uid="uid://niub3n45kb7b" path="res://entities/player/hero.tscn" id="13_tx5wt"]
 [ext_resource type="PackedScene" uid="uid://b7a5i8i70bxyj" path="res://dialogue/DialoguePlayer.tscn" id="13_wm1xi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_huo4o"]
@@ -443,9 +443,6 @@ texture = ExtResource("3_vqcw0")
 [node name="Player" type="Node2D" parent="."]
 z_index = 10
 
-[node name="player" parent="Player" instance=ExtResource("4_jhjb1")]
-position = Vector2(130, 377)
-
 [node name="Mobs" type="Node2D" parent="."]
 position = Vector2(423, -21)
 
@@ -478,5 +475,7 @@ position = Vector2(246, 393)
 
 [node name="DialoguePlayer" parent="PowerupStationJetpack" instance=ExtResource("13_wm1xi")]
 
+[node name="Hero" parent="." instance=ExtResource("13_tx5wt")]
+position = Vector2(185, 357)
+
 [connection signal="dialogue_done" from="PowerupStationJetpack/DialoguePlayer" to="PowerupStationJetpack" method="_on_dialogue_player_dialogue_done"]
-[connection signal="set_player_active" from="PowerupStationJetpack/DialoguePlayer" to="Player/player" method="_on_dialogue_player_set_player_active"]
