@@ -33,6 +33,7 @@ func _physics_process(delta):
 	change_state(current_state.update(delta))
 	$Label.text = str(current_state.get_name())
 #	default_move(delta)
+	move_and_slide()
 
 func gravity(delta):
 	if not is_on_floor():
@@ -47,6 +48,7 @@ func change_state(input_state):
 		prev_state.exit_state()
 		current_state.enter_state()
 
+
 func player_input():
 	movement_input = Vector2.ZERO
 	if Input.is_action_pressed("right"):
@@ -58,11 +60,15 @@ func player_input():
 	if Input.is_action_pressed("down"):
 		movement_input.x += 1
 		
-	# JUMP
+	# jumps
 	if Input.is_action_pressed("jump"):
 		jump_input = true
-	else:
+	else: 
 		jump_input = false
+	if Input.is_action_just_pressed("jump"):
+		jump_input_actuation = true
+	else: 
+		jump_input_actuation = false
 	
 	# CLIMB
 	if Input.is_action_pressed("climb"):
@@ -77,7 +83,7 @@ func player_input():
 		dash_input = false
 		
 	# SLIDE
-	if Input.is_action_pressed("slide"):
-		climb_input = true
-	else:
-		climb_input = false
+#	if Input.is_action_pressed("slide"):
+#		climb_input = true
+#	else:
+#		climb_input = false
