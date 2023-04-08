@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cd17ai7s7md7x"]
+[gd_scene load_steps=19 format=3 uid="uid://cd17ai7s7md7x"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_kq41b"]
 [ext_resource type="SpriteFrames" uid="uid://cfw1fyc5h3lg7" path="res://entities/player/player_jetpack.tres" id="2_lnv80"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://df11hbhd1dcn1" path="res://entities/player/JUMP.tscn" id="6_lvahp"]
 [ext_resource type="PackedScene" uid="uid://b8d0s37lwy3u5" path="res://entities/player/MOVE.tscn" id="7_g2nyi"]
 [ext_resource type="PackedScene" uid="uid://d3s0a43dhn43u" path="res://entities/player/FALL.tscn" id="8_2ipld"]
+[ext_resource type="PackedScene" uid="uid://yvm7bvrbk1a1" path="res://entities/player/DASH.tscn" id="9_4on0l"]
 
 [sub_resource type="Animation" id="Animation_3rhs8"]
 length = 0.001
@@ -252,8 +253,12 @@ limit_left = 0
 limit_top = 0
 
 [node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -15.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = -15.0
+theme_override_font_sizes/font_size = 10
+text = "STATE"
 
 [node name="STATES" type="Node" parent="."]
 script = ExtResource("4_2d2iv")
@@ -265,3 +270,5 @@ script = ExtResource("4_2d2iv")
 [node name="MOVE" parent="STATES" instance=ExtResource("7_g2nyi")]
 
 [node name="FALL" parent="STATES" instance=ExtResource("8_2ipld")]
+
+[node name="DASH" parent="STATES" instance=ExtResource("9_4on0l")]

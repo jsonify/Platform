@@ -13,23 +13,28 @@ class_name Player
 @export var THRUST := -1
 @export var MAX_THRUST := 50
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
 var gravity_value = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-#player input
+# player movement
+const SPEED = 70.0
+const JUMP_VELOCITY = -200.0
+var last_direction := Vector2.RIGHT
+
+# mechanics
+var can_dash = true
+
+# player input
 var movement_input := Vector2.ZERO
 var jump_input := false
 var jump_input_actuation := false
 var climb_input := false
 var dash_input := false
 
-#states
+# states
 var current_state = null
 var prev_state = null
 
-#nodes
+# nodes
 @onready var STATES = $STATES
 
 # enum states { RUN, JUMP, FALL, IDLE, THRUST }
@@ -95,8 +100,11 @@ func player_input():
 	movement_input = Vector2.ZERO
 	if Input.is_action_pressed("right"):
 		movement_input.x += 1
+		change_direction(movement_input.x)
 	if Input.is_action_pressed("left"):
 		movement_input.x -= 1
+		change_direction(movement_input.x)
+		
 	if Input.is_action_pressed("up"):
 		movement_input.y -= 1
 	if Input.is_action_pressed("down"):
@@ -119,7 +127,7 @@ func player_input():
 		climb_input = false
 	
 	# DASH
-	if Input.is_action_pressed("dash"):
+	if Input.is_action_just_pressed("dash"):
 		dash_input = true
 	else:
 		dash_input = false
