@@ -1,8 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://cd17ai7s7md7x"]
+[gd_scene load_steps=18 format=3 uid="uid://cd17ai7s7md7x"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_kq41b"]
 [ext_resource type="SpriteFrames" uid="uid://cfw1fyc5h3lg7" path="res://entities/player/player_jetpack.tres" id="2_lnv80"]
 [ext_resource type="Texture2D" uid="uid://cl8t1eilpwtb7" path="res://assets/player/hero_base_NO-WEAPON_24x36.png" id="2_scgli"]
+[ext_resource type="Script" path="res://entities/player/STATES.gd" id="4_2d2iv"]
+[ext_resource type="PackedScene" uid="uid://bpcroqf2bq2sc" path="res://entities/player/IDLE.tscn" id="5_b5b8c"]
+[ext_resource type="PackedScene" uid="uid://df11hbhd1dcn1" path="res://entities/player/JUMP.tscn" id="6_lvahp"]
+[ext_resource type="PackedScene" uid="uid://b8d0s37lwy3u5" path="res://entities/player/MOVE.tscn" id="7_g2nyi"]
+[ext_resource type="PackedScene" uid="uid://d3s0a43dhn43u" path="res://entities/player/FALL.tscn" id="8_2ipld"]
 
 [sub_resource type="Animation" id="Animation_3rhs8"]
 length = 0.001
@@ -249,3 +254,14 @@ limit_top = 0
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="STATES" type="Node" parent="."]
+script = ExtResource("4_2d2iv")
+
+[node name="IDLE" parent="STATES" instance=ExtResource("5_b5b8c")]
+
+[node name="JUMP" parent="STATES" instance=ExtResource("6_lvahp")]
+
+[node name="MOVE" parent="STATES" instance=ExtResource("7_g2nyi")]
+
+[node name="FALL" parent="STATES" instance=ExtResource("8_2ipld")]

@@ -1,7 +1,7 @@
 extends Node
 
 var STATES = null
-var Hero = null
+var Player = null
 
 func enter_state():
 	pass
@@ -13,9 +13,9 @@ func update(delta):
 	return null
 
 func player_movement():
-	if Hero.movement_input.x > 0:
-		Hero.velocity.x = Hero.SPEED
-	elif Hero.movement_input.x < 0:
-		Hero.velocity.x = -Hero.SPEED
+	if Player.movement_input.x > 0:
+		Player.velocity.x = Player.SPEED
+	elif Player.movement_input.x < 0:
+		Player.velocity.x = -Player.SPEED
 	else:
-		Hero.velocity.x = 0
+		Player.velocity.x = 0

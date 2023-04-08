@@ -2,9 +2,9 @@ extends "state.gd"
 
 
 func update(delta):
-	Hero.gravity(delta)
+	Player.gravity(delta)
 	player_movement()
-	if Hero.is_on_floor():
+	if Player.is_on_floor():
 		return STATES.IDLE
 		
 	

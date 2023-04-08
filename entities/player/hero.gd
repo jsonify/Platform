@@ -24,7 +24,7 @@ var prev_state = null
 func _ready():
 	for state in STATES.get_children():
 		state.STATES = STATES
-		state.Hero = self
+		state.Player = self
 	prev_state = STATES.IDLE
 	current_state = STATES.IDLE
 		
@@ -66,7 +66,7 @@ func player_input():
 	else: 
 		jump_input = false
 	if Input.is_action_just_pressed("jump"):
-		jump_input_actuation = true
+		jump_input_actuation = true	
 	else: 
 		jump_input_actuation = false
 	
