@@ -414,7 +414,8 @@ texture = ExtResource("1_4f1lg")
 3:2/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_ba6lq"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 33
+physics_layer_0/collision_mask = 33
 sources/0 = SubResource("TileSetAtlasSource_huo4o")
 
 [node name="World" type="Node2D"]
@@ -444,7 +445,8 @@ texture = ExtResource("3_vqcw0")
 z_index = 10
 
 [node name="player" parent="Player" instance=ExtResource("14_f7ltt")]
-position = Vector2(153, 361)
+position = Vector2(553, 159)
+JUMP_VELOCITY = -300.0
 
 [node name="Mobs" type="Node2D" parent="."]
 position = Vector2(423, -21)

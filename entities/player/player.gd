@@ -16,8 +16,8 @@ class_name Player
 var gravity_value = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # player movement
-const SPEED = 70.0
-const JUMP_VELOCITY = -200.0
+@export var SPEED = 70.0
+@export var JUMP_VELOCITY = -300.0
 var last_direction := Vector2.RIGHT
 
 # mechanics
@@ -29,6 +29,7 @@ var jump_input := false
 var jump_input_actuation := false
 var climb_input := false
 var dash_input := false
+var thrust_input := false
 
 # states
 var current_state = null
@@ -36,6 +37,7 @@ var prev_state = null
 
 # nodes
 @onready var STATES = $STATES
+@onready var Raycasts = $Raycasts
 
 # enum states { RUN, JUMP, FALL, IDLE, THRUST }
 # var state = states.FALL
@@ -47,7 +49,7 @@ var direction := "right"
 var fuel_level
 
 func _ready():
-	Utils.saveGame()
+#	Utils.saveGame()
 	Utils.loadGame()
 	animated_sprite.frames = load("res://entities/player/player_basic.tres")
 	jetpack_enabled = Game.jetpack
@@ -133,10 +135,16 @@ func player_input():
 		dash_input = false
 		
 	# SLIDE
-#	if Input.is_action_pressed("slide"):
-#		climb_input = true
-#	else:
-#		climb_input = false
+	if Input.is_action_pressed("slide"):
+		climb_input = true
+	else:
+		climb_input = false
+		
+	# THRUST
+	if Input.is_action_pressed("thrust"):
+		thrust_input = true
+	else:
+		thrust_input = false
 
 func change_direction(direction):
 	if direction == -1:
@@ -173,6 +181,20 @@ func die():
 	if Game.playerHP <= 0:
 		queue_free()
 		get_tree().change_scene_to_file("res://main.tscn")
+
+
+func get_next_to_wall():
+	for raycast in Raycasts.get_children():
+		raycast.force_raycast_update()
+		if raycast.is_colliding():
+			if raycast.target_position.x > 0:
+				return Vector2.RIGHT
+				print("colliding right")
+			else:
+				return Vector2.LEFT
+				print("colliding left")
+				
+	return null
 
 
 func _on_dialogue_player_set_player_active(active):

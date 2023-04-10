@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cd17ai7s7md7x"]
+[gd_scene load_steps=21 format=3 uid="uid://cd17ai7s7md7x"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_kq41b"]
 [ext_resource type="SpriteFrames" uid="uid://cfw1fyc5h3lg7" path="res://entities/player/player_jetpack.tres" id="2_lnv80"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://b8d0s37lwy3u5" path="res://entities/player/MOVE.tscn" id="7_g2nyi"]
 [ext_resource type="PackedScene" uid="uid://d3s0a43dhn43u" path="res://entities/player/FALL.tscn" id="8_2ipld"]
 [ext_resource type="PackedScene" uid="uid://yvm7bvrbk1a1" path="res://entities/player/DASH.tscn" id="9_4on0l"]
+[ext_resource type="PackedScene" uid="uid://00lswgptbh8u" path="res://entities/player/SLIDE.tscn" id="10_f4ely"]
+[ext_resource type="PackedScene" uid="uid://by3d1o11tq7s4" path="res://entities/player/THRUST.tscn" id="10_wd6b7"]
 
 [sub_resource type="Animation" id="Animation_3rhs8"]
 length = 0.001
@@ -225,6 +227,7 @@ height = 10.0
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_kq41b")
+JUMP_VELOCITY = -400.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
@@ -270,5 +273,32 @@ script = ExtResource("4_2d2iv")
 [node name="MOVE" parent="STATES" instance=ExtResource("7_g2nyi")]
 
 [node name="FALL" parent="STATES" instance=ExtResource("8_2ipld")]
+coyote_duration = 0.2
 
 [node name="DASH" parent="STATES" instance=ExtResource("9_4on0l")]
+
+[node name="SLIDE" parent="STATES" instance=ExtResource("10_f4ely")]
+
+[node name="THRUST" parent="STATES" instance=ExtResource("10_wd6b7")]
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="TopRight" type="RayCast2D" parent="Raycasts"]
+position = Vector2(-1, -11)
+target_position = Vector2(8, 0)
+collision_mask = 32
+
+[node name="BottomRight" type="RayCast2D" parent="Raycasts"]
+position = Vector2(-1, 0)
+target_position = Vector2(8, 0)
+collision_mask = 32
+
+[node name="TopLeft" type="RayCast2D" parent="Raycasts"]
+position = Vector2(-1, -11)
+target_position = Vector2(-8, 0)
+collision_mask = 32
+
+[node name="BottomLeft" type="RayCast2D" parent="Raycasts"]
+position = Vector2(-1, 0)
+target_position = Vector2(-8, 0)
+collision_mask = 32
