@@ -22,6 +22,7 @@ var last_direction := Vector2.RIGHT
 
 # mechanics
 var can_dash = true
+var can_thrust = false
 
 # player input
 var movement_input := Vector2.ZERO
@@ -69,6 +70,7 @@ func _physics_process(delta):
 	fuel_level = Game.fuel_level
 	if jetpack_enabled:
 		use_jetpack_powerup()
+		can_thrust = true
 
 	# fast_fall()
 	move_and_slide()

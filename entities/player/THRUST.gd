@@ -6,6 +6,7 @@ extends "state.gd"
 func update(delta):
 	animation_player.play("thrust")
 	Player.gravity(delta)
+	Player.apply_thrust()
 	player_movement()
 	
 	if Player.velocity.y > 0:
