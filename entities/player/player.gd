@@ -50,7 +50,7 @@ var direction := "right"
 var fuel_level
 
 func _ready():
-#	Utils.saveGame()
+	Utils.saveGame()
 	Utils.loadGame()
 	animated_sprite.frames = load("res://entities/player/player_basic.tres")
 	jetpack_enabled = Game.jetpack
