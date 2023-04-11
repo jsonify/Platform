@@ -16,7 +16,7 @@ func update(delta):
 	
 
 func slide_movement(delta):
-	if Player.climb_input:
+	if Player.climb_input and not Player.thrust_input:
 		if Player.movement_input.y < 0:
 			Player.velocity.y = -climb_speed
 		elif Player.movement_input.y > 0:

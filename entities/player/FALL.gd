@@ -24,6 +24,9 @@ func update(delta):
 	
 	if Player.jump_input_actuation and can_jump:
 		return STATES.JUMP
+	
+	if Player.thrust_input:
+		return STATES.THRUST
 		
 	return null
 	

@@ -18,6 +18,10 @@ func update(delta):
 		
 	if Player.dash_input and Player.can_dash:
 		return STATES.DASH
+		
+	if Player.thrust_input:
+		return STATES.THRUST
+		
 	return null
 
 
