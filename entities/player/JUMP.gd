@@ -13,7 +13,7 @@ func update(delta):
 	if Player.dash_input and Player.can_dash:
 		return STATES.DASH
 
-	if Player.get_next_to_wall() != null:
+	if Player.get_next_to_wall() != null and Player.can_slide:
 		return STATES.SLIDE
 	
 	return null

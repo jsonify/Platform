@@ -4,6 +4,7 @@ extends "state.gd"
 @onready var animation_player = $"../../AnimationPlayer"
 
 func update(delta):
+	print(Player.fuel_level)
 	Player.gravity(delta)
 	player_movement()
 	thrust_movement(delta)
@@ -15,12 +16,13 @@ func update(delta):
 
 func thrust_movement(delta):
 	if Player.jetpack_enabled:
-		if Player.fuel_level > 0.0 and Player.thrust_input:
-			animation_player.play("thrust")
-			Player.apply_thrust()
-			Game.fuel_level -= delta
-		else:
-			return STATES.FALL
+		if Player.can_thrust:
+			if Player.fuel_level > 0.0 and Player.thrust_input:
+				animation_player.play("thrust")
+				Player.apply_thrust()
+				Game.fuel_level -= delta
+			else:
+				return STATES.FALL
 		
 			
 

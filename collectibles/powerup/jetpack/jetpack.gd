@@ -1,10 +1,12 @@
 extends Area2D
 
+signal fuel_guage_enabled
 
 func _on_body_entered(body):
 	if body is Player:
 		Game.jetpack = true
 		body.jetpack_enabled = true
+		emit_signal("fuel_guage_enabled", true)
 		var tween = get_tree().create_tween()
 		var tween1 = get_tree().create_tween()
 		tween.tween_property(self, "position", position - Vector2(0, 30), .3)

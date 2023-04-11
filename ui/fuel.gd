@@ -1,5 +1,7 @@
 extends Label
 
+func _ready():
+	visible = Game.jetpack
 
 func _process(delta):
 	if Game.fuel_level > 0:

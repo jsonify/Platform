@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdtierpk5plno"]
+[gd_scene load_steps=9 format=3 uid="uid://cdtierpk5plno"]
 
 [ext_resource type="Script" path="res://ui/hp.gd" id="1_s0f8w"]
 [ext_resource type="Script" path="res://ui/gold.gd" id="2_5wxuo"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://ui/HealthLevelBar.gd" id="4_fbq53"]
 [ext_resource type="Texture2D" uid="uid://d06ucoshshdpv" path="res://assets/ui/bar-over.png" id="4_fl8yp"]
 [ext_resource type="Script" path="res://ui/FuelLevelBar.gd" id="5_1krp1"]
+[ext_resource type="Script" path="res://ui/FuelLabel.gd" id="8_wuang"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -94,3 +95,4 @@ offset_right = 103.0
 offset_bottom = 60.0
 theme_override_font_sizes/font_size = 6
 text = "Fuel Level"
+script = ExtResource("8_wuang")

@@ -1063,7 +1063,7 @@ script = ExtResource("8_uqdnn")
 autostart = true
 
 [node name="PowerupPlatform" parent="." instance=ExtResource("9_mj1w0")]
-position = Vector2(935, 129)
+position = Vector2(318, 618)
 
 [node name="Fuel-1sec" parent="." instance=ExtResource("12_2ovy8")]
 position = Vector2(988, 127)
@@ -1072,7 +1072,7 @@ position = Vector2(988, 127)
 position = Vector2(89, 217)
 
 [node name="PowerupStationJetpack" parent="." instance=ExtResource("12_jfall")]
-position = Vector2(908, 129)
+position = Vector2(291, 618)
 
 [node name="DialoguePlayer" parent="PowerupStationJetpack" instance=ExtResource("13_wm1xi")]
 
