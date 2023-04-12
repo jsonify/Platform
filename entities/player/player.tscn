@@ -4,13 +4,13 @@
 [ext_resource type="SpriteFrames" uid="uid://cfw1fyc5h3lg7" path="res://entities/player/player_jetpack.tres" id="2_lnv80"]
 [ext_resource type="Texture2D" uid="uid://cl8t1eilpwtb7" path="res://assets/player/hero_base_NO-WEAPON_24x36.png" id="2_scgli"]
 [ext_resource type="Script" path="res://entities/player/STATES.gd" id="4_2d2iv"]
-[ext_resource type="PackedScene" uid="uid://bpcroqf2bq2sc" path="res://entities/player/IDLE.tscn" id="5_b5b8c"]
-[ext_resource type="PackedScene" uid="uid://df11hbhd1dcn1" path="res://entities/player/JUMP.tscn" id="6_lvahp"]
-[ext_resource type="PackedScene" uid="uid://b8d0s37lwy3u5" path="res://entities/player/MOVE.tscn" id="7_g2nyi"]
-[ext_resource type="PackedScene" uid="uid://d3s0a43dhn43u" path="res://entities/player/FALL.tscn" id="8_2ipld"]
-[ext_resource type="PackedScene" uid="uid://yvm7bvrbk1a1" path="res://entities/player/DASH.tscn" id="9_4on0l"]
-[ext_resource type="PackedScene" uid="uid://00lswgptbh8u" path="res://entities/player/SLIDE.tscn" id="10_f4ely"]
-[ext_resource type="PackedScene" uid="uid://by3d1o11tq7s4" path="res://entities/player/THRUST.tscn" id="10_wd6b7"]
+[ext_resource type="PackedScene" path="res://entities/player/IDLE.tscn" id="5_b5b8c"]
+[ext_resource type="PackedScene" path="res://entities/player/JUMP.tscn" id="6_lvahp"]
+[ext_resource type="PackedScene" path="res://entities/player/MOVE.tscn" id="7_g2nyi"]
+[ext_resource type="PackedScene" path="res://entities/player/FALL.tscn" id="8_2ipld"]
+[ext_resource type="PackedScene" path="res://entities/player/DASH.tscn" id="9_4on0l"]
+[ext_resource type="PackedScene" path="res://entities/player/SLIDE.tscn" id="10_f4ely"]
+[ext_resource type="PackedScene" path="res://entities/player/THRUST.tscn" id="10_wd6b7"]
 
 [sub_resource type="Animation" id="Animation_3rhs8"]
 length = 0.001
@@ -233,7 +233,6 @@ JUMP_VELOCITY = -400.0
 position = Vector2(0, -3)
 sprite_frames = ExtResource("2_lnv80")
 animation = &"thrust"
-frame = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
