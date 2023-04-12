@@ -1076,4 +1076,7 @@ position = Vector2(291, 618)
 
 [node name="DialoguePlayer" parent="PowerupStationJetpack" instance=ExtResource("13_wm1xi")]
 
+[node name="Fuel-5sec2" parent="." instance=ExtResource("13_arwrh")]
+position = Vector2(389, 617)
+
 [connection signal="dialogue_done" from="PowerupStationJetpack/DialoguePlayer" to="PowerupStationJetpack" method="_on_dialogue_player_dialogue_done"]
