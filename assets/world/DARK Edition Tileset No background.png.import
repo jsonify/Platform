@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cn45p7bug7leg"
-path="res://.godot/imported/tileset.png-53d8a3e437f124496b595220dd85b128.ctex"
+uid="uid://bokakw52joj8f"
+path="res://.godot/imported/DARK Edition Tileset No background.png-a54e52aa682667ac4de7b0f6effb9e40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Levels/tileset.png"
-dest_files=["res://.godot/imported/tileset.png-53d8a3e437f124496b595220dd85b128.ctex"]
+source_file="res://assets/world/DARK Edition Tileset No background.png"
+dest_files=["res://.godot/imported/DARK Edition Tileset No background.png-a54e52aa682667ac4de7b0f6effb9e40.ctex"]
 
 [params]
 

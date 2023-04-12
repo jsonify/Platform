@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://by3d1o11tq7s4"]
+
+[ext_resource type="Script" path="res://entities/player/THRUST.gd" id="1_6ah7i"]
+
+[node name="THRUST" type="Node"]
+script = ExtResource("1_6ah7i")
