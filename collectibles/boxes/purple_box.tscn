@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckcgj1p0a58g3"]
+
+[ext_resource type="PackedScene" uid="uid://b731nwrv0l3aw" path="res://collectibles/boxes/box_basic.tscn" id="1_okc6p"]
+[ext_resource type="Script" path="res://collectibles/boxes/purple_box.gd" id="2_f838c"]
+[ext_resource type="Texture2D" uid="uid://fnek6wg6j4un" path="res://assets/collectibles/boxes/purple-box.png" id="3_ktgpc"]
+
+[node name="PurpleBox" instance=ExtResource("1_okc6p")]
+script = ExtResource("2_f838c")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_ktgpc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
