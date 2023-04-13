@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bbjivcpy5e8ws"]
+[gd_scene load_steps=20 format=3 uid="uid://bbjivcpy5e8ws"]
 
 [ext_resource type="Texture2D" uid="uid://bsaq8biydkq7r" path="res://assets/world/tileset.png" id="1_4f1lg"]
 [ext_resource type="Script" path="res://levels/world.gd" id="1_gvcph"]
@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bh0u5i4ogipbf" path="res://collectibles/fuel/fuel-5sec.tscn" id="13_arwrh"]
 [ext_resource type="PackedScene" uid="uid://b7a5i8i70bxyj" path="res://dialogue/DialoguePlayer.tscn" id="13_wm1xi"]
 [ext_resource type="PackedScene" uid="uid://cd17ai7s7md7x" path="res://entities/player/player.tscn" id="14_f7ltt"]
+[ext_resource type="PackedScene" uid="uid://b731nwrv0l3aw" path="res://collectibles/boxes/box_basic.tscn" id="14_nhhfh"]
+[ext_resource type="PackedScene" uid="uid://ckcgj1p0a58g3" path="res://collectibles/boxes/purple_box.tscn" id="15_wl4ge"]
+[ext_resource type="PackedScene" uid="uid://bqrwabqu3jxrh" path="res://collectibles/boxes/orange_box.tscn" id="16_6pfdh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_huo4o"]
 texture = ExtResource("1_4f1lg")
@@ -1050,7 +1053,7 @@ texture = ExtResource("3_vqcw0")
 z_index = 10
 
 [node name="player" parent="Player" instance=ExtResource("14_f7ltt")]
-position = Vector2(224, 452)
+position = Vector2(227, 593)
 JUMP_VELOCITY = -300.0
 
 [node name="Mobs" type="Node2D" parent="."]
@@ -1063,7 +1066,7 @@ script = ExtResource("8_uqdnn")
 autostart = true
 
 [node name="PowerupPlatform" parent="." instance=ExtResource("9_mj1w0")]
-position = Vector2(318, 618)
+position = Vector2(553, 324)
 
 [node name="Fuel-1sec" parent="." instance=ExtResource("12_2ovy8")]
 position = Vector2(988, 127)
@@ -1072,11 +1075,20 @@ position = Vector2(988, 127)
 position = Vector2(89, 217)
 
 [node name="PowerupStationJetpack" parent="." instance=ExtResource("12_jfall")]
-position = Vector2(291, 618)
+position = Vector2(534, 323)
 
 [node name="DialoguePlayer" parent="PowerupStationJetpack" instance=ExtResource("13_wm1xi")]
 
 [node name="Fuel-5sec2" parent="." instance=ExtResource("13_arwrh")]
-position = Vector2(389, 617)
+position = Vector2(575, 321)
+
+[node name="BoxBasic" parent="." instance=ExtResource("14_nhhfh")]
+position = Vector2(293, 609)
+
+[node name="PurpleBox" parent="." instance=ExtResource("15_wl4ge")]
+position = Vector2(318, 609)
+
+[node name="OrangeBox" parent="." instance=ExtResource("16_6pfdh")]
+position = Vector2(345, 609)
 
 [connection signal="dialogue_done" from="PowerupStationJetpack/DialoguePlayer" to="PowerupStationJetpack" method="_on_dialogue_player_dialogue_done"]
