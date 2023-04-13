@@ -25,7 +25,7 @@ func update(delta):
 	if Player.jump_input_actuation and can_jump:
 		return STATES.JUMP
 	
-	if Player.thrust_input:
+	if Player.thrust_input and Player.can_thrust and Player.fuel_level > 0.01:
 		return STATES.THRUST
 		
 	return null
