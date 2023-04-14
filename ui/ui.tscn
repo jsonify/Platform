@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdtierpk5plno"]
+[gd_scene load_steps=11 format=3 uid="uid://cdtierpk5plno"]
 
 [ext_resource type="Script" path="res://ui/hp.gd" id="1_s0f8w"]
 [ext_resource type="Script" path="res://ui/gold.gd" id="2_5wxuo"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://d06ucoshshdpv" path="res://assets/ui/bar-over.png" id="4_fl8yp"]
 [ext_resource type="Script" path="res://ui/FuelLevelBar.gd" id="5_1krp1"]
 [ext_resource type="Script" path="res://ui/FuelLabel.gd" id="8_wuang"]
+[ext_resource type="Texture2D" uid="uid://bnrpctsp1dwdy" path="res://assets/collectibles/puzzle-objects/pink-horn.png" id="9_mbash"]
+[ext_resource type="Script" path="res://ui/pink_horn_ui.gd" id="10_mvv6e"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -96,3 +98,20 @@ offset_bottom = 60.0
 theme_override_font_sizes/font_size = 6
 text = "Fuel Level"
 script = ExtResource("8_wuang")
+
+[node name="PuzzelPieces" type="Node" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PuzzelPieces"]
+offset_left = 275.0
+offset_top = 6.0
+offset_right = 315.0
+offset_bottom = 46.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PinkHorn" type="Sprite2D" parent="PuzzelPieces/VBoxContainer"]
+visible = false
+position = Vector2(27, 7)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_mbash")
+script = ExtResource("10_mvv6e")

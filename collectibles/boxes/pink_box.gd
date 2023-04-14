@@ -10,6 +10,8 @@ func _on_body_entered(body):
 	if body is Player:
 		animation_player.play("opening")
 		Events.emit_signal("pink_horn_box_activated")
+		$CollisionShape2D.set_deferred("disabled", true)
+		
 
 func _on_pink_horn_box_activated():
 	var pink_horn = Pinkhorn.instantiate()
