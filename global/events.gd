@@ -1,3 +1,4 @@
 extends Node
 
 signal platform_jetpack_activated
+signal pink_horn_box_activated

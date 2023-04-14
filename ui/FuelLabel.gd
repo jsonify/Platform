@@ -5,5 +5,5 @@ extends Label
 func _ready():
 	visible = Game.jetpack
 
-func _process(delta):
+func _process(_delta):
 	visible = Game.jetpack

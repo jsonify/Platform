@@ -192,11 +192,11 @@ func get_next_to_wall():
 		raycast.force_raycast_update()
 		if raycast.is_colliding():
 			if raycast.target_position.x > 0:
-				return Vector2.RIGHT
 				print("colliding right")
+				return Vector2.RIGHT
 			else:
-				return Vector2.LEFT
 				print("colliding left")
+				return Vector2.LEFT
 				
 	return null
 

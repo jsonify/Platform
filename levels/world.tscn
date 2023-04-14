@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bbjivcpy5e8ws"]
+[gd_scene load_steps=16 format=3 uid="uid://bbjivcpy5e8ws"]
 
 [ext_resource type="Texture2D" uid="uid://bsaq8biydkq7r" path="res://assets/world/tileset.png" id="1_4f1lg"]
 [ext_resource type="Script" path="res://levels/world.gd" id="1_gvcph"]
@@ -6,16 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://bokakw52joj8f" path="res://assets/world/DARK Edition Tileset No background.png" id="3_376qf"]
 [ext_resource type="Texture2D" uid="uid://b1g3hq8gjfyoq" path="res://assets/world/jsonify_parallax_background_layers_style_or_and_the_blind_cave__7d41c7aa-3045-4026-bb34-14b447031fbd.png" id="3_vqcw0"]
 [ext_resource type="PackedScene" uid="uid://cdtierpk5plno" path="res://ui/ui.tscn" id="5_ede1p"]
-[ext_resource type="Script" path="res://collectibles/collectibles.gd" id="8_uqdnn"]
 [ext_resource type="PackedScene" uid="uid://bffqtugajlh5e" path="res://platforms/powerup_platform.tscn" id="9_mj1w0"]
-[ext_resource type="PackedScene" uid="uid://beuhgtgv32n6b" path="res://collectibles/fuel/fuel-1sec.tscn" id="12_2ovy8"]
 [ext_resource type="PackedScene" uid="uid://dlg0jpb28w8tl" path="res://collectibles/powerup/powerup_station_jetpack.tscn" id="12_jfall"]
+[ext_resource type="PackedScene" uid="uid://bjf4qbyaikjrv" path="res://collectibles/boxes/pink_box.tscn" id="12_xpibu"]
 [ext_resource type="PackedScene" uid="uid://bh0u5i4ogipbf" path="res://collectibles/fuel/fuel-5sec.tscn" id="13_arwrh"]
 [ext_resource type="PackedScene" uid="uid://b7a5i8i70bxyj" path="res://dialogue/DialoguePlayer.tscn" id="13_wm1xi"]
 [ext_resource type="PackedScene" uid="uid://cd17ai7s7md7x" path="res://entities/player/player.tscn" id="14_f7ltt"]
-[ext_resource type="PackedScene" uid="uid://b731nwrv0l3aw" path="res://collectibles/boxes/box_basic.tscn" id="14_nhhfh"]
-[ext_resource type="PackedScene" uid="uid://ckcgj1p0a58g3" path="res://collectibles/boxes/purple_box.tscn" id="15_wl4ge"]
-[ext_resource type="PackedScene" uid="uid://bqrwabqu3jxrh" path="res://collectibles/boxes/orange_box.tscn" id="16_6pfdh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_huo4o"]
 texture = ExtResource("1_4f1lg")
@@ -1053,42 +1049,24 @@ texture = ExtResource("3_vqcw0")
 z_index = 10
 
 [node name="player" parent="Player" instance=ExtResource("14_f7ltt")]
-position = Vector2(227, 593)
+position = Vector2(237, 606)
 JUMP_VELOCITY = -300.0
 
 [node name="Mobs" type="Node2D" parent="."]
 position = Vector2(423, -21)
 
-[node name="Collectibles" type="Node2D" parent="."]
-script = ExtResource("8_uqdnn")
-
-[node name="Timer" type="Timer" parent="Collectibles"]
-autostart = true
-
 [node name="PowerupPlatform" parent="." instance=ExtResource("9_mj1w0")]
-position = Vector2(553, 324)
-
-[node name="Fuel-1sec" parent="." instance=ExtResource("12_2ovy8")]
-position = Vector2(988, 127)
-
-[node name="Fuel-5sec" parent="." instance=ExtResource("13_arwrh")]
-position = Vector2(89, 217)
+position = Vector2(371, 618)
 
 [node name="PowerupStationJetpack" parent="." instance=ExtResource("12_jfall")]
-position = Vector2(534, 323)
+position = Vector2(340, 617)
 
 [node name="DialoguePlayer" parent="PowerupStationJetpack" instance=ExtResource("13_wm1xi")]
 
-[node name="Fuel-5sec2" parent="." instance=ExtResource("13_arwrh")]
-position = Vector2(575, 321)
+[node name="PinkBox" parent="." instance=ExtResource("12_xpibu")]
+position = Vector2(494, 606)
 
-[node name="BoxBasic" parent="." instance=ExtResource("14_nhhfh")]
-position = Vector2(293, 609)
-
-[node name="PurpleBox" parent="." instance=ExtResource("15_wl4ge")]
-position = Vector2(318, 609)
-
-[node name="OrangeBox" parent="." instance=ExtResource("16_6pfdh")]
-position = Vector2(345, 609)
+[node name="Fuel-5sec" parent="." instance=ExtResource("13_arwrh")]
+position = Vector2(130, 583)
 
 [connection signal="dialogue_done" from="PowerupStationJetpack/DialoguePlayer" to="PowerupStationJetpack" method="_on_dialogue_player_dialogue_done"]

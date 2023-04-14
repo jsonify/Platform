@@ -12,7 +12,7 @@ func _on_body_entered(body):
 	if body is Player:
 		attention_label.visible = true
 			
-		
+
 func find_and_use_dialogue():
 	var dialogue_player = get_node_or_null("DialoguePlayer")
 	
@@ -38,5 +38,5 @@ func _input(event):
 	if event.is_action_pressed("event_usage"):
 		find_and_use_dialogue()
 
-func _on_body_exited(body):
+func _on_body_exited(_body):
 	attention_label.visible = false

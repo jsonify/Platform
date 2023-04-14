@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://1h6q7ix84t6"]
+
+[ext_resource type="PackedScene" uid="uid://5a8iwfia8a2l" path="res://collectibles/puzzle-objects/puzzle_object_base.tscn" id="1_qu0jd"]
+[ext_resource type="Script" path="res://collectibles/puzzle-objects/pink_horn.gd" id="2_7pt5y"]
+[ext_resource type="Texture2D" uid="uid://bnrpctsp1dwdy" path="res://assets/collectibles/puzzle-objects/pink-horn.png" id="3_vaba7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgtiw"]
+size = Vector2(12, 24)
+
+[node name="PinkHorn" instance=ExtResource("1_qu0jd")]
+script = ExtResource("2_7pt5y")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -15)
+texture = ExtResource("3_vaba7")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_rgtiw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

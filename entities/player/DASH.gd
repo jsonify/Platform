@@ -8,7 +8,7 @@ var dash_direction := Vector2.ZERO
 var dash_speed := 240
 var dashing := false
 
-func update(delta):
+func update(_delta):
 	if !dashing:
 		return STATES.FALL
 	return null
