@@ -9,7 +9,7 @@ func enter_state():
 func exit_state():
 	pass
 	
-func update(delta):
+func update(_delta):
 	return null
 
 func player_movement():

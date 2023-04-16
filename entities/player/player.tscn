@@ -257,6 +257,7 @@ limit_top = 0
 limit_bottom = 625
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -15.0
 offset_top = -32.0
 offset_right = 16.0
