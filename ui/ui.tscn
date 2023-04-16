@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d06ucoshshdpv" path="res://assets/ui/bar-over.png" id="4_fl8yp"]
 [ext_resource type="Script" path="res://ui/FuelLevelBar.gd" id="5_1krp1"]
 [ext_resource type="Script" path="res://ui/FuelLabel.gd" id="8_wuang"]
-[ext_resource type="Texture2D" uid="uid://bnrpctsp1dwdy" path="res://assets/collectibles/puzzle-objects/pink-horn.png" id="9_mbash"]
+[ext_resource type="Texture2D" uid="uid://c785ank2j0s4h" path="res://assets/puzzle_objects/Head.png" id="9_ngr0g"]
 [ext_resource type="Script" path="res://ui/pink_horn_ui.gd" id="10_mvv6e"]
 
 [node name="UI" type="CanvasLayer"]
@@ -109,9 +109,12 @@ offset_bottom = 46.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="PinkHorn" type="Sprite2D" parent="PuzzelPieces/VBoxContainer"]
+[node name="RightHorn" type="Sprite2D" parent="PuzzelPieces/VBoxContainer"]
 visible = false
+modulate = Color(0.27451, 0, 0.0509804, 1)
 position = Vector2(27, 7)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("9_mbash")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("9_ngr0g")
+region_enabled = true
+region_rect = Rect2(546, 0, 65, 104)
 script = ExtResource("10_mvv6e")

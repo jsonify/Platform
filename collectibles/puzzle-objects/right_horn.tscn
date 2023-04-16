@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://q4rk68oikpf1"]
+
+[ext_resource type="PackedScene" uid="uid://5a8iwfia8a2l" path="res://collectibles/puzzle-objects/puzzle_object_base.tscn" id="1_lqveh"]
+[ext_resource type="Texture2D" uid="uid://c785ank2j0s4h" path="res://assets/puzzle_objects/Head.png" id="2_72q01"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hspus"]
+size = Vector2(14, 20)
+
+[node name="RightHorn" instance=ExtResource("1_lqveh")]
+position = Vector2(0, -11)
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.27451, 0, 0.0509804, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_72q01")
+region_enabled = true
+region_rect = Rect2(546, 0, 65, 104)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_hspus")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
