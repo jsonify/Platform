@@ -252,9 +252,6 @@ position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_osyp0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-limit_left = 50
-limit_top = 0
-limit_bottom = 625
 
 [node name="Label" type="Label" parent="."]
 visible = false

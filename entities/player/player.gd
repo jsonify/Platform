@@ -40,6 +40,7 @@ var prev_state = null
 # nodes
 @onready var STATES = $STATES
 @onready var Raycasts = $Raycasts
+@onready var screen_dimensions = Vector2(get_viewport().size)
 
 # enum states { RUN, JUMP, FALL, IDLE, THRUST }
 # var state = states.FALL
@@ -49,6 +50,7 @@ var jetpack_enabled
 
 var direction := "right"
 var fuel_level
+var player_position_uv : Vector2
 
 func _ready():
 	Utils.saveGame()
@@ -192,10 +194,10 @@ func get_next_to_wall():
 		raycast.force_raycast_update()
 		if raycast.is_colliding():
 			if raycast.target_position.x > 0:
-				print("colliding right")
+#				print("colliding right")
 				return Vector2.RIGHT
 			else:
-				print("colliding left")
+#				print("colliding left")
 				return Vector2.LEFT
 				
 	return null
