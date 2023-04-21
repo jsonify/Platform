@@ -4,6 +4,7 @@ class_name Player
 
 @onready var animation_player := $AnimationPlayer
 @onready var animated_sprite := $AnimatedSprite2D
+@onready var thrust_fire := $GPUParticles2D
 
 # @export var JUMP_VELOCITY := -160.0
 @export var MAX_SPEED := 75
@@ -40,6 +41,7 @@ var prev_state = null
 # nodes
 @onready var STATES = $STATES
 @onready var Raycasts = $Raycasts
+@onready var screen_dimensions = Vector2(get_viewport().size)
 
 # enum states { RUN, JUMP, FALL, IDLE, THRUST }
 # var state = states.FALL
@@ -47,8 +49,9 @@ var prev_state = null
 var sprite_frames
 var jetpack_enabled
 
-var direction := "right"
+var direction = "right"
 var fuel_level
+var player_position_uv : Vector2
 
 func _ready():
 	Utils.saveGame()
@@ -111,8 +114,8 @@ func player_input():
 		movement_input.x -= 1
 		change_direction(movement_input.x)
 		
-	if Input.is_action_pressed("up"):
-		movement_input.y -= 1
+#	if Input.is_action_pressed("jump"):
+#		movement_input.y -= 1
 	if Input.is_action_pressed("down"):
 		movement_input.x += 1
 		
@@ -147,14 +150,18 @@ func player_input():
 	# THRUST
 	if Input.is_action_pressed("thrust"):
 		thrust_input = true
+		thrust_fire.emitting = true
 	else:
 		thrust_input = false
+		thrust_fire.emitting = false
 
 func change_direction(direction):
 	if direction == -1:
 		$AnimatedSprite2D.flip_h = true
+		thrust_fire.position = Vector2(2, -2)
 	elif direction == 1:
 		$AnimatedSprite2D.flip_h = false
+		thrust_fire.position = Vector2(-2, -2)
 
 func use_jetpack_powerup():
 	animated_sprite.frames = load("res://entities/player/player_jetpack.tres")
@@ -192,10 +199,10 @@ func get_next_to_wall():
 		raycast.force_raycast_update()
 		if raycast.is_colliding():
 			if raycast.target_position.x > 0:
-				print("colliding right")
+#				print("colliding right")
 				return Vector2.RIGHT
 			else:
-				print("colliding left")
+#				print("colliding left")
 				return Vector2.LEFT
 				
 	return null

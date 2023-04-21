@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlg0jpb28w8tl"]
+[gd_scene load_steps=10 format=3 uid="uid://dlg0jpb28w8tl"]
 
 [ext_resource type="Script" path="res://collectibles/powerup/powerup_station_jetpack.gd" id="1_7m8x7"]
 [ext_resource type="Texture2D" uid="uid://qx3xmuyxmfmu" path="res://assets/collectibles/powerups/power_up_base.png" id="2_fl86o"]
+[ext_resource type="Texture2D" uid="uid://bafeu03wudhea" path="res://assets/environment/actions-keys/take-jetpack.png" id="3_q0oyx"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_22wtm"]
-radius = 5.0
-height = 18.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4iuo"]
+size = Vector2(34, 33)
 
 [sub_resource type="Animation" id="Animation_0iiym"]
 length = 0.001
@@ -97,10 +97,11 @@ _data = {
 script = ExtResource("1_7m8x7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -9)
-shape = SubResource("CapsuleShape2D_22wtm")
+position = Vector2(-3, -16.5)
+shape = SubResource("RectangleShape2D_v4iuo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
 position = Vector2(0, -11)
 texture = ExtResource("2_fl86o")
 hframes = 18
@@ -122,6 +123,12 @@ offset_right = 2.0
 offset_bottom = -14.0
 theme_override_font_sizes/font_size = 10
 text = "!"
+
+[node name="TakeSign" type="Sprite2D" parent="."]
+visible = false
+light_mask = 2
+position = Vector2(-3, -39)
+texture = ExtResource("3_q0oyx")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

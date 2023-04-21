@@ -5,12 +5,20 @@ var is_powerup_acquired := false
 @onready var animation_player := $AnimationPlayer
 @onready var collision_shape := $CollisionShape2D
 @onready var timer := $Timer
-@onready var attention_label := $DialogueAttention
+#@onready var attention_label := $DialogueAttention
+@onready var take_sign := $TakeSign
 
+var object_has_been_taken := false
+
+func _process(_delta):
+	if Input.is_action_just_pressed("take") and !object_has_been_taken:
+		powerup_acquired(is_powerup_acquired)
+		object_has_been_taken = true
+		take_sign.queue_free()
 
 func _on_body_entered(body):
-	if body is Player:
-		attention_label.visible = true
+	if body is Player and !object_has_been_taken:
+		take_sign.visible = !take_sign.visible
 			
 
 func find_and_use_dialogue():
@@ -39,4 +47,5 @@ func _input(event):
 		find_and_use_dialogue()
 
 func _on_body_exited(_body):
-	attention_label.visible = false
+	if !object_has_been_taken:
+		take_sign.visible = !take_sign.visible

@@ -15,20 +15,25 @@ func _ready():
 func _physics_process(delta):
 	# Gravity for flower
 	velocity.y += gravity * delta
+	player = get_node("../../Player/player")
+	var direction = (player.position - self.position).normalized()
+	var player_on_left = player.position.x < self.position.x
+
 	if chase == true:
 		if animated_sprite.animation != "death":
 			animated_sprite.play("move")
-		player = get_node("../../Player/player")
-		var direction = (player.position - self.position).normalized()
 
-		if direction.x > 0:
+		if player_on_left:
 			get_node("AnimatedSprite2D").flip_h = true
-			velocity.x = direction.x * SPEED
-
+			direction.x = -abs(direction.x)  # flip the x direction to move left
+			print(direction.x)
 		else:
 			get_node("AnimatedSprite2D").flip_h = false
-			velocity.x = direction.x * SPEED
-			
+			direction.x = abs(direction.x)  # keep the x direction positive to move right
+			print(direction.x)
+
+		velocity = direction * SPEED
+		
 	else: 
 		if animated_sprite.animation != "death":
 			animated_sprite.play("idle")

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://siau6hwylrb"]
+
+[ext_resource type="Script" path="res://environment/sign_base.gd" id="1_xxptm"]
+
+[node name="SignBase" type="Area2D"]
+script = ExtResource("1_xxptm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

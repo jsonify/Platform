@@ -41,6 +41,7 @@ radius = 3.0
 script = ExtResource("1_cjcpc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 0
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_sieut")
 animation = &"idle"

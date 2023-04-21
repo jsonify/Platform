@@ -48,6 +48,7 @@ size = Vector2(10, 12)
 script = ExtResource("1_qo3wb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
 position = Vector2(0, -9)
 texture = ExtResource("2_mbr0r")
 hframes = 7

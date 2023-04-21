@@ -1,6 +1,6 @@
 extends Node
 
-
+const INDICATOR_DAMAGE = preload("res://ui/damage_indicator.tscn")
 const SAVE_PATH := "res://savegame.bin"
 
 func saveGame():
