@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bh0u5i4ogipbf"]
+[gd_scene load_steps=8 format=3 uid="uid://bh0u5i4ogipbf"]
 
 [ext_resource type="Script" path="res://collectibles/fuel/fuel-5.gd" id="1_acc53"]
 [ext_resource type="Texture2D" uid="uid://b5l0nhtqguerk" path="res://assets/collectibles/fuel-5sec.png" id="2_erqco"]
+[ext_resource type="Texture2D" uid="uid://cpgovwmnvb32r" path="res://assets/environment/actions-keys/take-5-fuel.png" id="3_mpq63"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_es6e4"]
-size = Vector2(10, 12)
+size = Vector2(24, 18)
 
 [sub_resource type="Animation" id="Animation_8w5yw"]
 length = 0.001
@@ -50,8 +51,7 @@ visibility_layer = 2
 script = ExtResource("1_acc53")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, -6)
+position = Vector2(-1, -9)
 shape = SubResource("RectangleShape2D_es6e4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -65,5 +65,11 @@ autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_pp4pk")
 }
+
+[node name="TakeSign" type="Sprite2D" parent="."]
+visible = false
+light_mask = 2
+position = Vector2(0, -37)
+texture = ExtResource("3_mpq63")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

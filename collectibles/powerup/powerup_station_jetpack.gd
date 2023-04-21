@@ -8,16 +8,16 @@ var is_powerup_acquired := false
 #@onready var attention_label := $DialogueAttention
 @onready var take_sign := $TakeSign
 
-var jetpack_has_been_taken := false
+var object_has_been_taken := false
 
-func _process(delta):
-	if Input.is_action_just_pressed("take"):
+func _process(_delta):
+	if Input.is_action_just_pressed("take") and !object_has_been_taken:
 		powerup_acquired(is_powerup_acquired)
-		jetpack_has_been_taken = true
+		object_has_been_taken = true
 		take_sign.queue_free()
 
 func _on_body_entered(body):
-	if body is Player and !jetpack_has_been_taken:
+	if body is Player and !object_has_been_taken:
 		take_sign.visible = !take_sign.visible
 			
 
@@ -47,5 +47,5 @@ func _input(event):
 		find_and_use_dialogue()
 
 func _on_body_exited(_body):
-	if !jetpack_has_been_taken:
+	if !object_has_been_taken:
 		take_sign.visible = !take_sign.visible

@@ -43,6 +43,7 @@ tint_progress = Color(0.552941, 0.054902, 0.231373, 1)
 script = ExtResource("4_fbq53")
 
 [node name="HealthAmount" type="Label" parent="Health"]
+visible = false
 offset_left = 11.0
 offset_top = 10.0
 offset_right = 144.0

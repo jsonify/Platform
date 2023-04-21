@@ -15,6 +15,6 @@ func _on_body_entered(body):
 
 
 
-func _on_body_exited(body):
+func _on_body_exited(_body):
 	var tween = create_tween()
 	tween.tween_property(sprite, "modulate:a", 0.0, 0.5)

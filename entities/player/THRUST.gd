@@ -5,7 +5,7 @@ extends "state.gd"
 
 
 func update(delta):
-	print("Fuel level: ", Player.fuel_level)
+	# print("Fuel level: ", Player.fuel_level)
 	Player.gravity(delta)
 	player_movement()
 	thrust_movement(delta)

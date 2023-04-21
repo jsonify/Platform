@@ -48,7 +48,7 @@ var prev_state = null
 var sprite_frames
 var jetpack_enabled
 
-var direction := "right"
+var direction = "right"
 var fuel_level
 var player_position_uv : Vector2
 
