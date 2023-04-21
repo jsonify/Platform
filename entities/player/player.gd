@@ -4,6 +4,7 @@ class_name Player
 
 @onready var animation_player := $AnimationPlayer
 @onready var animated_sprite := $AnimatedSprite2D
+@onready var thrust_fire := $GPUParticles2D
 
 # @export var JUMP_VELOCITY := -160.0
 @export var MAX_SPEED := 75
@@ -149,14 +150,18 @@ func player_input():
 	# THRUST
 	if Input.is_action_pressed("thrust"):
 		thrust_input = true
+		thrust_fire.emitting = true
 	else:
 		thrust_input = false
+		thrust_fire.emitting = false
 
 func change_direction(direction):
 	if direction == -1:
 		$AnimatedSprite2D.flip_h = true
+		thrust_fire.position = Vector2(2, -2)
 	elif direction == 1:
 		$AnimatedSprite2D.flip_h = false
+		thrust_fire.position = Vector2(-2, -2)
 
 func use_jetpack_powerup():
 	animated_sprite.frames = load("res://entities/player/player_jetpack.tres")

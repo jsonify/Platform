@@ -58,7 +58,7 @@ texture = ExtResource("3_vqcw0")
 z_index = 10
 
 [node name="player" parent="Player" instance=ExtResource("14_f7ltt")]
-position = Vector2(933, 392)
+position = Vector2(249, 616)
 JUMP_VELOCITY = -300.0
 metadata/_edit_group_ = true
 
@@ -78,7 +78,7 @@ height = 50.0
 position = Vector2(423, -21)
 
 [node name="FlowerEnemy" parent="Mobs" instance=ExtResource("13_mlkev")]
-position = Vector2(172, 526)
+position = Vector2(332, 61)
 
 [node name="FlowerEnemy2" parent="Mobs" instance=ExtResource("13_mlkev")]
 position = Vector2(1194, 254)
@@ -129,5 +129,7 @@ position = Vector2(897, 409)
 [connection signal="body_entered" from="ActionSigns/DirectionSign" to="ActionSigns/DirectionSign" method="_on_body_entered"]
 [connection signal="body_exited" from="ActionSigns/DirectionSign" to="ActionSigns/DirectionSign" method="_on_body_exited"]
 
+[editable path="Mobs/FlowerEnemy"]
+[editable path="Mobs/FlowerEnemy/HurtBox"]
 [editable path="ActionSigns/JetpackSign"]
 [editable path="ActionSigns/DirectionSign"]

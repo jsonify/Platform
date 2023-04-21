@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://dshgcbnruliwk"]
+[gd_scene load_steps=22 format=3 uid="uid://dshgcbnruliwk"]
 
 [ext_resource type="Script" path="res://entities/enemies/flower_enemy.gd" id="1_qk1bn"]
 [ext_resource type="Texture2D" uid="uid://dt5f4lwj2e1f3" path="res://assets/enemies/death 32x32.png" id="2_ou3vd"]
 [ext_resource type="Texture2D" uid="uid://rjemfmnbloyr" path="res://assets/enemies/move 32x32.png" id="3_edywm"]
+[ext_resource type="PackedScene" uid="uid://8qqafthmvonk" path="res://overlaps/hurt_box.tscn" id="4_xjsq4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q6kda"]
 atlas = ExtResource("2_ou3vd")
@@ -120,7 +121,10 @@ animations = [{
 size = Vector2(6, 5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dq8wh"]
-radius = 92.1954
+radius = 40.0125
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhlka"]
+size = Vector2(6, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70vh3"]
 size = Vector2(6, 8)
@@ -146,6 +150,12 @@ shape = SubResource("RectangleShape2D_dwsri")
 modulate = Color(0.886275, 0.211765, 0.568627, 1)
 shape = SubResource("CircleShape2D_dq8wh")
 
+[node name="HurtBox" parent="." instance=ExtResource("4_xjsq4")]
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_vhlka")
+
 [node name="PlayerDeath" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDeath"]
@@ -162,3 +172,5 @@ shape = SubResource("RectangleShape2D_x7fte")
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
 [connection signal="body_entered" from="PlayerDeath" to="." method="_on_player_death_body_entered"]
 [connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]
+
+[editable path="HurtBox"]

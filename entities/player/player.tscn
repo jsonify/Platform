@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cd17ai7s7md7x"]
+[gd_scene load_steps=25 format=3 uid="uid://cd17ai7s7md7x"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_kq41b"]
 [ext_resource type="SpriteFrames" uid="uid://cfw1fyc5h3lg7" path="res://entities/player/player_jetpack.tres" id="2_lnv80"]
@@ -11,6 +11,22 @@
 [ext_resource type="PackedScene" uid="uid://yvm7bvrbk1a1" path="res://entities/player/DASH.tscn" id="9_4on0l"]
 [ext_resource type="PackedScene" uid="uid://00lswgptbh8u" path="res://entities/player/SLIDE.tscn" id="10_f4ely"]
 [ext_resource type="PackedScene" uid="uid://by3d1o11tq7s4" path="res://entities/player/THRUST.tscn" id="10_wd6b7"]
+[ext_resource type="Gradient" uid="uid://cpuhv63pldqxr" path="res://effects/thrust_gradient.tres" id="12_yuvj5"]
+[ext_resource type="Texture2D" uid="uid://cunvbcktlha0f" path="res://assets/effects/smoke.png" id="13_6xtef"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0kp1u"]
+gradient = ExtResource("12_yuvj5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l11xs"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.3
+scale_max = 0.75
+color_ramp = SubResource("GradientTexture1D_0kp1u")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_osyp0"]
 radius = 4.0
@@ -229,6 +245,15 @@ _data = {
 script = ExtResource("1_kq41b")
 JUMP_VELOCITY = -400.0
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-2, -2)
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_l11xs")
+texture = ExtResource("13_6xtef")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_osyp0")
@@ -237,14 +262,12 @@ shape = SubResource("CapsuleShape2D_osyp0")
 light_mask = 2
 position = Vector2(0, -3)
 sprite_frames = ExtResource("2_lnv80")
-animation = &"thrust"
-frame = 1
+animation = &"idle"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 light_mask = 2
 texture = ExtResource("2_scgli")
-hframes = 25
 frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
