@@ -1,5 +1,6 @@
 extends SignBase
 
+@onready var sprite := $Sprite2D
 
 func _on_body_entered(body):
 	var tween = create_tween()

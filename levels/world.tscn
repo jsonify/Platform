@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbjivcpy5e8ws"]
+[gd_scene load_steps=17 format=3 uid="uid://bbjivcpy5e8ws"]
 
 [ext_resource type="Script" path="res://levels/world.gd" id="1_gvcph"]
 [ext_resource type="Script" path="res://ui/bg.gd" id="2_a3vaa"]
@@ -10,10 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://bh0u5i4ogipbf" path="res://collectibles/fuel/fuel-5sec.tscn" id="11_yqny1"]
 [ext_resource type="PackedScene" uid="uid://bjf4qbyaikjrv" path="res://collectibles/boxes/pink_box.tscn" id="12_5n7x1"]
 [ext_resource type="PackedScene" uid="uid://dlg0jpb28w8tl" path="res://collectibles/powerup/powerup_station_jetpack.tscn" id="12_jfall"]
+[ext_resource type="PackedScene" uid="uid://chtidesj1hv6b" path="res://environment/jetpack_sign.tscn" id="13_5mphi"]
 [ext_resource type="PackedScene" uid="uid://dshgcbnruliwk" path="res://entities/enemies/flower_enemy.tscn" id="13_mlkev"]
-[ext_resource type="PackedScene" uid="uid://b7a5i8i70bxyj" path="res://dialogue/DialoguePlayer.tscn" id="13_wm1xi"]
 [ext_resource type="PackedScene" uid="uid://cd17ai7s7md7x" path="res://entities/player/player.tscn" id="14_f7ltt"]
 [ext_resource type="PackedScene" uid="uid://dy003js173hqq" path="res://environment/direction_sign.tscn" id="14_uo2tj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_86bfw"]
+size = Vector2(113, 73)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ucmn0"]
 size = Vector2(195, 70)
@@ -54,7 +57,7 @@ texture = ExtResource("3_vqcw0")
 z_index = 10
 
 [node name="player" parent="Player" instance=ExtResource("14_f7ltt")]
-position = Vector2(-448, 85)
+position = Vector2(293, 610)
 JUMP_VELOCITY = -300.0
 metadata/_edit_group_ = true
 
@@ -85,8 +88,6 @@ position = Vector2(371, 618)
 [node name="PowerupStationJetpack" parent="." instance=ExtResource("12_jfall")]
 position = Vector2(340, 617)
 
-[node name="DialoguePlayer" parent="PowerupStationJetpack" instance=ExtResource("13_wm1xi")]
-
 [node name="PinkBox" parent="." instance=ExtResource("12_5n7x1")]
 position = Vector2(1582, 273)
 
@@ -100,6 +101,13 @@ position = Vector2(1267, 297)
 
 [node name="ActionSigns" type="Node2D" parent="."]
 
+[node name="JetpackSign" parent="ActionSigns" instance=ExtResource("13_5mphi")]
+position = Vector2(405, 561)
+
+[node name="CollisionShape2D" parent="ActionSigns/JetpackSign" index="1"]
+position = Vector2(-24.5, 14.5)
+shape = SubResource("RectangleShape2D_86bfw")
+
 [node name="DirectionSign" parent="ActionSigns" instance=ExtResource("14_uo2tj")]
 position = Vector2(-362, 129)
 
@@ -112,8 +120,10 @@ position = Vector2(0, 14)
 position = Vector2(-22.5, 36)
 shape = SubResource("RectangleShape2D_ucmn0")
 
-[connection signal="dialogue_done" from="PowerupStationJetpack/DialoguePlayer" to="PowerupStationJetpack" method="_on_dialogue_player_dialogue_done"]
+[connection signal="body_entered" from="ActionSigns/JetpackSign" to="ActionSigns/JetpackSign" method="_on_body_entered"]
+[connection signal="body_exited" from="ActionSigns/JetpackSign" to="ActionSigns/JetpackSign" method="_on_body_exited"]
 [connection signal="body_entered" from="ActionSigns/DirectionSign" to="ActionSigns/DirectionSign" method="_on_body_entered"]
 [connection signal="body_exited" from="ActionSigns/DirectionSign" to="ActionSigns/DirectionSign" method="_on_body_exited"]
 
+[editable path="ActionSigns/JetpackSign"]
 [editable path="ActionSigns/DirectionSign"]
