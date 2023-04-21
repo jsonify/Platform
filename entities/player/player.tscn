@@ -12,6 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://00lswgptbh8u" path="res://entities/player/SLIDE.tscn" id="10_f4ely"]
 [ext_resource type="PackedScene" uid="uid://by3d1o11tq7s4" path="res://entities/player/THRUST.tscn" id="10_wd6b7"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_osyp0"]
+radius = 4.0
+height = 10.0
+
 [sub_resource type="Animation" id="Animation_3rhs8"]
 length = 0.001
 tracks/0/type = "value"
@@ -221,15 +225,16 @@ _data = {
 "thrust": SubResource("Animation_8gi8g")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_osyp0"]
-radius = 4.0
-height = 10.0
-
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_kq41b")
 JUMP_VELOCITY = -400.0
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_osyp0")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 2
 position = Vector2(0, -3)
 sprite_frames = ExtResource("2_lnv80")
 animation = &"thrust"
@@ -237,6 +242,7 @@ frame = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
+light_mask = 2
 texture = ExtResource("2_scgli")
 hframes = 25
 frame = 1
@@ -246,10 +252,6 @@ autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_j0k1k")
 }
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
-shape = SubResource("CapsuleShape2D_osyp0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

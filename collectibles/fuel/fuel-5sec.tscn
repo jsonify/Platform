@@ -3,6 +3,9 @@
 [ext_resource type="Script" path="res://collectibles/fuel/fuel-5.gd" id="1_acc53"]
 [ext_resource type="Texture2D" uid="uid://b5l0nhtqguerk" path="res://assets/collectibles/fuel-5sec.png" id="2_erqco"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_es6e4"]
+size = Vector2(10, 12)
+
 [sub_resource type="Animation" id="Animation_8w5yw"]
 length = 0.001
 tracks/0/type = "value"
@@ -41,13 +44,18 @@ _data = {
 "idle": SubResource("Animation_1f1tl")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_es6e4"]
-size = Vector2(10, 12)
-
 [node name="Fuel-5sec" type="Area2D"]
+light_mask = 0
+visibility_layer = 2
 script = ExtResource("1_acc53")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_es6e4")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
 position = Vector2(0, -9)
 texture = ExtResource("2_erqco")
 hframes = 7
@@ -57,9 +65,5 @@ autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_pp4pk")
 }
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_es6e4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

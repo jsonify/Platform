@@ -113,8 +113,8 @@ func player_input():
 		movement_input.x -= 1
 		change_direction(movement_input.x)
 		
-	if Input.is_action_pressed("up"):
-		movement_input.y -= 1
+#	if Input.is_action_pressed("jump"):
+#		movement_input.y -= 1
 	if Input.is_action_pressed("down"):
 		movement_input.x += 1
 		
