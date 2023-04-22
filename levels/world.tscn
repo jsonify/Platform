@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bbjivcpy5e8ws"]
+[gd_scene load_steps=19 format=3 uid="uid://bbjivcpy5e8ws"]
 
 [ext_resource type="Script" path="res://levels/world.gd" id="1_gvcph"]
 [ext_resource type="Script" path="res://ui/bg.gd" id="2_a3vaa"]
 [ext_resource type="TileSet" uid="uid://bb0ehveqi55rv" path="res://levels/world.tres" id="2_ctgwt"]
 [ext_resource type="Texture2D" uid="uid://b1g3hq8gjfyoq" path="res://assets/world/jsonify_parallax_background_layers_style_or_and_the_blind_cave__7d41c7aa-3045-4026-bb34-14b447031fbd.png" id="3_vqcw0"]
+[ext_resource type="PackedScene" uid="uid://cvyhpndm6dscx" path="res://environment/cave_entrance.tscn" id="5_aavgk"]
 [ext_resource type="PackedScene" uid="uid://cdtierpk5plno" path="res://ui/ui.tscn" id="5_ede1p"]
 [ext_resource type="Texture2D" uid="uid://pjvytq36d4mj" path="res://assets/world/circle-fade.png" id="7_jqmhk"]
 [ext_resource type="PackedScene" uid="uid://bffqtugajlh5e" path="res://platforms/powerup_platform.tscn" id="9_mj1w0"]
@@ -52,13 +53,18 @@ position = Vector2(577.333, 334.5)
 scale = Vector2(0.692708, 0.692708)
 texture = ExtResource("3_vqcw0")
 
+[node name="Node" type="Node2D" parent="."]
+
+[node name="CaveEntrance" parent="Node" instance=ExtResource("5_aavgk")]
+position = Vector2(52, 186)
+
 [node name="UI" parent="." instance=ExtResource("5_ede1p")]
 
 [node name="Player" type="Node2D" parent="."]
 z_index = 10
 
 [node name="player" parent="Player" instance=ExtResource("14_f7ltt")]
-position = Vector2(256, 571)
+position = Vector2(-118, 134)
 JUMP_VELOCITY = -300.0
 metadata/_edit_group_ = true
 
@@ -124,6 +130,7 @@ shape = SubResource("RectangleShape2D_ucmn0")
 [node name="Fuel-1sec" parent="." instance=ExtResource("15_lu4j0")]
 position = Vector2(897, 409)
 
+[connection signal="body_entered" from="Node/CaveEntrance" to="Node/CaveEntrance" method="_on_body_entered"]
 [connection signal="body_entered" from="ActionSigns/JetpackSign" to="ActionSigns/JetpackSign" method="_on_body_entered"]
 [connection signal="body_exited" from="ActionSigns/JetpackSign" to="ActionSigns/JetpackSign" method="_on_body_exited"]
 [connection signal="body_entered" from="ActionSigns/DirectionSign" to="ActionSigns/DirectionSign" method="_on_body_entered"]
