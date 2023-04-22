@@ -58,7 +58,7 @@ texture = ExtResource("3_vqcw0")
 z_index = 10
 
 [node name="player" parent="Player" instance=ExtResource("14_f7ltt")]
-position = Vector2(249, 616)
+position = Vector2(256, 571)
 JUMP_VELOCITY = -300.0
 metadata/_edit_group_ = true
 
