@@ -1,11 +1,15 @@
-extends Label
+extends Node2D
 
-#func _ready():
-#	visible = Game.jetpack
-#
-#func _process(_delta):
-#	visible = Game.jetpack
-#	if Game.fuel_level > 0:
-#		text = str(Game.fuel_level).pad_decimals(2) + "%"
-#	else:
-#		text = "0.00%"
+
+
+func _ready():
+	Events.jetpack_collected.connect(_on_jetpack_collected)
+	
+
+func _on_jetpack_collected():
+	var tween = create_tween()
+	tween.tween_property(self, "modulate:a", 1.0, 0.75)
+	visible = true
+	
+
+	

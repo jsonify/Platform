@@ -12,6 +12,7 @@ func _on_body_entered(body):
 		tween1.tween_property(self, "modulate:a", 0, .3)
 		tween.tween_callback(queue_free)
 		Utils.saveGame()
+		Events.emit_signal("jetpack_collected")
 
 # use this for when we acquire money for upgrades
 #func _on_body_entered(body):

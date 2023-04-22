@@ -69,7 +69,9 @@ theme_override_font_sizes/font_size = 6
 text = "Health:"
 horizontal_alignment = 2
 
-[node name="Fuel" type="Node" parent="."]
+[node name="Fuel" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+script = ExtResource("4_c3b4g")
 
 [node name="FuelLevelBar" type="TextureProgressBar" parent="Fuel"]
 offset_left = 44.0
@@ -86,7 +88,7 @@ texture_over = ExtResource("4_fl8yp")
 texture_progress = ExtResource("3_72jut")
 tint_under = Color(0.333333, 0.313726, 0.305882, 0.509804)
 tint_over = Color(0.847059, 0.847059, 0.847059, 1)
-tint_progress = Color(0.560784, 0.592157, 0.25098, 1)
+tint_progress = Color(0.431373, 0.831373, 0.529412, 1)
 script = ExtResource("5_1krp1")
 
 [node name="FuelAmount" type="Label" parent="Fuel"]
@@ -98,7 +100,6 @@ offset_bottom = 48.0
 theme_override_font_sizes/font_size = 7
 text = "0"
 horizontal_alignment = 1
-script = ExtResource("4_c3b4g")
 
 [node name="FuelLabel" type="Label" parent="Fuel"]
 offset_left = 9.0

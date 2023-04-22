@@ -64,7 +64,7 @@ position = Vector2(52, 186)
 z_index = 10
 
 [node name="player" parent="Player" instance=ExtResource("14_f7ltt")]
-position = Vector2(-118, 134)
+position = Vector2(-36, 164)
 JUMP_VELOCITY = -300.0
 metadata/_edit_group_ = true
 
