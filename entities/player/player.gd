@@ -154,10 +154,12 @@ func player_input():
 		if has_fuel():
 			print(Game.fuel_level)
 			thrust_fire.emitting = true
+			Events.emit_signal("thrust_engaged")
 	
 	if Input.is_action_just_released("thrust"):
 		thrust_fire.emitting = false
 		thrust_input = false
+		Events.emit_signal("thrust_not_engaged")
 
 
 func has_fuel():

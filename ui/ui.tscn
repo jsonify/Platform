@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cdtierpk5plno"]
+[gd_scene load_steps=12 format=3 uid="uid://cdtierpk5plno"]
 
 [ext_resource type="Script" path="res://ui/hp.gd" id="1_s0f8w"]
 [ext_resource type="Script" path="res://ui/gold.gd" id="2_5wxuo"]
+[ext_resource type="Script" path="res://ui/health.gd" id="2_k87h0"]
 [ext_resource type="Texture2D" uid="uid://bcsmj7bcrjnlp" path="res://assets/ui/bar-progress.png" id="3_72jut"]
 [ext_resource type="Script" path="res://ui/fuel.gd" id="4_c3b4g"]
 [ext_resource type="Script" path="res://ui/HealthLevelBar.gd" id="4_fbq53"]
@@ -13,6 +14,9 @@
 
 [node name="UI" type="CanvasLayer"]
 
+[node name="HealthBarTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="Gold" type="Label" parent="."]
 visible = false
 offset_left = 10.0
@@ -23,13 +27,16 @@ theme_override_font_sizes/font_size = 10
 text = "Gold"
 script = ExtResource("2_5wxuo")
 
-[node name="Health" type="Node" parent="."]
+[node name="Health" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+script = ExtResource("2_k87h0")
 
 [node name="HealthLevelBar" type="TextureProgressBar" parent="Health"]
-offset_left = 10.0
+light_mask = 2
+offset_left = 44.0
 offset_top = 10.0
-offset_right = 145.0
-offset_bottom = 21.0
+offset_right = 179.0
+offset_bottom = 16.0
 nine_patch_stretch = true
 stretch_margin_left = 3
 stretch_margin_top = 3
@@ -55,19 +62,22 @@ script = ExtResource("1_s0f8w")
 
 [node name="HealthLabel" type="Label" parent="Health"]
 offset_left = 10.0
-offset_top = 20.0
-offset_right = 103.0
-offset_bottom = 37.0
+offset_top = 8.0
+offset_right = 42.0
+offset_bottom = 25.0
 theme_override_font_sizes/font_size = 6
-text = "Health"
+text = "Health:"
+horizontal_alignment = 2
 
-[node name="Fuel" type="Node" parent="."]
+[node name="Fuel" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+script = ExtResource("4_c3b4g")
 
 [node name="FuelLevelBar" type="TextureProgressBar" parent="Fuel"]
-offset_left = 10.0
-offset_top = 33.0
-offset_right = 145.0
-offset_bottom = 44.0
+offset_left = 44.0
+offset_top = 18.0
+offset_right = 179.0
+offset_bottom = 24.0
 nine_patch_stretch = true
 stretch_margin_left = 3
 stretch_margin_top = 3
@@ -78,26 +88,27 @@ texture_over = ExtResource("4_fl8yp")
 texture_progress = ExtResource("3_72jut")
 tint_under = Color(0.333333, 0.313726, 0.305882, 0.509804)
 tint_over = Color(0.847059, 0.847059, 0.847059, 1)
-tint_progress = Color(0.560784, 0.592157, 0.25098, 1)
+tint_progress = Color(0.431373, 0.831373, 0.529412, 1)
 script = ExtResource("5_1krp1")
 
 [node name="FuelAmount" type="Label" parent="Fuel"]
-offset_left = 11.0
-offset_top = 33.0
-offset_right = 144.0
-offset_bottom = 50.0
+visible = false
+offset_left = 84.0
+offset_top = 31.0
+offset_right = 217.0
+offset_bottom = 48.0
 theme_override_font_sizes/font_size = 7
 text = "0"
 horizontal_alignment = 1
-script = ExtResource("4_c3b4g")
 
 [node name="FuelLabel" type="Label" parent="Fuel"]
-offset_left = 10.0
-offset_top = 43.0
-offset_right = 103.0
-offset_bottom = 60.0
+offset_left = 9.0
+offset_top = 16.0
+offset_right = 42.0
+offset_bottom = 28.0
 theme_override_font_sizes/font_size = 6
-text = "Fuel Level"
+text = "Fuel:"
+horizontal_alignment = 2
 script = ExtResource("8_wuang")
 
 [node name="PuzzelPieces" type="Node" parent="."]
@@ -119,3 +130,5 @@ texture = ExtResource("9_ngr0g")
 region_enabled = true
 region_rect = Rect2(546, 0, 65, 104)
 script = ExtResource("10_mvv6e")
+
+[connection signal="timeout" from="HealthBarTimer" to="Health" method="_on_health_bar_timer_timeout"]

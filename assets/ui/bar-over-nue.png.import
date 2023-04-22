@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bicww6r4ktqtj"
-path="res://.godot/imported/player_idle_4.png-33300f6740f3992ada18f165cf1ac1f4.ctex"
+uid="uid://crutakvinn538"
+path="res://.godot/imported/bar-over-nue.png-8670f39cff91b528ed0978e9e468d8da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/sprites/player_idle_4.png"
-dest_files=["res://.godot/imported/player_idle_4.png-33300f6740f3992ada18f165cf1ac1f4.ctex"]
+source_file="res://assets/ui/bar-over-nue.png"
+dest_files=["res://.godot/imported/bar-over-nue.png-8670f39cff91b528ed0978e9e468d8da.ctex"]
 
 [params]
 

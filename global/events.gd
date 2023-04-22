@@ -3,4 +3,8 @@ extends Node
 signal platform_jetpack_activated
 signal right_horn_box_activated
 signal right_horn_collected
+signal cave_entered
+signal jetpack_collected
+signal thrust_engaged
+signal thrust_not_engaged
 
