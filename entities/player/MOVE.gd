@@ -4,7 +4,7 @@ extends "state.gd"
 @onready var animation_player = $"../../AnimationPlayer"
 
 func update(delta):
-	animation_player.play("run")
+	animation_player.play("move")
 	Player.gravity(delta)
 	player_movement()
 	if Player.velocity.x == 0:
