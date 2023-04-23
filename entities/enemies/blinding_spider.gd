@@ -16,15 +16,9 @@ var player = null
 
 func _physics_process(delta):
 	detect_turn_around()
+	detect_chase()
 	
 	
-	if player_chase:
-		position.x += (player.position.x - position.x) / chase_speed
-		
-		if player.position.x - position.x > 0:
-			marker_2D.scale.x = 1
-		else:
-			marker_2D.scale.x = -1
 			
 	velocity = direction * normal_speed
 
@@ -41,6 +35,15 @@ func detect_turn_around():
 		marker_2D.scale.x = 1
 	else:
 		marker_2D.scale.x = -1
+
+func detect_chase():
+	if player_chase:
+		position.x += (player.position.x - position.x) / chase_speed
+		
+		if player.position.x - position.x > 0:
+			marker_2D.scale.x = 1
+		else:
+			marker_2D.scale.x = -1
 
 func _on_detection_area_body_entered(body):
 #	pass

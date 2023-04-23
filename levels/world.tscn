@@ -133,7 +133,7 @@ shape = SubResource("RectangleShape2D_ucmn0")
 position = Vector2(897, 409)
 
 [node name="BlindingSpider" parent="." instance=ExtResource("17_g58tq")]
-position = Vector2(320, 209)
+position = Vector2(276, 225)
 
 [connection signal="body_entered" from="Node/CaveEntrance" to="Node/CaveEntrance" method="_on_body_entered"]
 [connection signal="body_entered" from="ActionSigns/JetpackSign" to="ActionSigns/JetpackSign" method="_on_body_entered"]
