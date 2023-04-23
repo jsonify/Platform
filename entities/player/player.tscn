@@ -148,6 +148,8 @@ _data = {
 }
 
 [node name="player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 81
 script = ExtResource("1_kq41b")
 JUMP_VELOCITY = -400.0
 
@@ -207,7 +209,6 @@ coyote_duration = 0.2
 [node name="THRUST" parent="STATES" instance=ExtResource("10_wd6b7")]
 
 [node name="Raycasts" type="Node2D" parent="."]
-visible = false
 
 [node name="TopRight" type="RayCast2D" parent="Raycasts"]
 position = Vector2(-1, -11)

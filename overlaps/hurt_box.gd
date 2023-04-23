@@ -3,7 +3,7 @@ extends Area2D
 const HIT_EFFECT = preload("res://effects/hit_effect.tscn")
 
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 #	var effect = HIT_EFFECT.instantiate()
 #	var main = get_tree().current_scene
 #	main.add_child(effect)

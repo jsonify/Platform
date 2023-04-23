@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bbjivcpy5e8ws"]
+[gd_scene load_steps=20 format=3 uid="uid://bbjivcpy5e8ws"]
 
 [ext_resource type="Script" path="res://levels/world.gd" id="1_gvcph"]
 [ext_resource type="Script" path="res://ui/bg.gd" id="2_a3vaa"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cd17ai7s7md7x" path="res://entities/player/player.tscn" id="14_f7ltt"]
 [ext_resource type="PackedScene" uid="uid://dy003js173hqq" path="res://environment/direction_sign.tscn" id="14_uo2tj"]
 [ext_resource type="PackedScene" uid="uid://beuhgtgv32n6b" path="res://collectibles/fuel/fuel-1sec.tscn" id="15_lu4j0"]
+[ext_resource type="PackedScene" uid="uid://chv7hxyr5kr0" path="res://entities/enemies/blinding_spider.tscn" id="17_g58tq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86bfw"]
 size = Vector2(113, 73)
@@ -24,6 +25,7 @@ size = Vector2(113, 73)
 size = Vector2(195, 70)
 
 [node name="World" type="Node2D"]
+position = Vector2(31, -9)
 script = ExtResource("1_gvcph")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -64,7 +66,7 @@ position = Vector2(52, 186)
 z_index = 10
 
 [node name="player" parent="Player" instance=ExtResource("14_f7ltt")]
-position = Vector2(-36, 164)
+position = Vector2(218, 232)
 JUMP_VELOCITY = -300.0
 metadata/_edit_group_ = true
 
@@ -129,6 +131,9 @@ shape = SubResource("RectangleShape2D_ucmn0")
 
 [node name="Fuel-1sec" parent="." instance=ExtResource("15_lu4j0")]
 position = Vector2(897, 409)
+
+[node name="BlindingSpider" parent="." instance=ExtResource("17_g58tq")]
+position = Vector2(320, 209)
 
 [connection signal="body_entered" from="Node/CaveEntrance" to="Node/CaveEntrance" method="_on_body_entered"]
 [connection signal="body_entered" from="ActionSigns/JetpackSign" to="ActionSigns/JetpackSign" method="_on_body_entered"]
