@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=3 format=3 uid="uid://br325gl8wgfuu"]
+
+[ext_resource type="Script" path="res://resources/enemy_resource_base.gd" id="1_rm83g"]
+[ext_resource type="Texture2D" uid="uid://boivd04scspau" path="res://assets/enemies/dummy-enemy.png" id="2_v8xmq"]
+
+[resource]
+script = ExtResource("1_rm83g")
+texture = ExtResource("2_v8xmq")
+health = 2

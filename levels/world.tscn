@@ -12,17 +12,19 @@
 [ext_resource type="PackedScene" uid="uid://bjf4qbyaikjrv" path="res://collectibles/boxes/pink_box.tscn" id="12_5n7x1"]
 [ext_resource type="PackedScene" uid="uid://dlg0jpb28w8tl" path="res://collectibles/powerup/powerup_station_jetpack.tscn" id="12_jfall"]
 [ext_resource type="PackedScene" uid="uid://chtidesj1hv6b" path="res://environment/jetpack_sign.tscn" id="13_5mphi"]
-[ext_resource type="PackedScene" uid="uid://dshgcbnruliwk" path="res://entities/enemies/flower_enemy.tscn" id="13_mlkev"]
 [ext_resource type="PackedScene" uid="uid://cd17ai7s7md7x" path="res://entities/player/player.tscn" id="14_f7ltt"]
 [ext_resource type="PackedScene" uid="uid://dy003js173hqq" path="res://environment/direction_sign.tscn" id="14_uo2tj"]
 [ext_resource type="PackedScene" uid="uid://beuhgtgv32n6b" path="res://collectibles/fuel/fuel-1sec.tscn" id="15_lu4j0"]
-[ext_resource type="PackedScene" uid="uid://chv7hxyr5kr0" path="res://entities/enemies/blinding_spider.tscn" id="17_g58tq"]
+[ext_resource type="PackedScene" uid="uid://bpge6sufbmoba" path="res://entities/enemies/enemy.tscn" id="16_6swkv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86bfw"]
 size = Vector2(113, 73)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ucmn0"]
 size = Vector2(195, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypcfs"]
+size = Vector2(20, 9)
 
 [node name="World" type="Node2D"]
 position = Vector2(31, -9)
@@ -66,7 +68,7 @@ position = Vector2(52, 186)
 z_index = 10
 
 [node name="player" parent="Player" instance=ExtResource("14_f7ltt")]
-position = Vector2(218, 232)
+position = Vector2(164, 219)
 JUMP_VELOCITY = -300.0
 metadata/_edit_group_ = true
 
@@ -84,12 +86,6 @@ height = 50.0
 
 [node name="Mobs" type="Node2D" parent="."]
 position = Vector2(423, -21)
-
-[node name="FlowerEnemy" parent="Mobs" instance=ExtResource("13_mlkev")]
-position = Vector2(332, 61)
-
-[node name="FlowerEnemy2" parent="Mobs" instance=ExtResource("13_mlkev")]
-position = Vector2(1194, 254)
 
 [node name="PowerupPlatform" parent="." instance=ExtResource("9_mj1w0")]
 position = Vector2(371, 618)
@@ -132,8 +128,12 @@ shape = SubResource("RectangleShape2D_ucmn0")
 [node name="Fuel-1sec" parent="." instance=ExtResource("15_lu4j0")]
 position = Vector2(897, 409)
 
-[node name="BlindingSpider" parent="." instance=ExtResource("17_g58tq")]
-position = Vector2(276, 225)
+[node name="enemy" parent="." instance=ExtResource("16_6swkv")]
+position = Vector2(258, 232)
+
+[node name="CollisionShape2D" parent="enemy" index="1"]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_ypcfs")
 
 [connection signal="body_entered" from="Node/CaveEntrance" to="Node/CaveEntrance" method="_on_body_entered"]
 [connection signal="body_entered" from="ActionSigns/JetpackSign" to="ActionSigns/JetpackSign" method="_on_body_entered"]
@@ -141,7 +141,6 @@ position = Vector2(276, 225)
 [connection signal="body_entered" from="ActionSigns/DirectionSign" to="ActionSigns/DirectionSign" method="_on_body_entered"]
 [connection signal="body_exited" from="ActionSigns/DirectionSign" to="ActionSigns/DirectionSign" method="_on_body_exited"]
 
-[editable path="Mobs/FlowerEnemy"]
-[editable path="Mobs/FlowerEnemy/HurtBox"]
 [editable path="ActionSigns/JetpackSign"]
 [editable path="ActionSigns/DirectionSign"]
+[editable path="enemy"]

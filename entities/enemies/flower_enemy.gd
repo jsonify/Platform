@@ -19,6 +19,16 @@ func _physics_process(delta):
 	var direction = (player.position - self.position).normalized()
 	var player_on_left = player.position.x < self.position.x
 
+	
+	chase_player(player_on_left, direction)
+
+	if animated_sprite.animation != "death":
+		animated_sprite.play("idle")
+	velocity.x = 0
+		
+	move_and_slide()
+	
+func chase_player(player_on_left, direction):
 	if chase == true:
 		if animated_sprite.animation != "death":
 			animated_sprite.play("move")
@@ -33,15 +43,8 @@ func _physics_process(delta):
 			print(direction.x)
 
 		velocity = direction * SPEED
-		
-	else: 
-		if animated_sprite.animation != "death":
-			animated_sprite.play("idle")
-		velocity.x = 0
-		
-	move_and_slide()
 	
-	
+
 func _on_player_detection_body_entered(body):
 	if body is Player:
 		chase = true
