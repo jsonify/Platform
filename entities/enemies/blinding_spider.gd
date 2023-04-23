@@ -15,17 +15,8 @@ var player_chase := false
 var player = null
 
 func _physics_process(delta):
+	detect_turn_around()
 	
-	var found_wall = is_on_wall()
-	var found_ground = !ground_right_check.is_colliding()
-	
-	if found_wall or found_ground:
-		direction *= -1
-	
-	if direction.x == 1:
-		marker_2D.scale.x = 1
-	else:
-		marker_2D.scale.x = -1
 	
 	if player_chase:
 		position.x += (player.position.x - position.x) / chase_speed
@@ -39,7 +30,17 @@ func _physics_process(delta):
 
 	move_and_slide()
 			
-
+func detect_turn_around():
+	var found_wall = is_on_wall()
+	var found_ground = !ground_right_check.is_colliding()
+	
+	if found_wall or found_ground:
+		direction *= -1
+	
+	if direction.x == 1:
+		marker_2D.scale.x = 1
+	else:
+		marker_2D.scale.x = -1
 
 func _on_detection_area_body_entered(body):
 #	pass
