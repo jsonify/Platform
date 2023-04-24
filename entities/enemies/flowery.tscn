@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmtkkdn7mj3xi"]
+
+[ext_resource type="PackedScene" uid="uid://ca4a8aoyi4iv" path="res://entities/enemies/base_enemy.tscn" id="1_6e7em"]
+[ext_resource type="Script" path="res://entities/enemies/flowery.gd" id="2_iit66"]
+[ext_resource type="Texture2D" uid="uid://y3wws3ph6feh" path="res://assets/enemies/flower-enemy 23 32x32.png" id="3_o21ar"]
+
+[sub_resource type="GDScript" id="GDScript_1m5i3"]
+script/source = "extends Area2D
+
+
+signal player_detected
+signal player_undetected
+
+func _on_body_entered(body):
+	emit_signal(\"player_detected\")
+
+
+func _on_body_exited(body):
+	emit_signal(\"player_undetected\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lja6n"]
+size = Vector2(56, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysyc0"]
+size = Vector2(8, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo40q"]
+size = Vector2(12, 5)
+
+[node name="Flowery" instance=ExtResource("1_6e7em")]
+position = Vector2(0, -22)
+script = ExtResource("2_iit66")
+
+[node name="DetectionArea" parent="." index="0"]
+position = Vector2(0, 12)
+script = SubResource("GDScript_1m5i3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_lja6n")
+
+[node name="Marker2D" parent="." index="1"]
+position = Vector2(0, 20)
+
+[node name="HitBox" parent="Marker2D" index="0"]
+damage = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/HitBox" index="0"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_ysyc0")
+
+[node name="Sprite2D" parent="Marker2D" index="1"]
+position = Vector2(0, -14)
+texture = ExtResource("3_o21ar")
+hframes = 23
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, 19.5)
+shape = SubResource("RectangleShape2D_mo40q")
+
+[connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]
