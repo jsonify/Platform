@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bbjivcpy5e8ws"]
+[gd_scene load_steps=20 format=3 uid="uid://bbjivcpy5e8ws"]
 
 [ext_resource type="Script" path="res://levels/world.gd" id="1_gvcph"]
 [ext_resource type="Script" path="res://ui/bg.gd" id="2_a3vaa"]
@@ -17,9 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://cd17ai7s7md7x" path="res://entities/player/player.tscn" id="14_f7ltt"]
 [ext_resource type="PackedScene" uid="uid://dy003js173hqq" path="res://environment/direction_sign.tscn" id="14_uo2tj"]
 [ext_resource type="PackedScene" uid="uid://beuhgtgv32n6b" path="res://collectibles/fuel/fuel-1sec.tscn" id="15_lu4j0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uc7up"]
-size = Vector2(11, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86bfw"]
 size = Vector2(113, 73)
@@ -97,15 +94,7 @@ position = Vector2(-185, 231)
 position = Vector2(132, 504)
 
 [node name="Spidey" parent="Mobs" instance=ExtResource("9_8rt0p")]
-position = Vector2(-113, 230)
-
-[node name="CollisionShape2D" parent="Mobs/Spidey/DetectionArea" index="0"]
-light_mask = 2
-position = Vector2(2.5, 3.5)
-debug_color = Color(0, 0, 1, 0.490196)
-
-[node name="CollisionShape2D" parent="Mobs/Spidey" index="3"]
-shape = SubResource("RectangleShape2D_uc7up")
+position = Vector2(52, 246)
 
 [node name="PowerupPlatform" parent="." instance=ExtResource("9_mj1w0")]
 position = Vector2(371, 618)
@@ -156,7 +145,5 @@ position = Vector2(897, 409)
 [connection signal="body_entered" from="ActionSigns/DirectionSign" to="ActionSigns/DirectionSign" method="_on_body_entered"]
 [connection signal="body_exited" from="ActionSigns/DirectionSign" to="ActionSigns/DirectionSign" method="_on_body_exited"]
 
-[editable path="Mobs/Spidey"]
-[editable path="Mobs/Spidey/Marker2D/HitBox"]
 [editable path="ActionSigns/JetpackSign"]
 [editable path="ActionSigns/DirectionSign"]

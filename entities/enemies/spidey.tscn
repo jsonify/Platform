@@ -56,8 +56,6 @@ velocity = Vector2(10, 0)
 script = ExtResource("2_71s5g")
 
 [node name="DetectionArea" parent="." index="0"]
-collision_layer = 0
-collision_mask = 2
 script = ExtResource("3_utpj1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
@@ -93,8 +91,12 @@ position = Vector2(-2.5, 5)
 shape = SubResource("RectangleShape2D_c1kyn")
 
 [node name="Timer" type="Timer" parent="." index="4"]
+one_shot = true
 
 [connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]
+[connection signal="player_detected" from="DetectionArea" to="." method="_on_detection_area_player_detected"]
+[connection signal="player_undetected" from="DetectionArea" to="." method="_on_detection_area_player_undetected"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="Marker2D/HitBox"]

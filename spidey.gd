@@ -4,17 +4,20 @@ class_name Spidey
 @onready var animation_player := $AnimationPlayer
 @onready var timer := $Timer
 
-func _ready():
-	$DetectionArea.player_detected.connect(player_was_detected)
-
-
-func player_was_detected():
-	timer.start(2)
-	normal_speed = 50
 
 func _process(delta):
 	animation_player.play("walk")
 	
 
 func _on_timer_timeout():
-	normal_speed = 10
+	speed_multiplier = 1
+	print("timer started")
+
+
+func _on_detection_area_player_detected(body):
+	speed_multiplier = 5
+
+
+func _on_detection_area_player_undetected(body):
+	timer.start()
+	print("timer started")
