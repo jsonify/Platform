@@ -48,6 +48,8 @@ _data = {
 [node name="Fuel-5sec" type="Area2D"]
 light_mask = 0
 visibility_layer = 2
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_acc53")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

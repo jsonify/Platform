@@ -38,6 +38,8 @@ animations = [{
 radius = 3.0
 
 [node name="Jetpack" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
 script = ExtResource("1_cjcpc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
