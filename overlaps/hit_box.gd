@@ -6,3 +6,5 @@ signal player_hit(amount)
 
 func _on_body_entered(body):
 	emit_signal("player_hit", damage)
+
+

@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cvyhpndm6dscx" path="res://environment/cave_entrance.tscn" id="5_aavgk"]
 [ext_resource type="PackedScene" uid="uid://cdtierpk5plno" path="res://ui/ui.tscn" id="5_ede1p"]
 [ext_resource type="Texture2D" uid="uid://pjvytq36d4mj" path="res://assets/world/circle-fade.png" id="7_jqmhk"]
-[ext_resource type="PackedScene" uid="uid://c6jw2dmpcl0np" path="res://entities/enemies/spidey.tscn" id="9_8rt0p"]
 [ext_resource type="PackedScene" uid="uid://bffqtugajlh5e" path="res://platforms/powerup_platform.tscn" id="9_mj1w0"]
 [ext_resource type="PackedScene" uid="uid://dmtkkdn7mj3xi" path="res://entities/enemies/flowery.tscn" id="9_yuqe3"]
 [ext_resource type="PackedScene" uid="uid://bh0u5i4ogipbf" path="res://collectibles/fuel/fuel-5sec.tscn" id="11_yqny1"]
@@ -17,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cd17ai7s7md7x" path="res://entities/player/player.tscn" id="14_f7ltt"]
 [ext_resource type="PackedScene" uid="uid://dy003js173hqq" path="res://environment/direction_sign.tscn" id="14_uo2tj"]
 [ext_resource type="PackedScene" uid="uid://beuhgtgv32n6b" path="res://collectibles/fuel/fuel-1sec.tscn" id="15_lu4j0"]
+[ext_resource type="PackedScene" path="res://entities/enemies/spidey.tscn" id="18_oyj7d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86bfw"]
 size = Vector2(113, 73)
@@ -68,7 +68,7 @@ collision_mask = 2
 z_index = 10
 
 [node name="player" parent="Player" instance=ExtResource("14_f7ltt")]
-position = Vector2(164, 219)
+position = Vector2(-459, 92)
 JUMP_VELOCITY = -300.0
 metadata/_edit_group_ = true
 
@@ -88,13 +88,7 @@ height = 50.0
 position = Vector2(423, -21)
 
 [node name="Flowery" parent="Mobs" instance=ExtResource("9_yuqe3")]
-position = Vector2(-185, 231)
-
-[node name="Flowery2" parent="Mobs" instance=ExtResource("9_yuqe3")]
-position = Vector2(132, 504)
-
-[node name="Spidey" parent="Mobs" instance=ExtResource("9_8rt0p")]
-position = Vector2(52, 246)
+position = Vector2(-196, 231)
 
 [node name="PowerupPlatform" parent="." instance=ExtResource("9_mj1w0")]
 position = Vector2(371, 618)
@@ -138,6 +132,9 @@ shape = SubResource("RectangleShape2D_ucmn0")
 
 [node name="Fuel-1sec" parent="." instance=ExtResource("15_lu4j0")]
 position = Vector2(897, 409)
+
+[node name="Spidey" parent="." instance=ExtResource("18_oyj7d")]
+position = Vector2(571, 209)
 
 [connection signal="body_entered" from="Node/CaveEntrance" to="Node/CaveEntrance" method="_on_body_entered"]
 [connection signal="body_entered" from="ActionSigns/JetpackSign" to="ActionSigns/JetpackSign" method="_on_body_entered"]

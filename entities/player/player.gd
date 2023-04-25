@@ -43,9 +43,6 @@ var prev_state = null
 @onready var Raycasts = $Raycasts
 @onready var screen_dimensions = Vector2(get_viewport().size)
 
-# enum states { RUN, JUMP, FALL, IDLE, THRUST }
-# var state = states.FALL
-
 var sprite_frames
 var jetpack_enabled
 
@@ -56,8 +53,7 @@ var player_position_uv : Vector2
 func _ready():
 	Utils.saveGame()
 	Utils.loadGame()
-#	sprite.frames = load("res://entities/player/player_basic.tres")
-#	sprite.frame = load("res://entities/player/player_basic.tres")
+
 	jetpack_enabled = Game.jetpack
 
 	for state in STATES.get_children():

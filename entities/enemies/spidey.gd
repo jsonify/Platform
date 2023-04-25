@@ -11,7 +11,6 @@ func _process(delta):
 
 func _on_timer_timeout():
 	speed_multiplier = 1
-	print("timer started")
 
 
 func _on_detection_area_player_detected(body):
@@ -20,4 +19,8 @@ func _on_detection_area_player_detected(body):
 
 func _on_detection_area_player_undetected(body):
 	timer.start()
-	print("timer started")
+
+
+
+func _on_hurt_box_area_entered(area):
+	queue_free()
