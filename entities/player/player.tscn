@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cd17ai7s7md7x"]
+[gd_scene load_steps=29 format=3 uid="uid://cd17ai7s7md7x"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_kq41b"]
 [ext_resource type="Script" path="res://entities/player/STATES.gd" id="4_2d2iv"]
@@ -13,6 +13,7 @@
 [ext_resource type="Gradient" uid="uid://cpuhv63pldqxr" path="res://effects/thrust_gradient.tres" id="12_yuvj5"]
 [ext_resource type="Texture2D" uid="uid://cunvbcktlha0f" path="res://assets/effects/smoke.png" id="13_6xtef"]
 [ext_resource type="PackedScene" uid="uid://b4h6fyn1cejwg" path="res://overlaps/hit_box.tscn" id="13_rn704"]
+[ext_resource type="PackedScene" uid="uid://8qqafthmvonk" path="res://overlaps/hurt_box.tscn" id="14_pgkv5"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_0kp1u"]
 gradient = ExtResource("12_yuvj5")
@@ -151,6 +152,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_48o2i"]
 size = Vector2(3, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8vyf"]
+size = Vector2(5, 7.5)
+
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 81
@@ -186,6 +190,7 @@ libraries = {
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -15.0
 offset_top = -32.0
 offset_right = 16.0
@@ -241,3 +246,13 @@ collision_mask = 256
 position = Vector2(0, 2)
 rotation = -1.5708
 shape = SubResource("RectangleShape2D_48o2i")
+
+[node name="HurtBox" parent="." instance=ExtResource("14_pgkv5")]
+collision_layer = 512
+collision_mask = 128
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(1, -5.25)
+shape = SubResource("RectangleShape2D_b8vyf")
+
+[editable path="HurtBox"]

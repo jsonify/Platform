@@ -68,7 +68,7 @@ collision_mask = 2
 z_index = 10
 
 [node name="player" parent="Player" instance=ExtResource("14_f7ltt")]
-position = Vector2(-459, 92)
+position = Vector2(138, 219)
 JUMP_VELOCITY = -300.0
 metadata/_edit_group_ = true
 
@@ -88,7 +88,7 @@ height = 50.0
 position = Vector2(423, -21)
 
 [node name="Flowery" parent="Mobs" instance=ExtResource("9_yuqe3")]
-position = Vector2(-196, 231)
+position = Vector2(-195, 232)
 
 [node name="PowerupPlatform" parent="." instance=ExtResource("9_mj1w0")]
 position = Vector2(371, 618)
@@ -142,5 +142,7 @@ position = Vector2(571, 209)
 [connection signal="body_entered" from="ActionSigns/DirectionSign" to="ActionSigns/DirectionSign" method="_on_body_entered"]
 [connection signal="body_exited" from="ActionSigns/DirectionSign" to="ActionSigns/DirectionSign" method="_on_body_exited"]
 
+[editable path="Mobs/Flowery"]
+[editable path="Mobs/Flowery/Marker2D/HurtBox"]
 [editable path="ActionSigns/JetpackSign"]
 [editable path="ActionSigns/DirectionSign"]

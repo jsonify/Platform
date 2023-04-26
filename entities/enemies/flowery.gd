@@ -13,7 +13,7 @@ func _on_detection_area_player_undetected(body):
 
 
 
-func hit_effect():
+func hit_effect(area):
 	speed = 0
 	animation_player.play("hit")
 	await animation_player.animation_finished
@@ -21,10 +21,10 @@ func hit_effect():
 	animation_player.play("death")
 	await animation_player.animation_finished
 	queue_free()
+	print("killed by " + area.name)
 	
 	
 
 
-
-func _on_hurt_box_area_entered(area):
-	hit_effect()
+func _on_hurt_box_take_damage(amount):
+	print("Just took " + str(amount) + " of damage")
