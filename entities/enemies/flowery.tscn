@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmtkkdn7mj3xi"]
+[gd_scene load_steps=15 format=3 uid="uid://ut72xnadycxq"]
 
-[ext_resource type="PackedScene" uid="uid://ca4a8aoyi4iv" path="res://entities/enemies/base_enemy.tscn" id="1_6e7em"]
+[ext_resource type="PackedScene" path="res://entities/enemies/base_enemy.tscn" id="1_6e7em"]
 [ext_resource type="Script" path="res://entities/enemies/flowery.gd" id="2_iit66"]
 [ext_resource type="Texture2D" uid="uid://y3wws3ph6feh" path="res://assets/enemies/flower-enemy 23 32x32.png" id="3_o21ar"]
+[ext_resource type="Script" path="res://entities/enemies/flowery_hurtbox.gd" id="4_lbj8k"]
 
 [sub_resource type="GDScript" id="GDScript_1m5i3"]
 script/source = "extends Area2D
@@ -24,17 +25,6 @@ size = Vector2(82, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysyc0"]
 size = Vector2(18, 5)
-
-[sub_resource type="GDScript" id="GDScript_ag7jy"]
-script/source = "extends Area2D
-
-signal take_damage(amount)
-
-
-func _on_area_entered(area):
-	emit_signal(\"take_damage\", 5)
-	print(\"entered\")
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5opum"]
 size = Vector2(10, 5.25)
@@ -131,7 +121,6 @@ position = Vector2(0, 20)
 
 [node name="HitBox" parent="Marker2D" index="0"]
 collision_mask = 512
-damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/HitBox" index="0"]
 position = Vector2(0, -0.5)
@@ -143,9 +132,8 @@ texture = ExtResource("3_o21ar")
 hframes = 23
 
 [node name="HurtBox" parent="Marker2D" index="3"]
-collision_layer = 256
 collision_mask = 128
-script = SubResource("GDScript_ag7jy")
+script = ExtResource("4_lbj8k")
 
 [node name="CollisionShape2D" parent="Marker2D/HurtBox" index="0"]
 position = Vector2(0, -6.625)

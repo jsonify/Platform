@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cdtierpk5plno" path="res://ui/ui.tscn" id="5_ede1p"]
 [ext_resource type="Texture2D" uid="uid://pjvytq36d4mj" path="res://assets/world/circle-fade.png" id="7_jqmhk"]
 [ext_resource type="PackedScene" uid="uid://bffqtugajlh5e" path="res://platforms/powerup_platform.tscn" id="9_mj1w0"]
-[ext_resource type="PackedScene" uid="uid://dmtkkdn7mj3xi" path="res://entities/enemies/flowery.tscn" id="9_yuqe3"]
+[ext_resource type="PackedScene" uid="uid://ut72xnadycxq" path="res://entities/enemies/flowery.tscn" id="9_yuqe3"]
 [ext_resource type="PackedScene" uid="uid://bh0u5i4ogipbf" path="res://collectibles/fuel/fuel-5sec.tscn" id="11_yqny1"]
 [ext_resource type="PackedScene" uid="uid://bjf4qbyaikjrv" path="res://collectibles/boxes/pink_box.tscn" id="12_5n7x1"]
 [ext_resource type="PackedScene" uid="uid://dlg0jpb28w8tl" path="res://collectibles/powerup/powerup_station_jetpack.tscn" id="12_jfall"]
