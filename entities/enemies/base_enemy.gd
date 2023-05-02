@@ -13,7 +13,7 @@ var direction = Vector2.RIGHT
 
 var player = null
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	detect_turn_around()
 	patrol()
 	move_and_slide()

@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://ut72xnadycxq"]
+[gd_scene load_steps=12 format=3 uid="uid://ut72xnadycxq"]
 
-[ext_resource type="PackedScene" path="res://entities/enemies/base_enemy.tscn" id="1_6e7em"]
+[ext_resource type="PackedScene" uid="uid://2tixbqfha3t" path="res://entities/enemies/base_enemy.tscn" id="1_6e7em"]
 [ext_resource type="Script" path="res://entities/enemies/flowery.gd" id="2_iit66"]
 [ext_resource type="Texture2D" uid="uid://y3wws3ph6feh" path="res://assets/enemies/flower-enemy 23 32x32.png" id="3_o21ar"]
-[ext_resource type="Script" path="res://entities/enemies/flowery_hurtbox.gd" id="4_lbj8k"]
 
 [sub_resource type="GDScript" id="GDScript_1m5i3"]
 script/source = "extends Area2D
@@ -23,11 +22,8 @@ func _on_body_exited(body):
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lja6n"]
 size = Vector2(82, 6)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysyc0"]
-size = Vector2(18, 5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5opum"]
-size = Vector2(10, 5.25)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo40q"]
+size = Vector2(12, 5)
 
 [sub_resource type="Animation" id="Animation_bya1q"]
 length = 0.001
@@ -101,9 +97,6 @@ _data = {
 "move": SubResource("Animation_7egop")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo40q"]
-size = Vector2(12, 5)
-
 [node name="Flowery" instance=ExtResource("1_6e7em")]
 position = Vector2(0, -22)
 script = ExtResource("2_iit66")
@@ -119,41 +112,22 @@ shape = SubResource("RectangleShape2D_lja6n")
 [node name="Marker2D" parent="." index="1"]
 position = Vector2(0, 20)
 
-[node name="HitBox" parent="Marker2D" index="0"]
-collision_mask = 512
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/HitBox" index="0"]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_ysyc0")
-
-[node name="Sprite2D" parent="Marker2D" index="1"]
+[node name="Sprite2D" parent="Marker2D" index="0"]
 position = Vector2(0, -14)
 texture = ExtResource("3_o21ar")
 hframes = 23
 
-[node name="HurtBox" parent="Marker2D" index="3"]
-collision_mask = 128
-script = ExtResource("4_lbj8k")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, 19.5)
+shape = SubResource("RectangleShape2D_mo40q")
 
-[node name="CollisionShape2D" parent="Marker2D/HurtBox" index="0"]
-position = Vector2(0, -6.625)
-shape = SubResource("RectangleShape2D_5opum")
-
-[node name="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer" parent="." index="3"]
 autoplay = "move"
 libraries = {
 "": SubResource("AnimationLibrary_7rmgv")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-position = Vector2(0, 19.5)
-shape = SubResource("RectangleShape2D_mo40q")
-
 [connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]
 [connection signal="player_detected" from="DetectionArea" to="." method="_on_detection_area_player_detected"]
 [connection signal="player_undetected" from="DetectionArea" to="." method="_on_detection_area_player_undetected"]
-[connection signal="area_entered" from="Marker2D/HurtBox" to="Marker2D/HurtBox" method="_on_area_entered"]
-[connection signal="take_damage" from="Marker2D/HurtBox" to="." method="_on_hurt_box_take_damage"]
-
-[editable path="Marker2D/HurtBox"]
