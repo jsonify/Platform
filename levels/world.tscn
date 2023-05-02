@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cd17ai7s7md7x" path="res://entities/player/player.tscn" id="14_f7ltt"]
 [ext_resource type="PackedScene" uid="uid://dy003js173hqq" path="res://environment/direction_sign.tscn" id="14_uo2tj"]
 [ext_resource type="PackedScene" uid="uid://beuhgtgv32n6b" path="res://collectibles/fuel/fuel-1sec.tscn" id="15_lu4j0"]
-[ext_resource type="PackedScene" path="res://entities/enemies/spidey.tscn" id="18_oyj7d"]
+[ext_resource type="PackedScene" uid="uid://qax13sl3705s" path="res://entities/enemies/spidey.tscn" id="18_oyj7d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86bfw"]
 size = Vector2(113, 73)
