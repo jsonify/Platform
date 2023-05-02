@@ -5,6 +5,7 @@ class_name Player
 @onready var animation_player := $AnimationPlayer
 @onready var sprite := $Sprite2D
 @onready var thrust_fire := $GPUParticles2D
+@onready var animation_tree := $AnimationTree
 
 # @export var JUMP_VELOCITY := -160.0
 @export var MAX_SPEED := 75
@@ -53,7 +54,9 @@ var player_position_uv : Vector2
 func _ready():
 	Utils.saveGame()
 	Utils.loadGame()
-
+	
+	animation_tree.active = true
+	
 	jetpack_enabled = Game.jetpack
 
 	for state in STATES.get_children():
@@ -103,6 +106,7 @@ func apply_acceleration(amount):
 
 
 func player_input():
+	animation_tree.set("parameters/move/blend_position", movement_input.x)
 	movement_input = Vector2.ZERO
 	if Input.is_action_pressed("right"):
 		movement_input.x += 1

@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=12 format=3 uid="uid://qax13sl3705s"]
 
-[ext_resource type="PackedScene" uid="uid://ca4a8aoyi4iv" path="res://entities/enemies/base_enemy.tscn" id="1_fqifm"]
+[ext_resource type="PackedScene" path="res://entities/enemies/base_enemy.tscn" id="1_fqifm"]
 [ext_resource type="Script" path="res://entities/enemies/spidey.gd" id="2_71s5g"]
 [ext_resource type="Texture2D" uid="uid://duwvnkfu1gn34" path="res://assets/enemies/blinding-spider.png" id="3_fauyf"]
 [ext_resource type="Script" path="res://entities/enemies/spidey_detection_area.gd" id="3_utpj1"]
@@ -71,7 +71,6 @@ position = Vector2(-2, 0)
 [node name="HitBox" parent="Marker2D" index="0"]
 collision_layer = 0
 collision_mask = 512
-damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/HitBox" index="0"]
 position = Vector2(3, 12)
