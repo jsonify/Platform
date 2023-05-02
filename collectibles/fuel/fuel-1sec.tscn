@@ -45,6 +45,8 @@ _data = {
 size = Vector2(10, 12)
 
 [node name="Fuel-1sec" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_qo3wb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

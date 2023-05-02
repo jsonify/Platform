@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtw0seiv7lj0j"]
+
+[ext_resource type="Script" path="res://overlaps/detection_area.gd" id="1_870it"]
+
+[node name="DetectionArea" type="Area2D"]
+script = ExtResource("1_870it")

@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7fcuejmt81af"]
+
+[ext_resource type="Texture2D" uid="uid://boivd04scspau" path="res://assets/enemies/dummy-enemy.png" id="1_i3hk1"]
+[ext_resource type="Script" path="res://entities/enemies/dummy_test.gd" id="1_qfy55"]
+[ext_resource type="PackedScene" uid="uid://8qqafthmvonk" path="res://overlaps/hurt_box.tscn" id="3_bjkxj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hor46"]
+radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7nse"]
+size = Vector2(20, 7)
+
+[node name="DummyTest" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_qfy55")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hor46")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_i3hk1")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_bjkxj")]
+collision_layer = 4
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_g7nse")
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+
+[editable path="HurtBox"]

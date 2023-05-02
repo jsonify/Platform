@@ -1,0 +1,115 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="PackedScene" uid="uid://ca4a8aoyi4iv" path="res://entities/enemies/base_enemy.tscn" id="1_fqifm"]
+[ext_resource type="Script" path="res://entities/enemies/spidey.gd" id="2_71s5g"]
+[ext_resource type="Texture2D" uid="uid://duwvnkfu1gn34" path="res://assets/enemies/blinding-spider.png" id="3_fauyf"]
+[ext_resource type="Script" path="res://entities/enemies/spidey_detection_area.gd" id="3_utpj1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffo2e"]
+size = Vector2(51, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7xlc"]
+size = Vector2(5, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kakmd"]
+size = Vector2(4, 5)
+
+[sub_resource type="Animation" id="Animation_x4uip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_m0hp0"]
+resource_name = "walk"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6j7nw"]
+_data = {
+"RESET": SubResource("Animation_x4uip"),
+"walk": SubResource("Animation_m0hp0")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1kyn"]
+size = Vector2(15, 4)
+
+[node name="Spidey" instance=ExtResource("1_fqifm")]
+velocity = Vector2(10, 0)
+script = ExtResource("2_71s5g")
+
+[node name="DetectionArea" parent="." index="0"]
+script = ExtResource("3_utpj1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
+position = Vector2(-4.5, 5)
+shape = SubResource("RectangleShape2D_ffo2e")
+
+[node name="Marker2D" parent="." index="1"]
+position = Vector2(-2, 0)
+
+[node name="HitBox" parent="Marker2D" index="0"]
+collision_layer = 0
+collision_mask = 512
+damage = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/HitBox" index="0"]
+position = Vector2(3, 12)
+shape = SubResource("RectangleShape2D_p7xlc")
+
+[node name="Sprite2D" parent="Marker2D" index="1"]
+position = Vector2(2, 0)
+texture = ExtResource("3_fauyf")
+hframes = 22
+frame = 1
+
+[node name="LedgeCheck" parent="Marker2D" index="2"]
+position = Vector2(1, 6)
+
+[node name="HurtBox" parent="Marker2D" index="3"]
+collision_layer = 256
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Marker2D/HurtBox" index="1"]
+position = Vector2(-3, 3.5)
+shape = SubResource("RectangleShape2D_kakmd")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_6j7nw")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(-2.5, 5)
+shape = SubResource("RectangleShape2D_c1kyn")
+
+[node name="Timer" type="Timer" parent="." index="4"]
+one_shot = true
+
+[connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]
+[connection signal="player_detected" from="DetectionArea" to="." method="_on_detection_area_player_detected"]
+[connection signal="player_undetected" from="DetectionArea" to="." method="_on_detection_area_player_undetected"]
+[connection signal="area_entered" from="Marker2D/HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Marker2D/HitBox"]
