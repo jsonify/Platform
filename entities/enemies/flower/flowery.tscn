@@ -1,0 +1,168 @@
+[gd_scene load_steps=17 format=3 uid="uid://dj7m1vxa1f547"]
+
+[ext_resource type="Texture2D" uid="uid://c5larvhgm1wdx" path="res://assets/enemies/flower/flower-move-sheet.png" id="1_4bapy"]
+[ext_resource type="Texture2D" uid="uid://pds0g1urbt3u" path="res://assets/enemies/flower/flower-death-sheet.png" id="1_p776b"]
+[ext_resource type="Script" path="res://entities/enemies/damageable.gd" id="2_tk4xv"]
+[ext_resource type="Script" path="res://entities/CharacterStateMachine.gd" id="4_d87lk"]
+[ext_resource type="Script" path="res://entities/State.gd" id="5_kwwss"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nprck"]
+size = Vector2(14, 11)
+
+[sub_resource type="Animation" id="Animation_1q20y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_1daor"]
+resource_name = "move"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_4bapy")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_kcoxy"]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_p776b")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rrylx"]
+_data = {
+"RESET": SubResource("Animation_1q20y"),
+"dead": SubResource("Animation_kcoxy"),
+"move": SubResource("Animation_1daor")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1iurw"]
+animation = &"dead"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j38y2"]
+animation = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n1aa8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qxhy2"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ephr8"]
+states/dead/node = SubResource("AnimationNodeAnimation_1iurw")
+states/dead/position = Vector2(607, 100.812)
+states/move/node = SubResource("AnimationNodeAnimation_j38y2")
+states/move/position = Vector2(412, 101.625)
+transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_n1aa8"), "move", "dead", SubResource("AnimationNodeStateMachineTransition_qxhy2")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_2vgx7"]
+
+[node name="Flowery" type="CharacterBody2D"]
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -5.5)
+shape = SubResource("RectangleShape2D_nprck")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_p776b")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "move"
+libraries = {
+"": SubResource("AnimationLibrary_rrylx")
+}
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("2_tk4xv")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_ephr8")
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_2vgx7")
+
+[node name="CharacterStateMachine" type="Node" parent="."]
+script = ExtResource("4_d87lk")
+
+[node name="Move" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("5_kwwss")
+
+[node name="Dead" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("5_kwwss")

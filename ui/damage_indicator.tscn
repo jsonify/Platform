@@ -1,6 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://mk200g60ep3b"]
+[gd_scene load_steps=5 format=3 uid="uid://0ypcsu8a4pl0"]
 
-[ext_resource type="Script" path="res://ui/damage_indicator.gd" id="1_mjw2y"]
+[sub_resource type="GDScript" id="GDScript_c2n7p"]
+script/source = "extends Node2D
+
+@export var SPEED := 2
+@export var FRICTION := 15
+
+@onready var label := $Label
+
+var SHIFT_DIRECTION := Vector2.UP
+
+func _process(delta):
+	global_position += SPEED * SHIFT_DIRECTION * delta
+	SPEED = max(SPEED - FRICTION * delta, 0)
+"
 
 [sub_resource type="Animation" id="Animation_mhday"]
 length = 0.001
@@ -102,7 +115,7 @@ _data = {
 
 [node name="DamageIndicator" type="Node2D"]
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_mjw2y")
+script = SubResource("GDScript_c2n7p")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -4.0
