@@ -178,12 +178,17 @@ script = ExtResource("5_kwwss")
 script = ExtResource("5_kwwss")
 can_move = false
 
-[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "state_machine", "dead_state")]
+[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "state_machine", "dead_state", "return_state")]
 script = ExtResource("6_ma1m2")
 damageable = NodePath("../../Damageable")
 state_machine = NodePath("..")
 dead_state = NodePath("../Dead")
+return_state = NodePath("../Move")
 can_move = false
+
+[node name="Timer" type="Timer" parent="CharacterStateMachine/Hit"]
+wait_time = 0.25
+one_shot = true
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -44.0
@@ -195,3 +200,4 @@ script = ExtResource("6_bfxsf")
 state_machine = NodePath("../CharacterStateMachine")
 
 [connection signal="animation_finished" from="AnimationTree" to="Damageable" method="_on_animation_tree_animation_finished"]
+[connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
