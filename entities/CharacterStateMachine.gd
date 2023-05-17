@@ -18,10 +18,14 @@ func _ready():
 			child.character = character
 			child.playback = animation_tree["parameters/playback"]
 			
+			#Connect to interrupt
+#			child.connect("interrupt_state", on_state_interrupt_state)
+			child.interrupt_state.connect(on_state_interrupt_state)
+			
 		else:
 			push_warning("Child " + child.name + " is not a State for CharacterStateMachine")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if current_state.next_state != null:
 		switch_state(current_state.next_state)
 
@@ -39,3 +43,7 @@ func switch_state(new_state: State):
 
 func _input(event: InputEvent):
 	current_state.state_input(event)
+
+
+func on_state_interrupt_state(new_state: State):
+	switch_state(new_state)

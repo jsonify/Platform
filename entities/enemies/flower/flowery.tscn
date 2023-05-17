@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://dj7m1vxa1f547"]
+[gd_scene load_steps=20 format=3 uid="uid://dj7m1vxa1f547"]
 
 [ext_resource type="Texture2D" uid="uid://c5larvhgm1wdx" path="res://assets/enemies/flower/flower-move-sheet.png" id="1_4bapy"]
+[ext_resource type="Script" path="res://entities/enemies/flower/flowery.gd" id="1_i857g"]
 [ext_resource type="Texture2D" uid="uid://pds0g1urbt3u" path="res://assets/enemies/flower/flower-death-sheet.png" id="1_p776b"]
 [ext_resource type="Script" path="res://entities/enemies/damageable.gd" id="2_tk4xv"]
 [ext_resource type="Script" path="res://entities/CharacterStateMachine.gd" id="4_d87lk"]
@@ -28,6 +29,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_kcoxy"]
 resource_name = "dead"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -133,9 +135,11 @@ transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_2vgx7"]
 
-[node name="Flowery" type="CharacterBody2D"]
+[node name="Flowery" type="CharacterBody2D" node_paths=PackedStringArray("hit_state")]
 collision_layer = 256
-collision_mask = 0
+script = ExtResource("1_i857g")
+movement_speed = 15.0
+hit_state = NodePath("CharacterStateMachine/Hit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5.5)
@@ -143,8 +147,9 @@ shape = SubResource("RectangleShape2D_nprck")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
-texture = ExtResource("1_p776b")
-hframes = 4
+texture = ExtResource("1_4bapy")
+hframes = 5
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "move"
@@ -158,6 +163,7 @@ script = ExtResource("2_tk4xv")
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_ephr8")
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_2vgx7")
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "current_state")]
@@ -173,9 +179,12 @@ script = ExtResource("5_kwwss")
 script = ExtResource("5_kwwss")
 can_move = false
 
-[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable")]
+[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "state_machine", "dead_state")]
 script = ExtResource("6_ma1m2")
 damageable = NodePath("../../Damageable")
+state_machine = NodePath("..")
+dead_state = NodePath("../Dead")
+can_move = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -44.0
@@ -185,3 +194,5 @@ offset_bottom = -8.0
 text = "State:"
 script = ExtResource("6_bfxsf")
 state_machine = NodePath("../CharacterStateMachine")
+
+[connection signal="animation_finished" from="AnimationTree" to="Damageable" method="_on_animation_tree_animation_finished"]

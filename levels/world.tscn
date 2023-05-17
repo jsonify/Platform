@@ -68,7 +68,7 @@ collision_mask = 2
 z_index = 10
 
 [node name="player" parent="Player" instance=ExtResource("14_f7ltt")]
-position = Vector2(138, 219)
+position = Vector2(206, 219)
 JUMP_VELOCITY = -300.0
 metadata/_edit_group_ = true
 
@@ -88,7 +88,7 @@ height = 50.0
 position = Vector2(423, -21)
 
 [node name="Flowery" parent="Mobs" instance=ExtResource("9_yuqe3")]
-position = Vector2(-207, 254)
+position = Vector2(-278, 249)
 
 [node name="PowerupPlatform" parent="." instance=ExtResource("9_mj1w0")]
 position = Vector2(371, 618)

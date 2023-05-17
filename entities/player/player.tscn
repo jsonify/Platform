@@ -239,7 +239,6 @@ target_position = Vector2(-8, 0)
 collision_mask = 32
 
 [node name="HitBox" parent="." instance=ExtResource("13_rn704")]
-collision_layer = 128
 collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
