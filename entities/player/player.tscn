@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://by3d1o11tq7s4" path="res://entities/player/THRUST.tscn" id="10_wd6b7"]
 [ext_resource type="Gradient" uid="uid://cpuhv63pldqxr" path="res://effects/thrust_gradient.tres" id="12_yuvj5"]
 [ext_resource type="Texture2D" uid="uid://cunvbcktlha0f" path="res://assets/effects/smoke.png" id="13_6xtef"]
-[ext_resource type="PackedScene" path="res://overlaps/hit_box.tscn" id="13_rn704"]
+[ext_resource type="PackedScene" uid="uid://cfe1bpn35acy5" path="res://overlaps/hit_box.tscn" id="13_rn704"]
 [ext_resource type="PackedScene" uid="uid://8qqafthmvonk" path="res://overlaps/hurt_box.tscn" id="14_pgkv5"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_0kp1u"]

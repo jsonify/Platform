@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 @export var starting_move_direction := Vector2.LEFT
 @export var movement_speed := 30.0
 @export var hit_state : State
@@ -25,10 +24,15 @@ func _physics_process(delta):
 		velocity.x = direction.x * movement_speed
 	elif state_machine.current_state != hit_state:
 		velocity.x = move_toward(velocity.x, 0, movement_speed)
-	
+
+	if is_on_wall():
+#		if direction.x == -sign(get_slide_collision(0).normal.x):
+		if direction.x == -sign(get_slide_collision(0).get_normal().x):
+			starting_move_direction = -starting_move_direction  # Reverse the direction
+
 	if direction.x < 0:
 		sprite.flip_h = true
 	else:
 		sprite.flip_h = false
-	
+
 	move_and_slide()

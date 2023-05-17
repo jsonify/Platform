@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://levels/world.gd" id="1_gvcph"]
 [ext_resource type="Script" path="res://ui/bg.gd" id="2_a3vaa"]
-[ext_resource type="TileSet" uid="uid://bb0ehveqi55rv" path="res://levels/world.tres" id="2_ctgwt"]
+[ext_resource type="TileSet" uid="uid://bb0ehveqi55rv" path="res://Levels/world.tres" id="2_ctgwt"]
 [ext_resource type="Texture2D" uid="uid://b1g3hq8gjfyoq" path="res://assets/world/jsonify_parallax_background_layers_style_or_and_the_blind_cave__7d41c7aa-3045-4026-bb34-14b447031fbd.png" id="3_vqcw0"]
 [ext_resource type="PackedScene" uid="uid://cvyhpndm6dscx" path="res://environment/cave_entrance.tscn" id="5_aavgk"]
 [ext_resource type="PackedScene" uid="uid://cdtierpk5plno" path="res://ui/ui.tscn" id="5_ede1p"]
