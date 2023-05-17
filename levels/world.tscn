@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bbjivcpy5e8ws"]
+[gd_scene load_steps=20 format=3 uid="uid://bnre0tptu8h1y"]
 
 [ext_resource type="Script" path="res://levels/world.gd" id="1_gvcph"]
 [ext_resource type="Script" path="res://ui/bg.gd" id="2_a3vaa"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cdtierpk5plno" path="res://ui/ui.tscn" id="5_ede1p"]
 [ext_resource type="Texture2D" uid="uid://pjvytq36d4mj" path="res://assets/world/circle-fade.png" id="7_jqmhk"]
 [ext_resource type="PackedScene" uid="uid://bffqtugajlh5e" path="res://platforms/powerup_platform.tscn" id="9_mj1w0"]
-[ext_resource type="PackedScene" uid="uid://ut72xnadycxq" path="res://entities/enemies/flowery.tscn" id="9_yuqe3"]
+[ext_resource type="PackedScene" uid="uid://dj7m1vxa1f547" path="res://entities/enemies/flower/flowery.tscn" id="9_yuqe3"]
 [ext_resource type="PackedScene" uid="uid://bh0u5i4ogipbf" path="res://collectibles/fuel/fuel-5sec.tscn" id="11_yqny1"]
 [ext_resource type="PackedScene" uid="uid://bjf4qbyaikjrv" path="res://collectibles/boxes/pink_box.tscn" id="12_5n7x1"]
 [ext_resource type="PackedScene" uid="uid://dlg0jpb28w8tl" path="res://collectibles/powerup/powerup_station_jetpack.tscn" id="12_jfall"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cd17ai7s7md7x" path="res://entities/player/player.tscn" id="14_f7ltt"]
 [ext_resource type="PackedScene" uid="uid://dy003js173hqq" path="res://environment/direction_sign.tscn" id="14_uo2tj"]
 [ext_resource type="PackedScene" uid="uid://beuhgtgv32n6b" path="res://collectibles/fuel/fuel-1sec.tscn" id="15_lu4j0"]
-[ext_resource type="PackedScene" path="res://entities/enemies/spidey.tscn" id="18_oyj7d"]
+[ext_resource type="PackedScene" uid="uid://c2agmia81gv6x" path="res://ui/health_changed_mananger.tscn" id="17_bb8s7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86bfw"]
 size = Vector2(113, 73)
@@ -68,7 +68,7 @@ collision_mask = 2
 z_index = 10
 
 [node name="player" parent="Player" instance=ExtResource("14_f7ltt")]
-position = Vector2(138, 219)
+position = Vector2(170, 227)
 JUMP_VELOCITY = -300.0
 metadata/_edit_group_ = true
 
@@ -88,7 +88,7 @@ height = 50.0
 position = Vector2(423, -21)
 
 [node name="Flowery" parent="Mobs" instance=ExtResource("9_yuqe3")]
-position = Vector2(-195, 232)
+position = Vector2(-168, 252)
 
 [node name="PowerupPlatform" parent="." instance=ExtResource("9_mj1w0")]
 position = Vector2(371, 618)
@@ -133,8 +133,7 @@ shape = SubResource("RectangleShape2D_ucmn0")
 [node name="Fuel-1sec" parent="." instance=ExtResource("15_lu4j0")]
 position = Vector2(897, 409)
 
-[node name="Spidey" parent="." instance=ExtResource("18_oyj7d")]
-position = Vector2(571, 209)
+[node name="HealthChangedMananger" parent="." instance=ExtResource("17_bb8s7")]
 
 [connection signal="body_entered" from="Node/CaveEntrance" to="Node/CaveEntrance" method="_on_body_entered"]
 [connection signal="body_entered" from="ActionSigns/JetpackSign" to="ActionSigns/JetpackSign" method="_on_body_entered"]
@@ -142,7 +141,5 @@ position = Vector2(571, 209)
 [connection signal="body_entered" from="ActionSigns/DirectionSign" to="ActionSigns/DirectionSign" method="_on_body_entered"]
 [connection signal="body_exited" from="ActionSigns/DirectionSign" to="ActionSigns/DirectionSign" method="_on_body_exited"]
 
-[editable path="Mobs/Flowery"]
-[editable path="Mobs/Flowery/Marker2D/HurtBox"]
 [editable path="ActionSigns/JetpackSign"]
 [editable path="ActionSigns/DirectionSign"]

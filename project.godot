@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Game="*res://global/game.gd"
 Utils="*res://global/utils.gd"
 Events="*res://global/events.gd"
+SignalBus="*res://global/signal_bus.gd"
 
 [display]
 
@@ -109,5 +110,5 @@ take={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.105882, 0.105882, 0.105882, 1)
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.105882, 0.105882, 0.105882, 1)

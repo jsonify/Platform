@@ -239,7 +239,7 @@ target_position = Vector2(-8, 0)
 collision_mask = 32
 
 [node name="HitBox" parent="." instance=ExtResource("13_rn704")]
-collision_layer = 256
+collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(1, -4)
@@ -253,5 +253,7 @@ collision_mask = 128
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(1, -5.25)
 shape = SubResource("RectangleShape2D_b8vyf")
+
+[connection signal="body_entered" from="HitBox" to="HitBox" method="_on_body_entered"]
 
 [editable path="HurtBox"]

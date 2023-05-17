@@ -1,0 +1,203 @@
+[gd_scene load_steps=20 format=3 uid="uid://dj7m1vxa1f547"]
+
+[ext_resource type="Texture2D" uid="uid://c5larvhgm1wdx" path="res://assets/enemies/flower/flower-move-sheet.png" id="1_4bapy"]
+[ext_resource type="Script" path="res://entities/enemies/flower/flowery.gd" id="1_i857g"]
+[ext_resource type="Texture2D" uid="uid://pds0g1urbt3u" path="res://assets/enemies/flower/flower-death-sheet.png" id="1_p776b"]
+[ext_resource type="Script" path="res://entities/enemies/damageable.gd" id="2_tk4xv"]
+[ext_resource type="Script" path="res://entities/CharacterStateMachine.gd" id="4_d87lk"]
+[ext_resource type="Script" path="res://entities/State.gd" id="5_kwwss"]
+[ext_resource type="Script" path="res://entities/StateDebugLabel.gd" id="6_bfxsf"]
+[ext_resource type="Script" path="res://entities/HitState.gd" id="6_ma1m2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nprck"]
+size = Vector2(14, 11)
+
+[sub_resource type="Animation" id="Animation_1q20y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_kcoxy"]
+resource_name = "dead"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_p776b")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_1daor"]
+resource_name = "move"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_4bapy")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rrylx"]
+_data = {
+"RESET": SubResource("Animation_1q20y"),
+"dead": SubResource("Animation_kcoxy"),
+"move": SubResource("Animation_1daor")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1iurw"]
+animation = &"dead"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j38y2"]
+animation = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n1aa8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qxhy2"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ephr8"]
+states/dead/node = SubResource("AnimationNodeAnimation_1iurw")
+states/dead/position = Vector2(607, 100.812)
+states/move/node = SubResource("AnimationNodeAnimation_j38y2")
+states/move/position = Vector2(412, 101.625)
+transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_n1aa8"), "move", "dead", SubResource("AnimationNodeStateMachineTransition_qxhy2")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_2vgx7"]
+
+[node name="Flowery" type="CharacterBody2D" node_paths=PackedStringArray("hit_state")]
+collision_layer = 256
+script = ExtResource("1_i857g")
+movement_speed = 15.0
+hit_state = NodePath("CharacterStateMachine/Hit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -5.5)
+shape = SubResource("RectangleShape2D_nprck")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_4bapy")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "move"
+libraries = {
+"": SubResource("AnimationLibrary_rrylx")
+}
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("2_tk4xv")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_ephr8")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_2vgx7")
+
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "current_state")]
+script = ExtResource("4_d87lk")
+character = NodePath("..")
+animation_tree = NodePath("../AnimationTree")
+current_state = NodePath("Move")
+
+[node name="Move" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("5_kwwss")
+
+[node name="Dead" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("5_kwwss")
+can_move = false
+
+[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "state_machine", "dead_state", "return_state")]
+script = ExtResource("6_ma1m2")
+damageable = NodePath("../../Damageable")
+state_machine = NodePath("..")
+dead_state = NodePath("../Dead")
+return_state = NodePath("../Move")
+can_move = false
+
+[node name="Timer" type="Timer" parent="CharacterStateMachine/Hit"]
+wait_time = 0.25
+one_shot = true
+
+[node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+offset_left = -44.0
+offset_top = -34.0
+offset_right = 55.0
+offset_bottom = -8.0
+text = "State:"
+script = ExtResource("6_bfxsf")
+state_machine = NodePath("../CharacterStateMachine")
+
+[connection signal="animation_finished" from="AnimationTree" to="Damageable" method="_on_animation_tree_animation_finished"]
+[connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
