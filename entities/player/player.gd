@@ -14,7 +14,7 @@ class_name Player
 @export var THRUST := -1
 @export var MAX_THRUST := 50
 
-var gravity_value = ProjectSettings.get_setting("physics/2d/default_gravity")
+@export var gravity_value = 980
 
 # player movement
 @export var SPEED = 70.0

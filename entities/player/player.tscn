@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cd17ai7s7md7x"]
+[gd_scene load_steps=28 format=3 uid="uid://cd17ai7s7md7x"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_kq41b"]
 [ext_resource type="Script" path="res://entities/player/STATES.gd" id="4_2d2iv"]
@@ -12,8 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://by3d1o11tq7s4" path="res://entities/player/THRUST.tscn" id="10_wd6b7"]
 [ext_resource type="Gradient" uid="uid://cpuhv63pldqxr" path="res://effects/thrust_gradient.tres" id="12_yuvj5"]
 [ext_resource type="Texture2D" uid="uid://cunvbcktlha0f" path="res://assets/effects/smoke.png" id="13_6xtef"]
-[ext_resource type="PackedScene" path="res://overlaps/hit_box.tscn" id="13_rn704"]
 [ext_resource type="PackedScene" uid="uid://8qqafthmvonk" path="res://overlaps/hurt_box.tscn" id="14_pgkv5"]
+[ext_resource type="Texture2D" uid="uid://pjvytq36d4mj" path="res://assets/world/circle-fade.png" id="15_vv4o1"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_0kp1u"]
 gradient = ExtResource("12_yuvj5")
@@ -149,17 +149,16 @@ _data = {
 "thrust": SubResource("Animation_srigi")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_48o2i"]
-size = Vector2(3, 20)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8vyf"]
 size = Vector2(5, 7.5)
 
 [node name="player" type="CharacterBody2D"]
+z_index = 10
 collision_layer = 2
 collision_mask = 81
 script = ExtResource("1_kq41b")
-JUMP_VELOCITY = -400.0
+gravity_value = 500
+JUMP_VELOCITY = -225.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 light_mask = 2
@@ -186,8 +185,6 @@ autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_ghees")
 }
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -238,14 +235,6 @@ position = Vector2(-1, 0)
 target_position = Vector2(-8, 0)
 collision_mask = 32
 
-[node name="HitBox" parent="." instance=ExtResource("13_rn704")]
-collision_mask = 256
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(1, -4)
-rotation = -1.5708
-shape = SubResource("RectangleShape2D_48o2i")
-
 [node name="HurtBox" parent="." instance=ExtResource("14_pgkv5")]
 collision_layer = 512
 collision_mask = 128
@@ -254,6 +243,17 @@ collision_mask = 128
 position = Vector2(1, -5.25)
 shape = SubResource("RectangleShape2D_b8vyf")
 
-[connection signal="body_entered" from="HitBox" to="HitBox" method="_on_body_entered"]
+[node name="PointLight2D" type="PointLight2D" parent="."]
+z_index = 5
+position = Vector2(-1, -26)
+scale = Vector2(1.41975, 1.41975)
+color = Color(0.819608, 1, 0.8, 1)
+energy = 1.76
+range_layer_max = 1
+shadow_enabled = true
+shadow_filter_smooth = 10.7
+texture = ExtResource("15_vv4o1")
+texture_scale = 0.2
+height = 50.0
 
 [editable path="HurtBox"]

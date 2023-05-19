@@ -36,3 +36,7 @@ func _physics_process(delta):
 		sprite.flip_h = false
 
 	move_and_slide()
+
+
+func _on_hit_box_body_entered(body):
+	print("hit")
