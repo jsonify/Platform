@@ -26,7 +26,7 @@ size = Vector2(195, 70)
 position = Vector2(3, 180)
 metadata/_edit_group_ = true
 
-[node name="Camera2D" parent="player" index="9"]
+[node name="Camera2D" parent="player" index="10"]
 limit_right = 1800
 
 [node name="TileMap" type="TileMap" parent="." index="1"]
@@ -96,7 +96,6 @@ position = Vector2(423, -21)
 
 [node name="Flowery" parent="Mobs" index="0" instance=ExtResource("7_fqem0")]
 position = Vector2(-168, 252)
-starting_move_direction = Vector2(-1, 0)
 
 [node name="PowerupPlatform" parent="." index="7" instance=ExtResource("8_eq5lu")]
 position = Vector2(3773, -112)
@@ -130,6 +129,8 @@ position = Vector2(-22.5, 36)
 shape = SubResource("RectangleShape2D_xfy7i")
 
 [node name="HealthChangedMananger" parent="." index="11" instance=ExtResource("15_ue8yt")]
+
+[node name="Rocket" type="StaticBody2D" parent="." index="12"]
 
 [connection signal="body_entered" from="Node/CaveEntrance" to="Node/CaveEntrance" method="_on_body_entered"]
 [connection signal="body_entered" from="ActionSigns/JetpackSign" to="ActionSigns/JetpackSign" method="_on_body_entered"]
